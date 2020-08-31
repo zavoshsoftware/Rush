@@ -1,0 +1,75 @@
+﻿body {
+}
+
+
+.html-hidden {
+    display: none;
+}
+.field-validation-error {
+    color: crimson;
+}
+.hidden-div
+{
+    visibility:hidden;
+}
+.bg-red {
+    color: #d1efef;
+    background-color: #FF383F;
+}
+.bg-darkred {
+    background-color: #900C3E;
+    color: #d1efef;
+}
+.bg-purple {
+    background-color: #6A3094;
+    color: #d1efef;
+}
+#SuccessDivC, #errorDivC {
+    display: none;
+    text-align: right;
+    direction: rtl;
+}
+.dropdown-parent {
+    z-index: 8;
+    left: unset;
+    width: 90%;
+}
+
+.display-dll {
+    display: block;
+}
+.dropdown-child {
+    text-align: right;
+    direction: rtl;
+    margin: 5px;
+    padding: 0 5px;
+}
+.hidden-dll {
+    display: none;
+}
+
+.display-dll {
+    display: block !important;
+}
+.att-dropdown-menu {
+    border: 2px solid #eeeeee;
+    border-radius: 0;
+    box-shadow: none;
+    position: absolute;
+    top: 100%;
+    right:15px;
+    width:92%;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+}
+
+

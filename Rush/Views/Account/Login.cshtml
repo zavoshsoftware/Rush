@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "ورود";
+    Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+}
+ <!-- Preloader -->
+<div class="preloader"></div>
+<!-- Preloader -->
+
+
+<div class="header-top"></div>
+<!--Page Title-->
+<section class="page-title" style="background: url(/images/background/2.jpg);">
+    <div class="container text-center">
+        <div class="title">
+            <h4>ورود</h4>
+        </div>
+        <ul class="title-manu">
+            <li><a href="/">صفحه اصلی</a></li>
+            <li>></li>
+            <li>ورود</li>
+        </ul>
+    </div>
+</section>
+@*<div class="page-head white-content">
+    <div class="height50vh parallax-container" style="background-image: url(/Images/img/Slider/Kusadasi-02.jpg);">
+        <div class="page-head-wrap">
+            <div class="display-r">
+                <div class="display-a">
+                    <div class="container">
+                        <div class="row justify-content-center animate" data-animation="fadeInUp" data-timeout="500">
+                            <div class="col-md-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/">صفحه اصلی</a></li>
+                                        <li class="breadcrumb-item"><a href="#">لاگین</a></li>
+                                    </ol>
+                                </nav>
+                                <h1 class="big-title mt-60">لاگین</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<div class="row">
+    <div class="container">
+        <div class="col-md-4 col-md-push-4">
+            <div class="login-form">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+</div>
+
+

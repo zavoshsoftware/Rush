@@ -1,0 +1,92 @@
+﻿@model ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "ثبت نام";
+    Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+}
+<div class="preloader"></div>
+<!-- Preloader -->
+
+
+<div class="header-top"></div>
+<!--Page Title-->
+<section class="page-title" style="background: url(/images/background/2.jpg);">
+    <div class="container text-center">
+        <div class="title">
+            <h4>ثبت نام</h4>
+        </div>
+        <ul class="title-manu">
+            <li><a href="/">صفحه اصلی</a></li>
+            <li>></li>
+            <li>ثبت نام</li>
+        </ul>
+    </div>
+</section>
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="container">
+            <div class="col-md-4 col-md-push-4">
+                <div class="login-form">
+
+                    @Html.ValidationSummary(true)
+                    <div class="field-input">
+                        @Html.TextBoxFor(model => model.User.FullName, null, new { @class = "form-control", @placeholder = "نام و نام خانوادگی" })
+
+                        @Html.ValidationMessageFor(model => model.User.FullName)
+
+                    </div>
+                    <div class="field-input">
+                        @Html.TextBoxFor(model => model.User.CellNum, null, new { @class = "form-control", @placeholder = "شماره همراه"})
+
+                        @Html.ValidationMessageFor(model => model.User.CellNum)
+
+                    </div>
+                    <div class="field-input">
+
+                        @Html.TextBoxFor(model => model.User.Password, null, new { @class = "form-control", @placeholder = "کلمه عبور", @type="password"})
+
+                        @Html.ValidationMessageFor(model => model.User.Password)
+
+                    </div>
+                  
+
+                    @*<div class="field-input">
+                        @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Code)
+
+                            @Html.ValidationMessageFor(model => model.Code)
+                        </div>
+                    </div>*@
+
+                    <div class="field-input">
+                            @Html.TextAreaFor(model => model.User.Address, new { @class = "form-control", @placeholder = "آدرس" })
+
+                            @Html.ValidationMessageFor(model => model.User.Address)
+                       
+                    </div>
+
+                    @*<div class="field-input">
+                       
+                            @Html.EditorFor(model => model.PostalCode, null, new { @class = "control-label col-md-2", @placeholder = "کد پستی" })
+
+                            @Html.ValidationMessageFor(model => model.PostalCode)
+                      
+                    </div>*@
+
+                   
+                   
+                    <div class="field-input">
+                            <input type="submit" value="ثبت نام" class="btn btn-1 mt-20 width100 text-center" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        @*</div>
+    </div>*@
+}
+
+
+

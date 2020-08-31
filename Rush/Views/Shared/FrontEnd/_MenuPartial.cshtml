@@ -1,0 +1,92 @@
+﻿ 
+	
+
+<header class="main-header sticky-header">
+			<div class="container-fluid clearfix hidden-xs" id="top-header">
+				<div class="row">
+					<div class="col-xs-6">
+						<a href="tel:00982177204334">
+							<i class="fa fa-phone"></i> 02177220275
+						</a>
+					</div>
+					<div class="col-xs-6">
+						<ul>
+							
+							@if (User.Identity.IsAuthenticated)
+							{
+								<li>
+									<a href="/orders/list"><i class="fa fa-users"></i> پنل کاربری</a>
+
+								</li>
+								<li>
+									<a href="/account/LogOff"><i class="fa fa-sign-out"></i> خروج</a>
+
+								</li>
+							}
+							else
+							{
+							<li><a href="/userlogin"><i class="fa fa-sign-in"></i> ورود</a></li>	
+							<li><a href="/register"><i class="fa fa-user"></i> ثبت نام</a></li>
+																
+							}
+							@*<li><a href="/basket"><i class="fa fa-shopping-basket"></i> سبد خرید</a></li>*@
+						</ul>
+					</div>
+				</div>
+			</div>
+		<div class="container-fluid clearfix">
+			
+			
+	
+
+			<div class="logo">
+				<a href="/"><img src="/images/logo.png" alt="راش وب" /></a>
+			</div>
+			<nav class="main-menu">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="navbar-collapse collapse clearfix">
+					<ul class="navigation clearfix">
+						@foreach (var menu in Model.Menu)
+						{
+							if (menu.HasChild == true)
+							{
+								<li class="dropdown">
+									<a href="/serviceGroup/@menu.ServiceGroup.UrlParam">@menu.ServiceGroup.Title</a>
+									<ul>
+										@foreach (var service in menu.Services)
+										{
+											<li><a href="/service/@service.UrlParam">@service.Title</a></li>}
+									</ul>
+								</li>
+							}
+							else
+							{
+								<li><a href="/serviceGroup/@menu.ServiceGroup.UrlParam">@menu.ServiceGroup.Title</a></li>
+							}
+						}
+						<li class="dropdown">
+							<a href="#">رپورتاژ آگهی</a>
+							<ul>
+								<li><a href="/reportage">خرید رپورتاژ آگهی</a></li>
+								<li><a href="/reportage/package">خرید پکیج رپورتاژ آگهی</a></li>
+							</ul>
+						</li>
+						<li><a href="/backlink">خرید بک لینک</a></li>
+						<li><a href="/blog">بلاگ</a></li>
+						@*<li><a href="/basket">سبد خرید</a></li>*@
+
+
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+	
+
+ 

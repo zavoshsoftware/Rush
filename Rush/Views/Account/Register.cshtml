@@ -1,0 +1,83 @@
+﻿@model ViewModels.RegisterUserViewModel
+@{
+		ViewBag.Title = "ثبت نام در راش وب";
+		Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+}
+
+<div class="header-top"></div>
+<!--Page Title-->
+<section class="page-title" style="background: url(/images/background/2.jpg);">
+	<div class="container text-center">
+		<div class="title">
+			<h4>ثبت نام</h4>
+		</div>
+		<ul class="title-manu">
+			<li><a href="/">صفحه اصلی</a></li>
+			<li>></li>
+			<li>ثبت نام</li>
+		</ul>
+	</div>
+</section>
+@using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin" }))
+{
+		@Html.AntiForgeryToken()
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-10 col-sm-offset-1 col-xs-12  col-md-offset-3 login">
+					<div class="login-header">
+						ثبت نام در وب سایت
+					</div>
+					<div class="login-form" id="login-form">
+				
+
+						<div class="alert alert-info">
+							@Html.ValidationMessage("duplicate")
+						</div>
+						<div class="form-group">
+							<label for="Password">نام و نام خانوادگی</label>
+							<div>
+
+								@Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @placeholder = "نام و نام خانوادگی" })
+								@Html.ValidationMessageFor(a => a.FullName, "", new { @class = "text-danger" })
+
+							</div>
+						</div>
+						
+						
+						<div class="form-group">
+							<label for="Username">شماره موبایل</label>
+							<div>
+
+								@Html.TextBoxFor(m => m.CellNumber, null, new { @class = "form-control", @placeholder = "شماره موبایل" })
+								@Html.ValidationMessageFor(a => a.CellNumber, "", new { @class = "text-danger" })
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="Password">کلمه عبور</label>
+							<div>
+
+								@Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "کلمه عبور" })
+								@Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+
+							</div>
+						</div>
+						 
+						<button type="submit" id="btn-login" class="btn btn-savadimo-login">ثبت نام</button>
+					</div>
+
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-sm-10 col-sm-offset-1 col-xs-12  col-md-offset-3 login-footer">
+				اگر قبلا در راش وب ثبت نام کرده اید وارد حساب کاربری خود شوید
+					<br />
+					<a href="/userlogin">ورود به سایت</a>
+				</div>
+			</div>
+		</div>
+
+}

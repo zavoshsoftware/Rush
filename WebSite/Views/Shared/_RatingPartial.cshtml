@@ -1,0 +1,160 @@
+﻿@model ViewModels.BaseViewModel
+ 
+
+
+    <link href="~/Content/Rating/star-rating.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/Scripts/Rating/star-rating.js"></script>
+ 
+    @*<div class="container">
+        <div style="direction:ltr;width:65%;">*@
+    <div class="col-md-7 col-sm-6 col-xs-6 rating text-center no-padding">
+
+        <div class="dir-rtl text-right rate-info">(@ViewBag.RatingCount امتیاز، میانگین @ViewBag.rate از 5)</div>
+    </div>
+    <div class="col-md-5 col-sm-6 col-xs-6  rating text-center no-padding">
+
+
+        <input id="input-21b" value="@Model.Rate" type="text" class="rating" data-min=0 data-max=5 data-step=0.5 data-size="xs"
+               required title="">
+
+        <input type="button" class="btn btn-primary" id="submitRating" value="ثبت امتیاز" onClick="SubmitRate();return false();" />
+
+
+    </div>
+
+
+    <script>
+                jQuery(document).ready(function () {
+                    $("#input-21f").rating({
+                        starCaptions: function (val) {
+                            if (val < 3) {
+                                return val;
+                            } else {
+                                return 'high';
+                            }
+                        },
+                        starCaptionClasses: function (val) {
+                            if (val < 3) {
+                                return 'label label-danger';
+                            } else {
+                                return 'label label-success';
+                            }
+                        },
+                        hoverOnClear: false
+                    });
+                    var $inp = $('#rating-input');
+
+                    $inp.rating({
+                        min: 0,
+                        max: 5,
+                        step: 1,
+                        size: 'lg',
+                        showClear: false
+                    });
+
+                    $('#btn-rating-input').on('click', function () {
+                        $inp.rating('refresh', {
+                            showClear: true,
+                            disabled: !$inp.attr('disabled')
+                        });
+                    });
+
+
+                    $('.btn-danger').on('click', function () {
+                        $("#kartik").rating('destroy');
+                    });
+
+                    $('.btn-success').on('click', function () {
+                        $("#kartik").rating('create');
+                    });
+
+                    $inp.on('rating.change', function () {
+                        alert($('#rating-input').val());
+                    });
+
+
+                    $('.rb-rating').rating({
+                        'showCaption': true,
+                        'stars': '3',
+                        'min': '0',
+                        'max': '3',
+                        'step': '1',
+                        'size': 'xs',
+                        'starCaptions': { 0: 'status:nix', 1: 'status:wackelt', 2: 'status:geht', 3: 'status:laeuft' }
+                    });
+                    $("#input-21c").rating({
+                        min: 0, max: 8, step: 0.5, size: "xl", stars: "8"
+                    });
+                    //$("#submitRating").click(function () {
+
+
+            });
+               function SubmitRate()
+
+               {
+                   var oUrl;
+                   var urlAddress = window.location.pathname;
+                   if (urlAddress.toLowerCase().includes("blog")) {
+                       oUrl = "/Blogs/SubmitStar";
+                   }
+                   else if (urlAddress.toLowerCase().includes("servicegroup")) {
+                       oUrl = "/ServiceGroups/SubmitStar";
+                   }
+                   else if (urlAddress.toLowerCase().includes("service")) {
+                       oUrl = "/Services/SubmitStar";
+                   }
+                   else if (urlAddress.toLowerCase().includes("backlink")) {
+                       oUrl = "/BackLinks/SubmitStar";
+                   }
+                   else if (urlAddress.toLowerCase().includes("reportage")) {
+                       oUrl = "/Reportages/SubmitStar";
+                   }
+                        var spanStarNumber;
+                        var starNumber;
+                        var param = '@ViewBag.param';
+                        var badgeprimary = $(".badge-primary")[0];
+                        var badgeInfo = $(".badge-info")[0];
+                        var badgesecondary = $(".badge-secondary")[0];
+                        var badgewarning = $(".badge-warning")[0];
+                        if (badgeprimary !== undefined) {
+                            spanStarNumber = $(".badge-primary")[0].childNodes[0].data;
+                            starNumber = spanStarNumber;
+
+                        }
+                        else if (badgeInfo !== undefined) {
+                            spanStarNumber = $(".badge-info")[0].childNodes[0].data;
+                            starNumber = spanStarNumber;
+                        }
+                        else if (badgesecondary !== undefined) {
+                            spanStarNumber = $(".badge-secondary")[0].childNodes[0].data;
+                            var starNumberSplit = spanStarNumber.split(' ');
+                            starNumber = starNumberSplit[0];
+
+                        }
+                        else if (badgewarning !== undefined) {
+                            spanStarNumber = $(".badge-warning")[0].childNodes[0].data;
+                            starNumber = spanStarNumber;
+                        }
+                        else {
+                            spanStarNumber = $(".badge-success")[0].childNodes[0].data;
+                            starNumber = spanStarNumber;
+
+                        }
+                        $.ajax(
+                            {
+                                url: oUrl,
+                                data: { rateStar: starNumber, param: param },
+                                type: "POST"
+                            }).done(function (result) {
+                                if (result === "true") {
+                                    alert('امتیاز شما با موفقیت ثبت شد.');
+                                }
+                                else if (result === "false") {
+                                    alert('خطایی رخ داد!! مجددا تلاش نمایید');
+
+                                }
+                            });
+                   }
+    </script>
+ 

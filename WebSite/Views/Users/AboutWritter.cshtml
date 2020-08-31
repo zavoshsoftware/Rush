@@ -1,0 +1,71 @@
+﻿@model ViewModels.AboutWritterViewModel
+<div class="page-wrapper">
+
+
+    @*<!-- Preloader -->
+        <div class="preloader"></div>
+        <!-- Preloader -->*@
+
+
+    <div class="header-top"></div>
+    <!--Page Title-->
+    <section class="page-title" style="background: url(/images/background/2.jpg);">
+        <div class="container text-center">
+            <div class="title">
+                <h1>@Model.Writter.FullName</h1>
+            </div>
+            <ul class="title-manu">
+                <li><a href="/">صفحه اصلی</a></li>
+                <li>></li>
+                <li>@Model.Writter.FullName</li>
+            </ul>
+        </div>
+    </section>
+    <!--End Page Title-->
+    <!--Blog Section-->
+    <section class="blog-section style-two">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-title">
+                    <h1 class="text-right dir-rtl color-green">درباره @Model.Writter.FullName</h1>
+                    <p>
+                        @Html.Raw(Model.Writter.Description)
+                    </p>
+                </div>
+                <h2 class="text-center dir-rtl color-green">لیست مقالات</h2>
+                @foreach (var blog in Model.Blogs)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <div class="item-holder">
+                            <div class="image-box blog-list">
+                                <figure>
+                                    <a href="/blog/@blog.UrlParam"><img src="@blog.ImageUrl" alt="@blog.Title"></a>
+                                </figure>
+                                <div class="date-box">
+                                    <span>@string.Format("{0:dd MMM yyyy}", blog.CreationDate)</span>
+                                </div>
+                            </div>
+                            <div class="text-area">
+                                <div class="content-text text-center">
+                                    <div class="sec-title">
+                                        <a href="/blog/@blog.UrlParam"><h5>@blog.Title</h5></a>
+                                    </div>
+                                    <div class="text">
+                                        <p>@Html.Raw(blog.Summery)</p>
+                                    </div>
+                                </div>
+                                <div class="blog-info clearfix">
+
+                                    <ul class="right-side pull-right">
+                                        <li><i class="fa fa-eye" aria-hidden="true"></i>@blog.Visit</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <!--End Blog Section-->
+</div>

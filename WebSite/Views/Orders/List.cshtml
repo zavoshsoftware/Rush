@@ -1,0 +1,77 @@
+﻿@model ViewModels.OrderListViewModel
+@{
+    ViewBag.Title = "لیست سفارشات";
+    Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+}
+<div class="page-wrapper" id="sellPage">
+    <div class="header-top"></div>
+    <section class="page-title" style="background: url(/images/background/2.jpg);">
+        <div class="container text-center">
+            <div class="title">
+                <h2 class="black">لیست سفارشات</h2>
+            </div>
+            <ul class="title-manu">
+                <li><a href="/">صفحه اصلی</a></li>
+                <li>></li>
+                <li>لیست سفارشات</li>
+            </ul>
+        </div>
+    </section>
+    <section class="gallery-details sg-detail" id="reportage">
+        <div class="container">
+	        <div class="col-lg-9 col-md-9 col-xs-12 report">
+		        <table class="table-responsive table-striped report-table table-bordered bl">
+			        <tr>
+				        <th> ردیف</th>
+				        <th> شماره سفارش</th>
+				        <th> نوع سفارش</th>
+				        <th> تاریخ سفارش</th>
+				        <th> وضعیت سفارش</th>
+				        <th>وضعیت پرداخت</th>
+				        <th>مشاهده جزئیات</th>
+			        </tr>
+			        @{int RowNo = 0;}
+			        @foreach (var order in Model.Orders)
+			        {
+				        <tr>
+					        <td>@(RowNo += 1)</td>
+					        <td>@order.Code</td>
+					        <td>
+						        @if (order.OrderType == "backlink") {<span>بک لینک</span> }
+						        @if (order.OrderType == "reportage")
+										{<span>رپورتاژ</span> }
+						        @if (order.OrderType == "package")
+										{<span>پکیج رپورتاژ</span> }
+
+					        </td>
+					        <td>@order.CreationDate.ToShortDateString()</td>
+					        <td>@order.OrderStatus.Title</td>
+					        <td>
+						        @if (order.IsPaid)
+						        {
+							        <span><i style="color:green" class="fa fa-check"></i> پرداخت شده</span>
+						        }
+
+						        else
+						        {
+							        <span><i style="color:red" class="fa fa-remove"></i> عدم پرداخت</span>
+
+						        }
+					        </td>
+					        <td>
+						        <a class="btn btn-primary" href="/order/@order.Code">جزئیات</a>
+					        </td>
+				        </tr>
+			        }
+		        </table>
+
+	        </div>
+					
+	        <div class="col-lg-3 col-md-3 col-xs-12 report">
+		        @Html.Partial("FrontEnd/_UserSidebarPartial")
+
+				
+	        </div>
+        </div>
+    </section>
+</div>

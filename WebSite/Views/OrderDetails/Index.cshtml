@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Models.OrderDetail>
+
+@{
+		ViewBag.Title = "لیست محصولات سفارش کد "+ ViewBag.orderCode;
+
+		Layout = "~/Views/Shared/BackEndLayout/_BackEndLayout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+        @(Html.Kendo().Grid(Model)
+              .Name("Grid")
+              .Columns(columns =>
+                  {
+                                    columns.Bound(model => model.Order.Code);
+        columns.Bound(model => model.OrderDetailStatus.Title);
+        columns.Bound(model => model.Product.Title);
+        columns.Bound(model => model.Quantity);
+        columns.Bound(model => model.PriceStr);
+        columns.Bound(model => model.AmountStr);
+        columns.Bound(model => model.IsSendPublishSms);
+        columns.Bound(model => model.CreationDate);
+					columns.Bound(item => @item.Id).Title("دستورات").Filterable(false).Groupable(false)
+							.Template(@<text>
+									@Html.ActionLink("جزییات", "index","OrderDetailInformations", new {id = @item.OrderId,orderDetailId=item.Id}, new {@class = "k-button"})
+								
+								         
+ 
+									</text>).Width(200);  
+		})
+		.ToolBar(toolbar =>
+					{				
+						toolbar.Custom().Action("Create","OrderDetails").Text("افزودن");                          
+					}
+		)         
+		.DataSource(dataSource => dataSource
+									.Server()
+							
+									.Model(model => model.Id(item => item.Id))
+					)              
+	)
+

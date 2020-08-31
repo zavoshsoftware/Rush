@@ -1,0 +1,268 @@
+﻿@model ViewModels.ServiceGroupDetialViewModel
+
+<div class="page-wrapper">
+    <div class="header-top"></div>
+    <section class="page-title" style="background: url(/images/background/2.jpg);">
+        <div class="container text-center">
+            <div class="title">
+                <h2>@Model.ServiceGroup.Title</h2>
+            </div>
+            <ul class="title-manu">
+                <li><a href="/">صفحه اصلی</a></li>
+                <li>></li>
+                <li>@Model.ServiceGroup.Title</li>
+            </ul>
+        </div>
+    </section>
+    <section class="gallery-details sg-detail">
+        <div class="container">
+            <div class="row">
+          
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="image-text text-right">
+                        <div class="section-title text-left">
+                            <h1 class="text-right">@Model.ServiceGroup.Title</h1>
+                        </div>
+                        <div class="text text-justify">
+                            <p>
+                                @Html.Raw(Model.ServiceGroup.Body)
+                            </p>
+                        </div>
+                        <div id="rating">
+                            <div class="row blog-rating service-rating">
+                                @Html.Partial("_RatingPartial")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.ServiceGroup.IsFormActive == true)
+            {
+                <div class="col-lg-12 col-md-12 col-xs-12">
+
+                    <div class="service-form">
+                        <div class="form-area">
+                            <h3 class="text-right">
+                                فرم درخواست
+                                @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                                {
+                                    <span>(جهت ارسال درخواست <a href="/account/login">وارد</a> سایت شوید)</span>
+                                }
+                            </h3>
+                            <div id="request-form" name="contact_form" class="default-form" action="" method="post">
+                                <div class="alert alert-success dir-rtl" id="SuccessDivC">درخواست شما با موفقیت ثبت شد.</div>
+                                <div class="alert alert-danger dir-rtl" id="errorDivC"></div>
+                                <div class="row clearfix">
+
+                                    <div class="col-md-4 col-sm-6 col-xs-12 float-right">
+                                        <div class="form-group dir-rtl">
+                                            <input type="email" name="form_email" class="form-control required email" value="" placeholder="آدرس سایت" required="" id="txtSite">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12 float-right">
+                                        <div class="form-group dir-rtl">
+                                            <input type="email" name="form_email" class="form-control required email" value="" placeholder="ایمیل" required="" id="txtEmail">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 float-right">
+                                        <div class="form-group dir-rtl">
+                                            <input type="text" name="form_email" class="form-control required email" value="" placeholder="شماره تماس" required="" id="txtPhone">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 float-right">
+                                        <div class="form-group dir-rtl">
+                                            <div class="form-group text-right">
+                                                @Html.DropDownList("SiteTypeId", null, "نوع سایت", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 float-right">
+                                        <div class="form-group dir-rtl">
+                                            @Html.DropDownList("ServiceTypeId", null, "نوع خدمت", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 float-right">
+                                        <div class="form-group dir-rtl lg-width">
+                                            <input type="email" name="form_email" class="form-control required email" value="" placeholder="کلمات کلیدی" required="" id="txtMainWord">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 float-right">
+                                        <div class="form-group dir-rtl lg-width">
+                                            <textarea type="email" name="form_email" class="form-control required email" value="" placeholder="توضیحات" required="" id="txtDesc"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 float-right">
+                                        <div class="form-group form-bottom">
+                                            <input type="button" value="ارسال" class="btn-style-one" width="10%" onclick="SendRequest('@ViewBag.id'); return false;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        @if (Model.Questions.Count() > 0)
+        {
+            <div id="accordion">
+                <div class="container">
+                    <div class="accord-heading">
+                        <h3>سوالات متداول</h3>
+                    </div>
+                    <div class="accord-headlines">
+                        @foreach (var ques in Model.Questions)
+                        {
+                            <div class="card">
+                                <div class="card-header" id="">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#@ques.Id" aria-expanded="true" aria-controls="collapseOne">
+                                            @ques.Title
+                                        </button>
+                                        <i class="fa fa-angle-left"></i>
+                                    </h5>
+                                </div>
+
+                                <div id="@ques.Id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        @Html.Raw(ques.Body)
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </section>
+
+</div>
+@section StructuredData{
+    @if (ViewBag.param == "content-marketing")
+    {
+        <script type="application/ld+json">
+            {
+            "@@context": "https://schema.org",
+            "@@type": "FAQPage",
+            "mainEntity": [{
+            "@@type": "Question",
+            "name": "چرا نباید محتوای سایت های دیگر را کپی کرد؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "محتوای تکراری یا Duplicate content به هیچ وجه دلخواه گوگل نیست. گوگل اصلا قرار نیست به وبسایت هایی که مطالب دیگران یا حتی مطالب خودشان (از صفحه دیگری) را کپی می کنند و در انتظار جایگاهی در نتایج جستجو هستند، جایگاه بدهد. جدای از آن در صورت شکایت نویسنده اصلی به گوگل صفحه شما پاک می شود و ممکن است شامل جریمه های سنگین تری نیز بشوید.
+            <a href='https://www.rushweb.ir/blog/Duplicate-content'> محتوای تکراری</a> مانند آفتی به جان سایت شما می افتد و رتبه های شما را یکی پس از دیگری از شما می گیرد. "
+            }
+            },{
+            "@@type": "Question",
+            "name": "نکات مهم در نوشتن محتوا برای سایت چیست؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": " پیش از هرچیز مخاطبان خود را بررسی کنید. مخاطبانی که وارد سایت می شوند انتظار روبرو شدن با چه مطالبی را دارند؟ چه سوال هایی ممکن است برایشان پیش بیاید و تا چه اندازه می توانید دقیق به آنها پاسخ دهید؟ اولین قدم برای
+            <a href='https://www.rushweb.ir/blog/website-content-strategy'>نوشتن محتوا</a> برای مخاطبین این است که به جای آنها فکر کنیم، به سوالاتی که ممکن است برای آن ها پیش بیاید پاسخ دهیم."
+            }
+            },{
+            "@@type": "Question",
+            "name": "لینک سازی داخلی محتوای سایت چگونه باشد؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "هر زمان مطلب تازه ای بر روی سایت آپلود می کنید می توانید به مطالب و صفحات دیگر
+            <a href='https://www.rushweb.ir/blog/internal-link-building'>لینک سازی داخلی</a> کنید. با این ترفند هم به مخاطبان نشان می دهید که در صورت نیاز به اطلاعات بیشتر می توانند کلیک بعدی را انجام دهند هم گوگل متوجه می شود هر صفحه را با چه عباراتی نشان می دهید و احتمالا صفحه هدف شما در عبارت لینک شده پاسخ مناسبی می دهد. پس در صورت بالا رفتن اعتبار دامنه شما تمام این لینک ها با ارزش تر می شوند."
+            }
+            }
+            ]}
+        </script>
+    }
+    @if (ViewBag.param == "seo")
+    {
+        <script type="application/ld+json">
+            {
+            "@@context": "https://schema.org",
+            "@@type": "FAQPage",
+            "mainEntity": [{
+            "@@type": "Question",
+            "name": "چگونه سئو را یاد بگیریم؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "محتوای تکراری یااگر می خواهید سئو را یاد بگیرید بهترین کاری که می توانید بکنید شروع سئو سایت خودتان است. می توانید با
+            <a href="https://www.rushweb.ir/blog/list/seo"> مقالات آموزش سئو رایگان </a>شروع به کار کنید. هم چنین از ابزارهای سئو شناخته شده کمک بگیرید تا بهینه ترین حالت هر صفحه را بسازید."
+            }
+            },{
+            "@@type": "Question",
+            "name": "چرا هزینه برخی پروژه های سئو زیاد و برخی کم است؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": " دلایل زیادی وجود دارند که می توانند باعث شوند که هزینه سئو سایتی بالا و یا پایین باشد. رقابت زیاد در عبارات کلیدی، رتبه فعلی سایت، تحقیقات گسترده برای
+            <a href="https://www.rushweb.ir/serviceGroup/content-marketing">تولید محتوا</a>، شروع سئو سایت از صفر و هزینه های کلی سازماندهی یک برند به صورت آنلاین عوامل افزایش قیمت پروژه هستند."
+            }
+            },{
+            "@@type": "Question",
+            "name": "آیا یادگیری سئو راحت است؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "یادگیری سئو امری راحت نخواهد بود اما برای متخصص  شدن در هر زمینه ای احتیاج به تلاش و پشتکار است، سئو نیز از این قاعده مستثنی نمی شود. سئو شغلی لذت بخش است که به مطالعه مداوم نیاز دارد. قبل از شروع جستجو و مطالعه درباره سئو بد نیست تا نگاهی به مقالات آموزش سئو راش وب بیاندازید و از اولین مقاله منتشر شده در انتهای صفحه شروع کنید."
+            }
+            }
+            ]}
+        </script>
+    }
+    @if (ViewBag.param == "web-design")
+    {
+        <script type="application/ld+json">
+            {
+            "@@context":"https://schema.org",
+            "@@type":"FAQPage",
+            "mainEntity":[{"@@type":"Question","name":"طراحی سایت با کدام سیستم مدیریت محتوا برای سئو بهتر است؟",
+            "acceptedAnswer":
+            {"@@type":"Answer",
+            "text":"در پاسخ به این سوال باید گفت تفاوتی ندارد شما با چه سیستمی محتوای وبسایت خود را مدیریت می کنید، رعایت اصول سئو باید اصلی ترین هدف شما باشد. با رعایت تمام معیارها و فاکتورهای سئو، از محتوای ارزشمند گرفته، سئو تکنیکال، سئو داخلی و خارجی سایت شما باید هماهنگی لازم را داشته باشند و در بهترین شرایط نسبت به رقبا باشید. در این صورت می توان گفت هیچ تفاوتی در سیستم مدیریت محتوا وجو ندارد. اما همه این مسائل نیز در نهایت به طراحی سایت حرفه ای و UI کاربر پسند نیاز خواهد داشت تا بتواند تجربه خوبی برای کاربر به ارمغان بیاورد."}},
+            {"@@type":"Question",
+            "name":"هزینه طراحی سایت در راش وب چقدر است؟",
+            "acceptedAnswer":{"@@type":"Answer","text":"همانطور که پیشتر نیز گفتیم، هزینه طراحی سایت به عوامل زیادی مانند زبان برنامه نویسی، سیستم مدیریت محتوا، امکانات بخصوص و ... بستگی دارد. اما ما در راش وب کف قیمت طراحی سایت شرکتی را کمتر از دو میلیون تومان قرار داده ایم، این هزینه شامل خرید هاست، دامنه و SSL نیز می شود. طراحی سایت ها به صورت کاملا اصولی و با رعایت تمام نکات ریز و درشت سئو سایت صورت می گیرد. حسن انجام پروژه شما توسط راش وب این است که هم طراحی سایت و هم چنین سئو سایت روی عبارات کلیدی شما توسط ما انجام خواهد شد."}},
+            {"@@type":"Question",
+            "name":"طراحی سایت شامل چه مواردی می شود؟",
+            "acceptedAnswer":{"@@type":"Answer","text":"مسلما و بدون شک ساخت و تولید محتوای متنی و تصویری صفحاتی مانند صفحه اصلی، تماس با ما و خدمات یا محصولات با همکاری و همفکری میان مشاوران ما و شما صورت می گیرد. معمولا وبسایت شما با یک قالب و ظاهر آماده تحویل داده می شود و متون بی معنی در آن اضافه می گردد و شما می توانید هرگونه تغییراتی که می خواهید به طراح سایت بسپارید تا انجام دهد. هم چنین برای بخش های اصلی سایت محتوای خود را بنویسید. بخش مقالات نیز توسط راش وب تکمیل می گردد و مقالات هزینه ای مشخص طبق تعرفه تولید محتوا دارد."}}]
+            }
+        </script>
+    }
+
+	<script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "NewsArticle",
+        "mainEntityOfPage":
+        {
+        "@@type":"WebPage",
+        "@@id":"@ViewBag.Canonical"
+        },
+        "headline":"@ViewBag.Title",
+        "image":["@ViewBag.image"],
+        "datePublished":"@ViewBag.creationDate",
+        "dateModified":"@ViewBag.ModifiedDate",
+        "author":
+        {
+        "@@type":"Person",
+        "name":"راش وب"
+        },
+        "publisher":
+        {
+        "@@type":"Organization",
+        "name":"راش وب",
+        "logo":{
+        "@@type":"ImageObject",
+        "url":"https://www.rushweb.ir/images/logo.png"
+        }
+        }
+		@*,
+        "description":"@ViewBag.Description",
+        "aggregateRating":
+        {
+        "@@type":"AggregateRating",
+        "ratingValue":"@ViewBag.rate",
+        "bestRating":"5",
+        "ratingCount":"@ViewBag.RatingCount",
+        "worstRating":"1"
+        }*@
+        }
+    </script>
+}

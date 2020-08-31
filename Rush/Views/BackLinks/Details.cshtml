@@ -1,0 +1,403 @@
+﻿@model ViewModels.BackLinkViewModel
+@{
+
+		Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+}
+
+<div class="page-wrapper" id="sellPage">
+
+
+	@*<!-- Preloader -->
+		<div class="preloader"></div>
+		<!-- Preloader -->*@
+
+
+	<div class="header-top"></div>
+
+
+	<!--Page Title-->
+	<section class="page-title" style="background: url(/images/background/2.jpg);">
+		<div class="container text-center">
+			<div class="title">
+				<h2>خرید بک لینک تمام صفحات یا خرید تبلیغات متنی</h2>
+			</div>
+			<ul class="title-manu">
+				<li><a href="/">صفحه اصلی</a></li>
+				<li>></li>
+				<li>خرید بک لینک تمام صفحات یا خرید تبلیغات متنی</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="gallery-details sg-detail">
+		<div class="container">
+
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="image-text text-right">
+					@Html.Raw(Model.Body)
+				</div>
+			</div>
+
+
+
+			<div class="wrapper wrapperThreeColumns">
+
+				<div class="leftSidebar" id="reportageLeftBasket">
+					<div class="theiaStickySidebar">
+
+						<div class="panel panel-default">
+
+							<div class="panel-heading">سبد خرید</div>
+
+							<div class="panel-body">
+								<p class="empty-basket">سبد خرید شما خالی است</p>
+								<div id="fillBasket">
+									<table class="tbl-basket table table-responsive dir-rtl">
+										<thead>
+											<tr>
+												<td>سایت</td>
+
+												<td>قیمت</td>
+												<td></td>
+												<td>x</td>
+											</tr>
+										</thead>
+										<tbody></tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="content box">
+					<div class="theiaStickySidebar">
+
+						<div class="report-bt">
+							<div class="panel panel-primary panel-filter">
+								<div class="panel-heading">
+									فیلتر
+								</div>
+								<div class="panel-body">
+
+									<div class="row">
+										<div class="col-md-4">قیمت</div>
+										<div class="col-md-4">
+											<select id="ddlStartAmount" class="form-control">
+												<option value="0">از</option>
+
+												@for (int i = 0; i <= 60; i++)
+												{
+													decimal amount = i * 50000;
+														<option value="@amount">@amount.ToString("N0") تومان</option>
+}
+											</select>
+										</div>
+										<div class="col-md-4">
+											<select id="ddlFinishtAmount" class="form-control">
+												<option value="0">تا</option>
+
+												@for (int i = 0; i <= 60; i++)
+												{
+													decimal amount = i * 50000;
+														<option value="@amount">@amount.ToString("N0") تومان</option>
+}
+											</select>
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="col-md-4 col-sm-12">Domain Authority</div>
+										<div class="col-md-4 col-sm-6">
+											<select id="ddlStartDa" class="form-control">
+												<option value="0">از</option>
+
+												@for (int i = 1; i <= 100; i++)
+												{
+														<option value="@i">@i</option>
+}
+											</select>
+										</div>
+										<div class="col-md-4 col-sm-6">
+											<select id="ddlFinishtDa" class="form-control">
+												<option value="0">تا</option>
+
+												@for (int i = 1; i <= 100; i++)
+												{
+														<option value="@i">@i</option>
+}
+											</select>
+										</div>
+									</div>
+
+
+
+									<div class="row">
+										<div class="col-md-4"></div>
+										<div class="col-md-8">
+											<input type="button" onclick="filterBacklink();" value="اعمال فیلتر" class="btn btn-primary" />
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+
+
+
+
+
+							<table class="table-responsive table-striped report-table table-bordered">
+								<tr>
+									<th> ردیف</th>
+									<th> نام وبسایت</th>
+									<th> آدرس سایت</th>
+									<th>ِDA</th>
+									<th>خرید</th>
+									@*<th>بک لینک سه ماهه</th>*@
+								</tr>
+								@{int RowNo = 0;}
+								@foreach (var report in Model.BackLinks)
+								{
+										<tr>
+											<td>@(RowNo += 1)</td>
+											<td>@report.BackLink.FullName</td>
+											<td>@Html.Raw(report.BackLink.Address)</td>
+											<td>@report.BackLink.DomainAuthority</td>
+											<td>
+												<select onchange="buyBackLink(this.value);" style="border: 1px solid #ddd;">
+													<option class="form-control" value="0">خرید</option>
+													
+													@foreach (var linkDetail in report.BackLinkDetails)
+													{
+														<option class="form-control" value="@linkDetail.Id">@linkDetail.Title</option>
+													}
+												</select>
+												@*@string.Format(!string.IsNullOrEmpty(report.OneMonthBackLink.ToString()) ? string.Format("{0:n0}", report.OneMonthBackLink) + " تومان" : "_")*@
+												@*<button class="btn btn-success" type="button" onclick="addToBasket('@report.ProductId', '1','backlink');"><i class="fa fa-shopping-basket"></i> خرید</button>*@
+											</td>
+											@*<td>
+												@string.Format(!string.IsNullOrEmpty(report.ThreeMonthBackLink.ToString()) ? string.Format("{0:n0}", report.ThreeMonthBackLink) + " تومان" : "_")*@
+
+										</tr>
+								}
+
+							</table>
+						</div>
+
+						<div class="text text-justify">
+							<p>@Html.Raw(Model.BottomText)</p>
+						</div>
+
+
+						<div id="rating" class="parent-serviceG-rating">
+							<div class="row serviceG-rating">
+								@Html.Partial("_RatingPartial")
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			@if (Model.Questions.Count() > 0)
+			{
+					<div id="accordion">
+						<div class="container">
+							<div class="accord-heading">
+								<h3>سوالات متداول</h3>
+							</div>
+							<div class="accord-headlines">
+								@foreach (var ques in Model.Questions)
+								{
+
+										<div class="card">
+											<div class="card-header" id="">
+												<h5 class="mb-0">
+													<button class="btn btn-link" data-toggle="collapse" data-target="#@ques.Id" aria-expanded="true" aria-controls="collapseOne">
+														@ques.Title
+													</button>
+													<i class="fa fa-angle-left"></i>
+												</h5>
+											</div>
+
+											<div id="@ques.Id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+												<div class="card-body">
+													@Html.Raw(ques.Body)
+												</div>
+											</div>
+										</div>
+
+								}
+							</div>
+						</div>
+					</div>
+
+			}
+		</div>
+	</section>
+
+
+</div>
+@section StructuredData{
+	<script type="application/ld+json">
+		{
+		"@@context": "http://schema.org",
+
+		"@@type": "FAQPage",
+		"mainEntity": [{
+		"@@type": "Question",
+		"name": "بک لینک چه تاثیری بر سئو سایت دارد؟",
+		"acceptedAnswer": {
+		"@@type": "Answer",
+		"text": "هدف از سئوی وبسایت چیزی جز نمایش صفحات، مطالب و محتواهای سایت در نتایج برتر و به تبع آن بهبود ترافیک هدایت شده به سایت از موتورهای جستجو مانند گوگل نیست. بک لینک تمام صفحات از یک سایت معتبر می تواند سیگنال قوی ای برای گوگل باشد که صفحه هدف از اعتبار بالایی برخوردار است و می تواند برای نمایش به کاربر رتبه های بالاتری کسب کند. البته که تاثیر این بک لینک ها زمانی کاملا نمایان خواهد شد که سایت شما تمام فاکتورهای سئو را نیز رعایت کرده باشد و الگوریتم های گوگل را نقض نکند."
+		}
+		},{
+		"@@type": "Question",
+		"name": "نحوه انتخاب کلمه کلیدی مناسب برای بک لینک چیست؟",
+		"acceptedAnswer": {
+		"@@type": "Answer",
+		"text": " خیلی ساده، پیشنهاد ما همیشه ابزار search console گوگل است. با ورود به بخش performance عباراتی که در آن نمایش یا impression داشته اید ولی هنوز رتبه خوبی کسب نکرده اید را بررسی کنید و طبق استراتژی های کسب و کار خود جلو بروید. سعی کنید عبارتی انتخاب کنید که مخاطبین وبسایت برای کلیک ترغیب شوند و در عین حال به سئوی سایت نیز کمک کند. "
+		}
+		},{
+		"@@type": "Question",
+		"name": "بک لینک چه تاثیری بر ایندکس شدن مطالب می گذارد؟",
+		"acceptedAnswer": {
+		"@@type": "Answer",
+		"text": "وقتی ربات های خزنده گوگل به سایتی سر می زنند تا آن را ایندکس کنند، تمام لینک های داخل آن را نیز بررسی می کنند. وقتی بک لینک شما در سایتی با تعداد صفحات بالا و فعال که مطالب جدید تولید می کند، قرار گرفته باشد، ربات های خزنده گوگل پس از ورود به صفحات سایت میزبان، وقتی به بک لینک شما می رسند وارد آن می شوند و صفحات شما را ایندکس می کنند."
+		}
+		}
+		]
+		}
+	</script>
+	<script type="application/ld+json">
+		{
+
+		"@@context": "http://schema.org",
+		"@@type": "NewsArticle",
+		"mainEntityOfPage":
+		{
+		"@@type":"WebPage",
+		"@@id":"@ViewBag.Canonical"
+		},
+
+		"headline":"@ViewBag.Title",
+		"image":["@ViewBag.image"],
+		"datePublished":"@ViewBag.creationDate",
+		"dateModified":"@ViewBag.ModifiedDate",
+		"author":
+		{
+		"@@type":"Person",
+		"name":"راش وب"
+		},
+
+		"publisher":
+		{
+		"@@type":"Organization",
+		"name":"راش وب",
+		"logo":{
+		"@@type":"ImageObject",
+		"url":"https://www.rushweb.ir/images/logo.png"
+		}
+		}
+
+		@*,
+
+			"description":"@ViewBag.Description",
+
+			"aggregateRating":
+			{
+			"@@type":"AggregateRating",
+			"ratingValue":"@ViewBag.rate",
+			"bestRating":"5",
+			"ratingCount":"@ViewBag.RatingCount",
+			"worstRating":"1"
+			}*@
+
+		}
+
+
+
+	</script>
+}
+
+
+@section scripts{
+
+	<script>
+		function filterBacklink() {
+
+			var startAmount = $('#ddlStartAmount').val();
+			var finishtAmount = $('#ddlFinishtAmount').val();
+
+			var startDa = $('#ddlStartDa').val();
+			var finishtDa = $('#ddlFinishtDa').val();
+
+
+			location.href = "/backlink?amountRange=" +
+				startAmount +
+				"-" +
+				finishtAmount + "&daRange=" +
+				startDa +
+				"-" +
+				finishtDa;
+		}
+
+
+		$(document).ready(function () {
+
+			var amountRange = getUrlVars()["amountRange"];
+			var daRange = getUrlVars()["daRange"];
+
+
+			if (amountRange === undefined)
+				amountRange = "0-0";
+
+			if (daRange === undefined)
+				daRange = "0-0";
+
+			var da = daRange.split("-");
+			var amount = amountRange.split("-");
+
+			$('#ddlStartDa').val(da[0]);
+			$('#ddlFinishtDa').val(da[1]);
+			$('#ddlStartAmount').val(amount[0]);
+			$('#ddlFinishtAmount').val(amount[1]);
+
+
+
+			$("#fillBasket").css('display', 'none');
+			FillBasket("backlink");
+
+			$('.leftSidebar, .content, .rightSidebar')
+				.theiaStickySidebar({
+					additionalMarginTop: 130
+				});
+		});
+
+		function buyBackLink(id) {
+			if (id !== "0") {
+				addToBasket(id, 1, 'backlink');
+			}
+		}
+	</script>
+	
+	@*<script type="text/javascript">
+		$(document).ready(function () {
+			$("[id*=ddlBacklink]").each(function () {
+				$(this).onchange(function () {
+					var productid = $(this).attr("id").match(/[\d]+$/);
+					addToBasket(productid, 1, 'backlink');
+
+				});
+			});
+		});
+	</script>*@
+
+	<script type="text/javascript" src="/scripts/FrontEndLayout/ResizeSensor.js"></script>
+	<script type="text/javascript" src="/scripts/FrontEndLayout/theia-sticky-sidebar.js"></script>
+	<script type="text/javascript" src="/scripts/FrontEndLayout/test.js"></script>
+
+	<script type="text/javascript" src="/scripts/FrontEndLayout/custom-shop.js"></script>
+}

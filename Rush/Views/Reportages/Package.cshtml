@@ -1,0 +1,277 @@
+﻿@model ViewModels.ReportageListViewModel
+@{
+		Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+}
+<div class="page-wrapper" id="sellPage">
+	<div class="header-top"></div>
+	<section class="page-title" style="background: url(/images/background/2.jpg);">
+		<div class="container text-center">
+			<div class="title">
+				<h2 class="black">@Model.Text.Title</h2>
+			</div>
+			<ul class="title-manu">
+				<li><a href="/">صفحه اصلی</a></li>
+				<li>></li>
+				<li>@Model.Text.Title</li>
+			</ul>
+		</div>
+	</section>
+	<section class="gallery-details sg-detail" id="reportage">
+		<div class="container">
+			
+		<div class="col-lg-12 col-md-12 col-xs-12 report">
+
+			<div class="image-text text-right">
+				<div class="section-title text-left">
+					<h1 class="text-right color-green">@Model.Text.Title</h1>
+				</div>
+				<div class="text text-justify">
+					<p>@Html.Raw(Model.Text.Body)</p>
+				</div>
+			</div>
+			</div>
+			
+			
+		<div class="wrapper wrapperThreeColumns">
+
+			<div class="leftSidebar" id="reportageLeftBasket">
+				<div class="theiaStickySidebar">
+
+					<div class="panel panel-default">
+
+						<div class="panel-heading">سبد خرید</div>
+
+						<div class="panel-body">
+							<p class="empty-basket">سبد خرید شما خالی است</p>
+							<div id="fillBasket">
+								<table class="tbl-basket table table-responsive dir-rtl">
+									<thead>
+									<tr>
+										<td>سایت</td>
+
+										<td>قیمت</td>
+										<td></td>
+										<td>x</td>
+									</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			
+		<div class="content box">
+		<div class="theiaStickySidebar">
+
+			<div id="repo-list">
+				
+
+
+				<h4 class="text-right dir-rtl black">فهرست پکیج ها:</h4>
+				<div class="row">
+					@foreach (var group in Model.ReportageGroups)
+					{
+							<div class="col-md-4 package">
+								<div class="package-card">
+									<h3 class="package-card-title">@group.Title</h3>
+									<div class="package-card-body">
+										<p class="package-da">
+											@group.StartDa < DomainAuthority < @group.FinishDa
+										</p>
+
+										<p>
+											تعداد سایت: @group.SiteNumber
+										</p>
+
+										<p>
+											<del>@group.Value.Value.ToString("N0") تومان</del>
+										</p>
+										<p>
+											<ins>@group.Price.Value.ToString("N0") تومان</ins>
+										</p>
+
+										<button onclick="showPackage('@group.Id')" class="btn btn-success" href="#@group.Id">مشاهده وب سایت ها</button>
+										
+										<button class="btn btn-success" type="button" onclick="addToBasket('@group.ProductId', '1','package');"><i class="fa fa-shopping-basket"></i> خرید</button>
+
+									</div>
+								</div>
+							</div>
+					}
+				</div>
+				@foreach (var item in Model.ReportageByGroups)
+				{
+						<div class="report-bt reportage-package-List" id="@item.ReportageGroupId">
+							<h4 class="report-table-title">@item.ReportageGroupTitle</h4>
+							<table class="table-responsive table-striped report-table table-bordered bl no-border">
+								<tr>
+									<th> ردیف</th>
+									<th> نام وبسایت</th>
+									<th> آدرس سایت</th>
+									<th>domain authority</th>
+									<th>قیمت</th>
+								</tr>
+								@{int RowNo = 0;}
+								@foreach (var report in item.Reportages)
+								{
+										<tr>
+											<td>@(RowNo += 1)</td>
+											<td>@report.FullName</td>
+											<td>@Html.Raw(report.Address)</td>
+											<td>@report.DomainAuthority</td>
+											<td>@string.Format("{0:n0}", report.Price) تومان</td>
+										</tr>
+								}
+								@if (!string.IsNullOrEmpty(item.Value.ToString()))
+								{
+										<tr>
+											<td colspan="3" class="no-border bg-white"></td>
+											<td colspan="2"></td>
+										</tr>
+										<tr>
+											<td colspan="3" class="no-border bg-white"></td>
+											<td>ارزش واقعی</td>
+											<td>@string.Format("{0:n0}", item.Value) تومان</td>
+										</tr>
+										<tr>
+											<td colspan="3" class="no-border bg-white"></td>
+											<td>قیمت پکیج</td>
+											<td>@string.Format("{0:n0}", item.Price) تومان</td>
+										</tr>
+								}
+							</table>
+						</div>
+										}
+				<div class="text text-justify">
+					<p>@Html.Raw(Model.BottomText)</p>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+			
+			
+			
+			
+			
+
+			 
+			
+
+		</div>
+		<div class="container">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-md-push-1 report">
+				<div id="rating">
+					<div class="row reportage-rating">
+						@Html.Partial("_RatingPartial")
+					</div>
+				</div>
+			</div>
+		</div>
+		@if (Model.Questions.Count() > 0)
+		{
+				<div id="accordion">
+					<div class="container">
+						<div class="accord-heading">
+							<h3>سوالات متداول</h3>
+						</div>
+						<div class="accord-headlines">
+							@foreach (var ques in Model.Questions)
+							{
+									<div class="card">
+										<div class="card-header" id="">
+											<h5 class="mb-0">
+												<button class="btn btn-link" data-toggle="collapse" data-target="#@ques.Id" aria-expanded="true" aria-controls="collapseOne">
+													@ques.Title
+												</button>
+												<i class="fa fa-angle-left"></i>
+											</h5>
+										</div>
+										<div id="@ques.Id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+											<div class="card-body">
+												@Html.Raw(ques.Body)
+											</div>
+										</div>
+									</div>
+							}
+						</div>
+					</div>
+				</div>
+		}
+	</section>
+</div>
+
+@section scripts{
+	<script>
+
+		function showPackage(groupId) {
+			$('.reportage-package-List').css('display', 'none');
+			$('#' + groupId).css('display', 'block');
+			location.href = '#' + groupId;
+		}
+
+		$(document).ready(function () {
+			$('.leftSidebar, .content, .rightSidebar')
+				.theiaStickySidebar({
+					additionalMarginTop: 130
+				});
+
+			FillBasket("package");
+		});
+
+	</script>
+
+	<script type="text/javascript" src="/scripts/FrontEndLayout/theia-sticky-sidebar.js"></script>
+	
+<script type="text/javascript" src="/scripts/FrontEndLayout/custom-shop.js"></script>
+
+}
+@section StructuredData{
+	<script type="application/ld+json">
+		{
+		"@@context": "http://schema.org",
+		"@@type": "NewsArticle",
+		"mainEntityOfPage":
+		{
+		"@@type":"WebPage",
+		"@@id":"@ViewBag.Canonical"
+		},
+		"headline":"@ViewBag.Title",
+		"image":["@ViewBag.image"],
+		"datePublished":"@ViewBag.creationDate",
+		"dateModified":"@ViewBag.ModifiedDate",
+		"author":
+		{
+		"@@type":"Person",
+		"name":"راش وب"
+		},
+		"publisher":
+		{
+		"@@type":"Organization",
+		"name":"راش وب",
+		"logo":{
+		"@@type":"ImageObject",
+		"url":"https://www.rushweb.ir/images/logo.png"
+		}
+		}
+		@*,
+			"description":"@ViewBag.Description",
+			"aggregateRating":
+			{
+			"@@type":"AggregateRating",
+			"ratingValue":"@ViewBag.rate",
+			"bestRating":"5",
+			"ratingCount":"@ViewBag.RatingCount",
+			"worstRating":"1"
+			}*@
+		}
+	</script>
+	<script type="application/ld+json">
+		{"@@context":"https://schema.org","@@type":"FAQPage","mainEntity":[{"@@type":"Question","name":"خرید پکیج رپورتاژ آگهی چه مزیت هایی دارد؟","acceptedAnswer":{"@@type":"Answer","text":"با خرید به صورت پکیج شما از تخفیف بسیار بیشتری نسبت به خرید رپورتاژ آگهی بصورت تکی از وبسایت ها دریافت خواهید کرد. کافیست تا سفارش خود را ثبت کنید و پس از آن بازه زمانی انتشار را با مشاوران ما در میان بگذارید. باقی کارها را به راش وب بسپارید تا رپورتاژ شما در موعد مقرر در وبسایت هایی که قصد انتشار دارید منتشر گردد. هم چنین در صورت تمایل می توانید تولید محتوا رپورتاژ ها را نیز به نویسندگان راش وب بسپارید. کافیست تا کلمات کلیدی، صفحات لندینگ و عنوان مقاله خود را به ما اعلام کنید."}},{"@@type":"Question","name":"آیا می توان هزینه پکیج رپورتاژ آگهی را در چند نوبت پرداخت کرد؟","acceptedAnswer":{"@@type":"Answer","text":"بله ما در راش وب این امکان را در اختیار مشتریان خود می گذاریم تا پکیج رپورتاژ ها را بصورت اقساط پرداخت کنند. به این صورت که یک سوم یا یک دوم فاکتور پرداخت می گردد، رپورتاژ ها نیز به همین مقدار منتشر می گردند و الباقی پرداخت نیز قبل از انتشار باقی خبرها خواهد بود. با این تفاسیر هم از تخفیف پکیج ها برخوردار خواهید شد و هم چنین پرداخت شما به صورت یکجا نخواهد بود."}},{"@@type":"Question","name":"آیا می توان از لیست رپورتاژها پکیج خودمان را بسازیم؟","acceptedAnswer":{"@@type":"Answer","text":"بله البته این امکان نیز وجود دارد، شما می توانید از لیست رپورتاژ آگهی های موجود در سایت، پکیج شخصی سازی شده خود را بسازید و استعلام قیمت بگیرید. کافیست تا لیست سایت هایی که قصد انتشار رپورتاژ در آنها را دارید برای ما بفرستید تا پایین ترین قیمت ممکن را دریافت کنید. خرید بیش از یک سایت برای همکاران ما مشمول تخفیف همکاری خواهد شد."}}]}
+	</script>
+
+
+}

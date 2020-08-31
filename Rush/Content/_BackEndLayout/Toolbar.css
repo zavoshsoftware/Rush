@@ -1,0 +1,84 @@
+﻿.k-tool-icon {
+    font-size: 0;
+    background-image: url('../kendo/2017.3.913/Default/sprite.png');
+}
+
+.k-bold {
+    background-position: -240px 0;
+}
+
+.k-italic {
+    background-position: -240px -24px;
+}
+
+.k-underline {
+    background-position: -240px -48px;
+}
+
+.k-strikethrough {
+    background-position: -240px -72px;
+}
+
+.k-justifyLeft {
+    background-position: -240px -144px;
+}
+
+.k-justifyCenter {
+    background-position: -240px -168px;
+}
+
+.k-justifyRight {
+    background-position: -240px -192px;
+}
+
+.k-justifyFull {
+    background-position: -240px -216px;
+}
+
+.k-insertUnorderedList {
+    background-position: -240px -264px;
+}
+
+.k-insertOrderedList {
+    background-position: -240px -288px;
+}
+
+.k-indent, .k-rtl .k-outdent {
+    background-position: -288px 0;
+}
+
+.k-createLink {
+    background-position: -288px -48px;
+}
+
+.k-insertImage {
+    background-position: -288px -96px;
+}
+
+.k-subscript {
+    background-position: -288px -144px;
+}
+
+.k-superscript {
+    background-position: -288px -168px;
+}
+
+.k-createTable {
+    background-position: -192px 0;
+}
+
+.k-tableWizard {
+    background-position: -192px -144px;
+}
+
+.k-viewHtml {
+    background-position: -288px -120px;
+}
+
+.k-foreColor {
+    background-position: -240px -96px;
+}
+
+.k-colorpicker .k-backColor {
+    background-position: -240px -120px;
+}

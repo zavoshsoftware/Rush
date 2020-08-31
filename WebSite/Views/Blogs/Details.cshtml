@@ -1,0 +1,326 @@
+﻿@model ViewModels.BlogDetailViewModel
+<header>
+    <meta name="author" content="@Model.Writter">
+</header>
+<div class="page-wrapper" id="sellPage">
+
+
+    @*<!-- Preloader -->
+        <div class="preloader"></div>
+        <!-- Preloader -->*@
+
+
+    <div class="header-top"></div>
+    <!--Page Title-->
+    <section class="page-title">
+        <div class="container text-center">
+            <div class="title">
+                <h2>@Model.Blog.Title</h2>
+            </div>
+            <ul class="title-manu">
+                <li><a href="/">صفحه اصلی</a></li>
+                <li>></li>
+                <li>@Model.Blog.Title</li>
+            </ul>
+        </div>
+    </section>
+    <!--End Page Title-->
+    <!--Single Blog-->
+    <section class="blog-section style-three">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-12 col-xs-12 float-right">
+                    <div class="left-side">
+                        <div class="item-holder">
+                            <div class="image-box">
+                                <figure>
+                                    <img src="@Model.Blog.ImageUrl" alt="">
+                                </figure>
+                                <div class="date-box">
+                                    <span>@string.Format("{0:dd MMM yyyy}", Model.Blog.CreationDate)</span>
+                                </div>
+                                @if (!string.IsNullOrEmpty(Model.Blog.PdfUrl))
+                                {
+                                <div class="pdf-box">
+                                    <span><a href="/Download/@Model.Blog.Id">دانلود pdf</a></span>
+                                </div>
+                                }
+
+                            </div>
+                            <div class="text-area">
+                                <div class="content-text">
+                                    <div class="section-title text-right">
+                                        @if (!string.IsNullOrEmpty(Model.Blog.FileUrl))
+                                        {
+                                        <audio width="100%" controls>
+                                            <source src="@Model.Blog.FileUrl" type="audio/mp3">
+                                            Your browser does not support HTML5 video.
+                                        </audio>
+                                        }
+
+                                        <h1>@Model.Blog.Title</h1>
+                                        @if (Model.Blog.LastModifiedDate != null)
+                                        {
+                                            <span>تاریخ آخرین به روزرسانی: @string.Format("{0:yyyy/MM/dd}", Model.Blog.LastModifiedDate)</span>
+                                        }
+
+
+                                    </div>
+                                    <div class="text">
+                                        <p>@Html.Raw(Model.Blog.Body)</p>
+                                    </div>
+                                </div>
+                                <div class="blog-info clearfix">
+                                    <ul class="right-side pull-right">
+                                        <li><a href="https://t.me/share/url?url=http://www.rushweb.ir/blog/@Model.Blog.UrlParam"><i class="fa fa-telegram" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.rushweb.ir/blog/@Model.Blog.UrlParam"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://twitter.com/home?status=http://www.rushweb.ir/blog/@Model.Blog.UrlParam"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                        @*<li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>*@
+                                    </ul>
+                                    <ul class="right-side pull-right rating-star">
+                                        <li>
+                                            <div id="rating">
+                                                <div class="row blog-rating">
+                                                    @*<div class="col-md-5"></div>*@
+                                                    @Html.Partial("_RatingPartial")
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="left-side pull-right">
+                                        @if (Model.WritterId != null)
+                                        {
+                                        <li><a href="/writter/@Model.WritterId" class="black"><i class="fa fa-user" aria-hidden="true"></i>@Model.Writter</a></li>
+                                        }
+
+                                        <li><i class="fa fa-eye" aria-hidden="true"></i>@Model.Blog.Visit</li>
+                                        <li class="info"><i class="fa fa-comments-o" aria-hidden="true"></i>@Model.Comments.Count()</li>
+                                    </ul>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="comments" class="form-area">
+                            <h3 class="black">نظرات</h3>
+                            @foreach (var comment in Model.Comments)
+                            {
+                            <div class="row comment-o">
+                                <div class="col-md-2 float-right">
+                                    <img src="~/images/avatar.png" />
+
+                                </div>
+                                <div class="col-md-10 float-right">
+                                    <div class="comment-title">
+                                        <span class="comment-name">@comment.Comment.FullName</span>
+                                        <span>@comment.Comment.CreationDate.ToShortDateString()</span>
+                                    </div>
+                                    @Html.Raw(comment.Comment.Body)
+                                </div>
+                            </div>
+                                foreach (var response in comment.Responses)
+                                {
+                            <div class="row reply-o">
+                                <div class="col-md-2 float-right">
+                                    <img src="~/images/avatar.png" />
+
+                                </div>
+                                <div class="col-md-10 float-right">
+                                    <div class="comment-title">
+                                        <span class="comment-name">@response.FullName</span>
+                                        <span>@response.CreationDate.ToShortDateString()</span>
+                                    </div>
+                                    @Html.Raw(response.Body)
+                                </div>
+                            </div>
+                                }
+
+                            }
+
+
+
+
+                        </div>
+                        <div class="form-area">
+                            <h3 class="black">ثبت نظر</h3>
+                            <div id="contact_form" name="contact_form" class="default-form" action="" method="post">
+                                <div class="alert alert-success dir-rtl" id="SuccessDivC">یادداشت شما با موفقیت ثبت شد، پس از تایید مدیریت، در وب سایت نمایش داده خواهد شد</div>
+                                <div class="alert alert-danger dir-rtl" id="errorDivC"></div>
+                                <div class="row clearfix">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="text" name="form_name" class="form-control" value="" placeholder="ایمیل" required="" id="txtEmail">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="email" name="form_email" class="form-control required email" value="" placeholder="نام" required="" id="txtFullname">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <textarea name="form_message" class="form-control textarea required" placeholder="پیغام" id="txtMessage"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group form-bottom">
+                                            <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+                                            <button class="btn-style-one" type="button" data-loading-text="Please wait..." id="btnComment" onclick="SubmitComment('@Model.Blog.Id');return false;">ارسال</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 float-left">
+                    <div class="right-side">
+
+                        <div class="services-area">
+                            <div class="sec-title">
+                                <h4 class="black">گروه بلاگ ها</h4>
+                            </div>
+                            <ul class="service-menu">
+                                @foreach (var blog in Model.BlogGroups)
+                                {
+                                    <li><a href="/blog/list/@blog.BlogGroup.UrlParam">@blog.BlogGroup.Title   (@blog.Count)</a></li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="search-blog">
+
+                            <div class="row">
+                                <input type="text" name="email" value="" placeholder="جستجو در راش وب" required="" id="txtSearch">
+                                <button type="submit" onclick="SearchBlog(); return false;" id="btnSearch"><i class="fa fa-search"></i></button>
+                            </div>
+
+                        </div>
+                        <div class="blog-sidebar">
+                            <div class="sec-title">
+                                <h4 class="black">جدیدترین بلاگ ها</h4>
+                            </div>
+                            @foreach (var blog in Model.RecentBlogs)
+                            {
+                                <div class="item">
+                                    <div class="image-box">
+                                        <figure>
+                                            <a href="/blog/@blog.UrlParam"><img src="@blog.ImageUrl" alt="@blog.Title" width="80"></a>
+                                        </figure>
+                                    </div>
+                                    <div class="image-text">
+                                        <a href="/blog/@blog.UrlParam"><h6>@blog.Title</h6></a>
+                                        <span>@blog.CreationDate.ToShortDateString()</span>
+                                       
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <!--End Single Blog-->
+</div>
+@section StructuredData{
+    @if (ViewBag.param == "spam-score")
+    {
+        <script type="application/ld+json">
+            {
+            "@@context": "https://schema.org",
+            "@@type": "FAQPage",
+            "mainEntity": [{
+            "@@type": "Question",
+            "name": "اسپم اسکور چیست؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "اسپم اسکور، درصد سایت های مشابه با ویژگی های سایت شما که وبسایت ماز متوجه جریمه شدن و یا حتی بن شدن آن ها توسط گوگل شده است. اسپم اسکور بر پایه محاسبات یادگیری ماشین که 27 ویژگی مشترک میان میلیون ها وبسایت جریمه یا بن شده توسط گوگل را بررسی می کند، بدست می آید."
+            }
+            },{
+            "@@type": "Question",
+            "name": "اسپم اسکور چه تغییری کرده است؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "در گذشته شما تعداد خطاهایی که در سئو سایت داشته اید و منجر به بالا رفتن اسپم اسکورتان می شد را مشاهده می کردید. اما حالا درصدی از 0 تا 100 می بینید که به طور میانگین نشان می دهد سایت هایی با رفتار مشابه با سایت شما چند درصد احتمال جریمه شدن توسط گوگل دارند."
+            }
+            },{
+            "@@type": "Question",
+            "name": "چه فاکتوری باعث بالا رفتن اسپم اسکور سایت من شده است؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "اینکه دقیقا کدام یک از فاکتورهای اسپم اسکور را رعایت نکرده اید فعلا قابل مشاهده نیست. اما می توانید با بررسی 27 ویژگی لیست شده در ادامه این مقاله و مقایسه با وضعیت فعلی وبسایت، تحقیق کنید که کدام یک از رفتارهای وبسایت، سیگنال اسپم بودن آن را ارسال می کند."
+            }
+            },{
+            "@@type": "Question",
+            "name": "آیا اسپم اسکور بوسیله محاسباتی بر روی لینک های اسپم سایت بدست می آید؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "نه، به هیچ وجه. اسپم اسکور درصد سایت های مشابه با شما که توسط گوگل جریمه شده اند را نشان می دهد. یعنی اگر اسپم اسکور شما 5 درصد است، احتمال جریمه شدن وبسایت شما توسط گوگل نیز در همان محدوده 5 درصد است."
+            }
+            },{
+            "@@type": "Question",
+            "name": "اسپم اسکور هر چند وقت یکبار بروزرسانی می شود؟",
+            "acceptedAnswer": {
+            "@@type": "Answer",
+            "text": "متخصصین ماز تلاش می کنند تا حداقل ماهی یک بار امتیاز اسپم را بروزرسانی کنند."
+            }
+            }]
+            }
+        </script>
+    }
+	<script type="application/ld+json">
+        {
+
+        "@@context": "http://schema.org",
+        "@@type": "NewsArticle",
+        "mainEntityOfPage":
+        {
+        "@@type":"WebPage",
+        "@@id":"@ViewBag.Canonical"
+        },
+
+        "headline":"@ViewBag.Title",
+        "image":["@ViewBag.image"],
+        "datePublished":"@ViewBag.creationDate",
+        "dateModified":"@ViewBag.ModifiedDate",
+        "author":
+        {
+        "@@type":"Person",
+        "name":"@ViewBag.Auther"
+        },
+
+        "publisher":
+        {
+        "@@type":"Organization",
+        "name":"راش وب",
+        "logo":{
+        "@@type":"ImageObject",
+        "url":"https://www.rushweb.ir/images/logo.png"
+        }
+        }
+		
+		@*,
+
+        "description":"@ViewBag.Description",
+
+        "aggregateRating":
+        {
+        "@@type":"AggregateRating",
+        "ratingValue":"@ViewBag.rate",
+        "bestRating":"5",
+        "ratingCount":"@ViewBag.RatingCount",
+        "worstRating":"1"
+        }*@
+
+        }
+    </script>
+}

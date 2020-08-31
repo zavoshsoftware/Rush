@@ -1,0 +1,155 @@
+﻿@model Models.ServiceForm
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/BackEndLayout/_BackEndLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ServiceForm</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Service.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceType.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceType.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SiteType.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SiteType.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SiteAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SiteAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MainWords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainWords)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FormDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FormDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModifiedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastModifiedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeleteUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeleteUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

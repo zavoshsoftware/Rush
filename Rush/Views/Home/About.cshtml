@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "درباره ما";
+    Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+}
+
+<!--Page Title-->
+<section class="page-title" style="background: url(/images/background/2.jpg);">
+    <div class="container text-center">
+        <div class="title">
+            <h2>درباره ما</h2>
+        </div>
+        <ul class="title-manu">
+            <li><a href="/">صفحه اصلی</a></li>
+            <li>></li>
+            <li>درباره ما</li>
+        </ul>
+    </div>
+</section>
+<!--End Page Title-->
+<!-- Contact Section -->
+<section class="contact-section style-two">
+    <div class="container">
+        <div class="section-title text-right contact-section-title">
+            <h1>درباره ما</h1>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-6 col-md-12 col-xs-12">
+                <div class="right-side text-right dir-rtl">
+                    @Html.Raw(Model.AbouText.Body)
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-xs-12">
+                <div class="left-side">
+                   <img src="@Model.AbouText.ImageUrl" alt="about"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Contact Section -->
+
+
+
+

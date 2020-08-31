@@ -1,0 +1,139 @@
+﻿@model ViewModels.OrderDetailInfoBacklinkViewModel
+@{
+    Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+}
+<div class="page-wrapper" id="sellPage">
+	<div class="header-top"></div>
+	<section class="page-title" style="background: url(/images/background/2.jpg);">
+		<div class="container text-center">
+			<div class="title">
+				<h2 class="black"> @ViewBag.Title</h2>
+			</div>
+			<ul class="title-manu">
+				<li><a href="/">صفحه اصلی</a></li>
+				<li>></li>
+				<li><a href="/orders/list">لیست سفارشات</a></li>
+				<li>></li>
+				<li>@ViewBag.Title </li>
+			</ul>
+		</div>
+	</section>
+	<section class="gallery-details sg-detail" id="reportage">
+		<div class="container">
+			
+	
+			<div class="col-lg-9 col-md-9 col-xs-12 report">
+				<div class="panel panel-primary panel-filter">
+					<div class="panel-heading">
+						@ViewBag.Title
+					</div>
+					<div class=" panel-body backlink-info">
+						
+
+						@using (Html.BeginForm("BacklinkDetails", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+						{
+								@Html.AntiForgeryToken()
+							@Html.HiddenFor(model => model.Id)
+
+							<div class="form-horizontal">
+									@Html.ValidationSummary(true)
+
+									<div class="form-group">
+										<div class="form-group">
+												@Html.LabelFor(model => model.BacklinkKeyword, new { @class = "control-label col-md-2" })
+											<div class="col-md-10">
+												@if (Model.StatusCode < 3)
+												{
+													@Html.EditorFor(model => model.BacklinkKeyword)
+}
+												else
+												{
+														@Html.TextBoxFor(model => model.BacklinkKeyword,new{@class="form-control", @readonly = "readonly" })
+
+												}
+												@Html.ValidationMessageFor(model => model.BacklinkKeyword)
+											</div>
+										</div>
+
+										<div class="form-group">
+											@Html.LabelFor(model => model.BacklinkUrl, new { @class = "control-label col-md-2" })
+											<div class="col-md-10">
+												@if (Model.StatusCode < 3)
+												{
+													@Html.EditorFor(model => model.BacklinkUrl)
+}
+												else
+												{
+														@Html.TextBoxFor(model => model.BacklinkUrl, new { @class = "form-control", @readonly = "readonly" })
+
+												}
+												@Html.ValidationMessageFor(model => model.BacklinkUrl)
+											</div>
+										</div>
+
+						 
+
+										<div class="form-group" id="buttons">
+											<div class="col-md-offset-2 col-md-10">
+												@if (Model.StatusCode < 3)
+												{
+													<input type="submit" value="ایجاد" class="btn btn-primary"/>
+												}
+												@Html.ActionLink("بازگشت به فهرست", "List", new {id = ViewBag.orderId})
+											</div>
+										</div>
+									</div>
+								</div>
+						}
+
+
+					</div>
+				</div>
+	 
+			</div>
+			
+			<div class="col-lg-3 col-md-3 col-xs-12 report">
+				@Html.Partial("FrontEnd/_UserSidebarPartial")
+
+				
+			</div>
+
+		</div>
+	</section>
+</div>
+
+@section scripts{
+<script src="~/Scripts/FrontEndLayout/jquery.js"></script>
+	<script type="text/javascript">
+
+		$(".uploadBtn").click(function () {
+		var id=	$(this).attr('id');
+			console.log(id);
+			$("#fileInput_"+id).click();
+		});
+		function FileUpload(orderDetailId)
+		{
+			var formdata = new FormData();
+			var fileInput = document.getElementById('fileInput_'+orderDetailId);
+			var newFileName = orderDetailId +'.' + fileInput.files[0].name.split('.')[1];
+			formdata.append('file', fileInput.files[0], newFileName);
+        
+			$.ajax({
+				async: true,
+				type: 'POST',
+				url: '/orders/Upload',
+				data: formdata,
+				cache: false,
+				processData: false,
+				contentType: false,
+
+				success: function (data) {
+					alert('فایل شما با موفقیت بارگذاری شد');
+				},
+				error: function (error) {
+					alert("خطایی رخ داد! مجددا تلاش نمایید");
+				}
+			});
+		}
+	</script>
+}

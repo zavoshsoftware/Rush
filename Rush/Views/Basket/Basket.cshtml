@@ -1,0 +1,194 @@
+﻿@model ViewModels.CartViewModel
+@{
+		ViewBag.Title = "سبد خرید";
+		Layout = "~/Views/Shared/FrontEnd/_FronEndLayout.cshtml";
+}
+
+<div class="page-wrapper" id="sellPage">
+	<div class="header-top"></div>
+	<section class="page-title" style="background: url(/images/background/2.jpg);">
+		<div class="container text-center">
+			<div class="title">
+				<h2 class="black">سبد خرید</h2>
+			</div>
+			<ul class="title-manu">
+				<li><a href="/">صفحه اصلی</a></li>
+				<li>></li>
+				<li>سبد خرید</li>
+			</ul>
+		</div>
+	</section>
+	<section class="gallery-details sg-detail" id="basket">
+		<div class="container">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-md-push-1 report">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						سبد خرید
+					</div>
+					<div class="panel-body">
+						<table class="table-basket table table-bordered table-responsive">
+							<thead>
+							<tr>
+								<th scope="col" class="width35">محصول</th>
+								<th scope="col" class="width20">قیمت</th>
+								<th scope="col" class="width20">تعداد</th>
+								<th scope="col" class="width20">جمع کل</th>
+								<th scope="col" class="width5">حذف</th>
+							</tr>
+							</thead>
+
+							<tbody>
+							@foreach (var product in Model.Products)
+							{
+								<tr>
+									<td data-label="محصول" class="product-in-basket width20">
+										<div class="product-info">
+											<h3 class="product-name">
+												@product.Product.Title
+											</h3>
+										</div>
+									</td>
+
+									<td data-label="قیمت" class="width20">@product.Amount</td>
+
+									<td data-label="تعداد" class="width20">
+										<input type="text" id="qty_@product.Product.Id" data-step="1" data-min="0" data-max="" value="@product.Quantity" title="Qty" class="input-text qty text" size="4">
+									</td>
+									<td data-label="جمع کل" class="width20">@product.RowAmount</td>
+									<td data-label="حذف" class="width5"><button class="remove" onclick="removeFromBasket('@product.Product.Id')"><i class="fa fa-close"></i></button></td>
+								</tr>
+							}
+							<tr class="subtable">
+								<td colspan="3"></td>
+								<td colspan="3"><span>مجموع:</span> @Model.SubTotal</td>
+							</tr>
+							<tr class="subtable">
+								<td colspan="3"></td>
+								<td colspan="3"><span>تخفیف:</span> @Model.DiscountAmount</td>
+							</tr>
+
+							@*<tr class="subtable">
+										<td colspan="3">
+
+											<div class="row">
+
+												<div class="col-md-5">
+													<p class="alert alert-danger" id="errorDiv"></p>
+													<p class="alert alert-success" id="SuccessDiv">کد تخفیف با موفقیت ثبت شد.</p>
+												</div>
+
+
+												<div class="col-md-3">
+													<button type="button" class="button btn btn-savadimo-discount" onclick="addDiscountCode();">اعمال کد تخفیف</button>
+												</div>
+												<div class="col-md-4">
+													<input type="text" id="coupon" class="discount-input form-control" placeholder="کد تخفیف" />
+												</div>
+
+											</div>
+										</td>
+										<td colspan="3">تخفیف: @Model.DiscountAmount</td>
+									</tr>*@
+
+							<tr class="subtable">
+								<td colspan="3"></td>
+								<td colspan="3">مبلغ قابل پرداخت: @Model.Total</td>
+							</tr>
+
+							<tr id="finalize-order" >
+								<td></td>
+								<td>
+									
+									<button type="button" onclick="finalizeOrder();" class="btn btn-success">تکمیل سفارش و پرداخت</button>
+
+								</td>
+							
+							</tr>
+
+							</tbody>
+						</table>
+						<div class="alert alert-danger" id="error-box-final"></div>
+
+					</div>
+
+				</div>
+
+				<div class="panel panel-primary" id="login-box">
+					<div class="panel-heading">
+					ورود به حساب کاربری
+					</div>
+					<div class="panel-body">
+						<div role="form" class="form-checkout">
+							<div class="form-group col-md-8 col-md-offset-2">
+								<div class="col-md-9 col-sm-12">
+									<input type="text" class="form-control" id="cellnumber" placeholder="شماره موبایل" />
+								</div>
+								<label for="cellnumber" class="col-md-3 col-sm-12 control-label">شماره موبایل*</label>
+
+							</div>
+							<div class="form-group col-md-8 col-md-offset-2">
+								<div class="col-md-9 col-sm-12">
+									<input type="password" class="form-control" id="password" placeholder="کلمه عبور"  />
+								</div>
+								<label for="password" class="col-md-3 col-sm-12 control-label">کلمه عبور*</label>
+
+							</div>
+						 
+							<div class="form-group col-md-8 col-md-offset-2">
+								<div class="col-md-9 col-sm-12">
+									<button type="button" onclick="loginUser();" class="btn btn-default">ورود به پنل کاربری</button>
+
+								</div>
+								
+								<div class="col-md-3 col-sm-12">
+
+								</div>
+							 
+
+							</div>
+						 
+							<div class="form-group col-md-12">
+								<div class="col-md-9 col-sm-12">
+									<div class="alert alert-danger" id="error-box"></div>
+								</div>
+
+							</div>
+							<div class="clearfix"></div>
+
+						</div>
+						<div class="clearfix"></div>
+						
+					
+					</div>
+					<div class=" panel-footer">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<p>در صورتی که در سایت راش وب حساب کاربری ندارید ثبت نام کنید.</p>
+								<p><a href="/register?returnUrl=basket">ثبت نام در سایت</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+	@section scripts{
+		<script src="~/Scripts/FrontEndLayout/custom-shop.js"></script>
+
+		<script>
+			$(document).ready(function () {
+				var isAuthorize =@ViewBag.isAuthorize;
+
+				if (isAuthorize === 'true' || isAuthorize===true) {
+					$('#finalize-order').css('display', 'block');
+					$('#login-box').css('display', 'none');
+				} else {
+					$('#finalize-order').css('display', 'none');
+					$('#login-box').css('display', 'block');
+				}
+			});
+		</script>
+	}

@@ -1,0 +1,108 @@
+﻿@model ViewModels.ContactViewModel
+@{
+    ViewBag.Title = "تماس با ما";
+}
+ <!--Page Title-->
+<section class="page-title" style="background: url(/images/background/2.jpg);">
+    <div class="container text-center">
+        <div class="title">
+            <h2>تماس با ما</h2>
+        </div>
+        <ul class="title-manu">
+            <li><a href="/">صفحه اصلی</a></li>
+            <li>></li>
+            <li>تماس با ما</li>
+        </ul>
+    </div>
+</section>
+<!--End Page Title-->
+<!-- Contact Section -->
+<section class="contact-section style-two">
+    <div class="container">
+        <div class="section-title text-right contact-section-title">
+            <h1>ارتباط با ما</h1>
+        </div>
+        <div class="row">
+          
+            <div class="col-lg-6 col-md-12 col-xs-12">
+                <div class="right-side">
+                    <div class="text">
+                        <p>از طریق راه های ارتباطی زیر می توانید با ما در تماس باشید و در صورتی که سوالی دارید می توانید از طریق فرم زیر سوالات خود را بپرسید</p>
+                    </div>
+                    <ul>
+                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>تهران، نارمک، خیابان فرجام ، میدان صد، ساختمان نگین واحد 12</li>
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>021-77204334 <br /> 021-77192362<br />09124772739</li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i>rushweb.ads@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-xs-12">
+                <div class="left-side">
+                    <form id="contact_form" name="contact_form" action="sendmail.php" method="post">
+                        <div class="form-group">
+                            <input type="text" name="form_name" class="form-control" value="" placeholder="نام" required="" id="txtName">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="form_phone" class="form-control" value="" placeholder="شماره موبایل" required="" id="txtCellNum">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="form_message" class="form-control textarea required" placeholder="پیغام" id="txtBody"></textarea>
+                        </div>
+                        <div class="form-group form-bottom">
+                            <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+                            <button class="btn-style-one" type="button" data-loading-text="Please wait..." id="btnSendMsg" onclick="SendMessage(); return false;">ارسال پیغام</button>
+                        </div>
+                    </form>
+                    @*<form id="contact_form" name="contact_form" action="sendmail.php" method="post">
+                        <div class="form-group">
+                            <input type="text" name="form_name" class="form-control" value="" placeholder="نام و نام خانودگی" required="">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="form_phone" class="form-control" value="" placeholder="تلفن" required="">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="form_message" class="form-control textarea required" placeholder="پیغام"></textarea>
+                        </div>
+                        <div class="form-group form-bottom text-right">
+                            <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+                            <button class="btn-style-one" type="submit" data-loading-text="Please wait...">ارسال</button>
+                        </div>
+                    </form>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Contact Section -->
+ 
+ <section class="subscribe-section">
+    <div class="container">
+        <div class="text-area">
+            <div class="section-title text-center">
+                <h2>ثبت نام در خبرنامه</h2>
+                <p>با ثبت نام در خبر نامه راش‌وب از جدیدترین مقالات ما با خبر شوید</p>
+            </div>
+            <form method="post" action="contact.html">
+                <div class="row">
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <button type="button" class="btn-style-one" onclick="JoinNewsLetter(); return false;">ثبت</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-group">
+                            <input type="email" name="email" value="" placeholder="ایمیل خود را وارد نمایید" required="" id="txtEmail">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <ul class="social-links text-center">
+                @*<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>*@
+                <li><a href="https://t.me/Rushweb"><i class="fa fa-telegram" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</section>
