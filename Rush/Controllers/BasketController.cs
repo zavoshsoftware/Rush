@@ -183,7 +183,7 @@ namespace Rush.Controllers
         }
 
         [Route("Basket")]
-        public ActionResult Basket(string basketType)
+        public ActionResult Basket(string basketType,int? orderCode)
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -209,8 +209,17 @@ namespace Rush.Controllers
             cart.Menu = menuHelper.ReturnMenu();
 
             cart.FooterLink = menuHelper.GetFooterLink();
-
-            List<ProductInCart> productInCarts = GetProductInBasketByCoockie(basketType);
+            List<ProductInCart> productInCarts = new List<ProductInCart>();
+            if (string.IsNullOrEmpty(orderCode.ToString()))
+            {
+                productInCarts = GetProductInBasketByCoockie(basketType);
+            }
+            else
+            {
+                Order order = db.Orders.Where(x => x.Code == orderCode.Value).FirstOrDefault();
+                basketType = order.OrderType;
+                productInCarts = GetProductsInCartByOrder(orderCode.Value);
+            }
 
             cart.Products = productInCarts;
 
@@ -418,6 +427,22 @@ namespace Rush.Controllers
             return productInCarts;
         }
 
+        public List<ProductInCart> GetProductsInCartByOrder(int code)
+        {
+            List<ProductInCart> products = new List<ProductInCart>();
+            Order order = db.Orders.Where(x => x.Code == code).FirstOrDefault();
+            List<OrderDetail> details = db.OrderDetails.Where(current => current.OrderId == order.Id).ToList();
+            foreach (OrderDetail orderDetail in details)
+            {
+                products.Add(new ProductInCart()
+                {
+                    Id = orderDetail.ProductId.ToString(),
+                    Quantity = orderDetail.Quantity,
+                    Product = orderDetail.Product
+                });
+            }
+            return products;
+        }
 
         public string[] GetCookie(string cookieName)
         {
@@ -612,13 +637,25 @@ namespace Rush.Controllers
             return View();
         }
 
-        public ActionResult Finalize(string basketType)
+        public ActionResult Finalize(string basketType, int? orderCode)
         {
             try
             {
-                List<ProductInCart> productInCarts = GetProductInBasketByCoockie(basketType);
+                List<ProductInCart> productInCarts = new List<ProductInCart>();
+                Order order = new Order();
+                if (string.IsNullOrEmpty(orderCode.ToString()))
+                {
+                     productInCarts = GetProductInBasketByCoockie(basketType);
+                    order = ConvertCoockieToOrder(productInCarts);
+                }
+                else
+                {
+                    order = db.Orders.Where(x => x.Code == orderCode.Value).FirstOrDefault();
+                    basketType = order.OrderType;
+                    productInCarts = GetProductsInCartByOrder(orderCode.Value);
+                }
 
-                Order order = ConvertCoockieToOrder(productInCarts);
+                
 
                 if (order != null)
                 {
@@ -990,7 +1027,7 @@ namespace Rush.Controllers
                 try
                 {
                     var zarinpal = ZarinPal.ZarinPal.Get();
-                    zarinpal.DisableSandboxMode();
+                    zarinpal.EnableSandboxMode();
                     String Authority = authority;
                     long Amount = GetAmountByAuthority(Authority);
 
@@ -1021,8 +1058,15 @@ namespace Rush.Controllers
 
                                 if (product != null)
                                 {
-
-
+                                    User user = db.Users.Find(order.UserId);
+                                    string message = "سفارش شما با شماره پیگیری " + callBack.RefrenceId + " در وب سایت راش وب ثبت گردید ";
+                                    SendSms.SendCommonSms(user.CellNum, message);
+                                    List<User> admins = db.Users.Where(current => current.IsActive && !current.IsDeleted && current.Role.Name == "Administrator").ToList();
+                                    foreach (User admin in admins)
+                                    {
+                                        message = "یک سفارش یا کد " + order.Code + " در وب سایت راش وب ثبت شده است.";
+                                        SendSms.SendCommonSms(admin.CellNum, message);
+                                    }
                                     //ViewBag.Email = order.DeliverEmail;
 
                                     //CreateEmail(order.Email, fileLink, orderType);

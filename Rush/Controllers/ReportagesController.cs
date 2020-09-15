@@ -20,20 +20,20 @@ namespace Rush.Controllers
         private DatabaseContext db = new DatabaseContext();
         MenuHelper menuHelper = new MenuHelper();
 
-    
+
         public ActionResult Index(Guid id)
         {
 
             return View(db.Reportages.Where(a => a.IsDeleted == false && a.ReportageGroupId == id).OrderBy(a => a.Priority).ToList());
         }
 
-        
+
         public ActionResult Create(Guid id)
         {
             ViewBag.id = id;
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Reportage reportage, Guid id, HttpPostedFileBase fileUpload)
@@ -57,14 +57,14 @@ namespace Rush.Controllers
                 }
                 #endregion
 
-                Product product=new Product()
+                Product product = new Product()
                 {
-                    Id=Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     IsDeleted = false,
                     IsActive = reportage.IsActive,
                     CreationDate = DateTime.Now,
                     Title = reportage.FullName,
-                    ProductTypeId = db.ProductTypes.FirstOrDefault(c=>c.Name== "reportage").Id
+                    ProductTypeId = db.ProductTypes.FirstOrDefault(c => c.Name == "reportage").Id
                 };
 
                 db.Products.Add(product);
@@ -97,11 +97,11 @@ namespace Rush.Controllers
                 return HttpNotFound();
             }
             ViewBag.id = reportage.ReportageGroupId;
-            ViewBag.ReportageGroupId = new SelectList(db.ReportageGroups.Where(current => current.IsDeleted == false ).ToList(), "Id", "Title", reportage.ReportageGroupId);
+            ViewBag.ReportageGroupId = new SelectList(db.ReportageGroups.Where(current => current.IsDeleted == false).ToList(), "Id", "Title", reportage.ReportageGroupId);
             return View(reportage);
         }
 
-  
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Reportage reportage, HttpPostedFileBase fileUpload)
@@ -183,7 +183,7 @@ namespace Rush.Controllers
         }
         [Route("reportagelisttest")]
         [AllowAnonymous]
-        public ActionResult List(string groupId, string amountRange, string daRange,string site)
+        public ActionResult List(string groupId, string amountRange, string daRange, string site)
         {
 
             if (amountRange == "0-0")
@@ -205,7 +205,7 @@ namespace Rush.Controllers
             reportageListView.BottomText = GetTextById("59e447d1-35a3-40c5-8ee6-833e7bc410ec");
 
             reportageListView.Rate = text.AverageRate.Value.ToString().Replace('/', '.');
-            reportageListView.ReportageByGroups = ReturnReportage(groupId,amountRange,daRange,site);
+            reportageListView.ReportageByGroups = ReturnReportage(groupId, amountRange, daRange, site);
             reportageListView.ReportageGroups = db.ReportageGroups.Where(current => current.IsDeleted == false && current.IsActive == true && current.IsPackage == false).OrderBy(current => current.Priority).ToList();
             reportageListView.Questions = db.AskedQuestions.Where(current => current.IsDeleted == false && current.Param == "reportage" && current.IsActive == true).OrderBy(current => current.Order).ToList();
             ViewBag.Title = text.PageTitle;
@@ -229,10 +229,10 @@ namespace Rush.Controllers
             return View(reportageListView);
         }
 
-       
+
         [Route("reportage")]
         [AllowAnonymous]
-        public ActionResult List2(string groupId, string amountRange, string daRange,string site)
+        public ActionResult List2(string groupId, string amountRange, string daRange, string site)
         {
             if (amountRange == "0-0")
                 amountRange = null;
@@ -277,14 +277,16 @@ namespace Rush.Controllers
                 else
                     ViewBag.ModifiedDate = text.CreationDate.ToString(CultureInfo.InvariantCulture);
             }
-     
-            reportageListView.ReportageByGroups = ReturnReportage(groupId,amountRange,daRange,site);
+
+            reportageListView.ReportageByGroups = ReturnReportage(groupId, amountRange, daRange, site);
             reportageListView.ReportageGroups = db.ReportageGroups.Where(current => current.IsDeleted == false && current.IsActive == true && current.IsPackage == false).OrderBy(current => current.Priority).ToList();
             reportageListView.Questions = db.AskedQuestions.Where(current => current.IsDeleted == false && current.Param == "reportage" && current.IsActive == true).OrderBy(current => current.Order).ToList();
-         
+
+            reportageListView.SpecialReportages = ReturnSpecialReportages(amountRange, daRange, site);
+
             ViewBag.Canonical = "https://www.rushweb.ir/reportage";
             ViewBag.param = textId;
-     
+
             return View(reportageListView);
         }
 
@@ -338,7 +340,7 @@ namespace Rush.Controllers
         }
 
         [AllowAnonymous]
-        public List<ReportageByGroup> ReturnReportage(string groupId, string amountRange, string daRange,string site)
+        public List<ReportageByGroup> ReturnReportage(string groupId, string amountRange, string daRange, string site)
         {
             List<ReportageByGroup> reportageByGroup = new List<ReportageByGroup>();
             List<ReportageGroup> groupList = new List<ReportageGroup>();
@@ -351,7 +353,7 @@ namespace Rush.Controllers
             else
             {
 
-                Guid id=new Guid(groupId);
+                Guid id = new Guid(groupId);
 
                 groupList = db.ReportageGroups
                     .Where(current => current.Id == id && current.IsDeleted == false && current.IsActive == true &&
@@ -387,7 +389,7 @@ namespace Rush.Controllers
 
 
 
-            List<Reportage> reportageList=new List<Reportage>();
+            List<Reportage> reportageList = new List<Reportage>();
 
 
             if (!string.IsNullOrEmpty(groupId) || !string.IsNullOrEmpty(amountRange) ||
@@ -396,23 +398,25 @@ namespace Rush.Controllers
                 foreach (ReportageGroup group in groupList)
                 {
 
-                 
-                        if (site == null)
-                            reportageList = db.Reportages.Where(current => current.ReportageGroupId == group.Id&&
-                                    current.DomainAuthority <= endDa && current.DomainAuthority >= startDa &&
-                                    current.IsActive &&
-                                    current.Price <= endAmount && current.Price >= startAmount &&
-                                    current.IsDeleted == false )
-                                .OrderBy(current => current.Priority).ToList();
-                        else
-                            reportageList = db.Reportages.Where(current => current.ReportageGroupId == group.Id &&
-                                    current.DomainAuthority <= endDa && current.DomainAuthority >= startDa &&
-                                    current.IsActive &&
-                                    current.Price <= endAmount && current.Price >= startAmount &&
-                                    current.IsDeleted == false &&
-                                    (current.FullName.Contains(site) || current.Address.Contains(site)))
-                                .OrderBy(current => current.Priority).ToList();
-                   
+
+                    if (site == null)
+                        reportageList = db.Reportages.Where(current => current.ReportageGroupId == group.Id &&
+                                current.DomainAuthority <= endDa && current.DomainAuthority >= startDa &&
+                                current.IsActive &&
+                                current.Price <= endAmount && current.Price >= startAmount &&
+                                current.IsDeleted == false
+                                && current.IsSpecialOffer == false)
+                            .OrderBy(current => current.Priority).ToList();
+                    else
+                        reportageList = db.Reportages.Where(current => current.ReportageGroupId == group.Id &&
+                                current.DomainAuthority <= endDa && current.DomainAuthority >= startDa &&
+                                current.IsActive &&
+                                current.Price <= endAmount && current.Price >= startAmount &&
+                                current.IsDeleted == false &&
+                                (current.FullName.Contains(site) || current.Address.Contains(site))
+                                && current.IsSpecialOffer == false)
+                            .OrderBy(current => current.Priority).ToList();
+
                     reportageByGroup.Add(new ReportageByGroup
                     {
                         ReportageGroupId = group.Id,
@@ -432,14 +436,15 @@ namespace Rush.Controllers
                 foreach (ReportageGroup group in groupList)
                 {
 
-                   
-                        reportageList = db.Reportages.Where(current =>
-                            current.ReportageGroupId == group.Id&&
-                                current.IsActive &&
 
-                                current.IsDeleted == false )
-                            .OrderBy(current => current.Priority).ToList();
-                    
+                    reportageList = db.Reportages.Where(current =>
+                        current.ReportageGroupId == group.Id &&
+                            current.IsActive &&
+
+                            current.IsDeleted == false
+                            && current.IsSpecialOffer == false)
+                        .OrderBy(current => current.Priority).ToList();
+
                     reportageByGroup.Add(new ReportageByGroup
                     {
                         ReportageGroupId = group.Id,
@@ -460,17 +465,80 @@ namespace Rush.Controllers
         }
 
         [AllowAnonymous]
+        public List<Reportage> ReturnSpecialReportages(string amountRange, string daRange, string site)
+        {
+            decimal startAmount = 0;
+
+            decimal endAmount = 100000000;
+
+            if (amountRange != null)
+            {
+                string[] amountItems = amountRange.Split('-');
+
+                startAmount = Convert.ToDecimal(amountItems[0]);
+
+                endAmount = Convert.ToDecimal(amountItems[1]);
+            }
+
+            int startDa = 0;
+
+            int endDa = 100;
+
+            if (daRange != null)
+            {
+                string[] items = daRange.Split('-');
+
+                startDa = Convert.ToInt32(items[0]);
+
+                endDa = Convert.ToInt32(items[1]);
+            }
+            
+
+            List<Reportage> reportageList = new List<Reportage>();
+
+            if (!string.IsNullOrEmpty(amountRange) ||
+                !string.IsNullOrEmpty(site) || !string.IsNullOrEmpty(daRange))
+            {
+                if (site == null)
+                    reportageList = db.Reportages.Where(current => current.DomainAuthority <= endDa && current.DomainAuthority >= startDa &&
+                            current.IsActive &&
+                            current.Price <= endAmount && current.Price >= startAmount &&
+                            current.IsDeleted == false
+                            && current.IsSpecialOffer == true)
+                        .OrderBy(current => current.Priority).ToList();
+                else
+                    reportageList = db.Reportages.Where(current => current.DomainAuthority <= endDa && current.DomainAuthority >= startDa &&
+                            current.IsActive &&
+                            current.Price <= endAmount && current.Price >= startAmount &&
+                            current.IsDeleted == false &&
+                            (current.FullName.Contains(site) || current.Address.Contains(site))
+                            && current.IsSpecialOffer == true)
+                        .OrderBy(current => current.Priority).ToList();
+            }
+            else
+            {
+                reportageList = db.Reportages.Where(current =>
+                        current.IsActive &&
+                        current.IsDeleted == false
+                        && current.IsSpecialOffer == true)
+                    .OrderBy(current => current.Priority).ToList();
+            }
+            return reportageList;
+
+        }
+
+        [AllowAnonymous]
         public List<ReportageByGroup> ReturnPackageReportage()
         {
             List<ReportageByGroup> reportageByGroup = new List<ReportageByGroup>();
 
-            List<ReportageGroup> groupList = db.ReportageGroups.Where(current => current.IsPackage == true&& current.IsDeleted == false && current.IsActive == true).OrderBy(current => current.Priority).ToList();
+            List<ReportageGroup> groupList = db.ReportageGroups.Where(current => current.IsPackage == true && current.IsDeleted == false && current.IsActive == true).OrderBy(current => current.Priority).ToList();
 
             foreach (ReportageGroup group in groupList)
             {
                 List<Reportage> reportages = db.Reportages
                     .Where(current => current.ReportageGroupId == group.Id &&
-                        current.IsActive   && current.IsDeleted == false )
+                        current.IsActive && current.IsDeleted == false)
                     .OrderBy(current => current.Priority).ToList();
 
 

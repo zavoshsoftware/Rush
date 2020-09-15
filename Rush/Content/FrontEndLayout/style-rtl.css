@@ -608,7 +608,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .report ul {
-    margin: 14px 0 30px 0;
+    margin: 10px 0 30px 0;
 }
 
     .report ul li {
@@ -839,7 +839,7 @@ h1, h2, h3, h4, h5, h6 {
     .content {
         width: 100% !important;
     }
-    
+
     #reportageLeftBasket {
         display: none !important;
     }
@@ -866,9 +866,9 @@ h1, h2, h3, h4, h5, h6 {
         line-height: 0.428571 !important;
     }
 
-        .no-bordertop {
-            border-top: none !important;
-        }
+    .no-bordertop {
+        border-top: none !important;
+    }
 
 
     .mobile-price {
@@ -1432,9 +1432,9 @@ h1, h2, h3, h4, h5, h6 {
         padding: 25px 0;
     }*/
 
-        .login .login-form label {
-            color: #fff;
-        }
+    .login .login-form label {
+        color: #fff;
+    }
 
 .input-group > .input-group-prepend > .input-group-text {
     border-top-right-radius: .25rem;
@@ -1612,12 +1612,79 @@ button .remove {
 /*TheiaStickySideBar*/
 
 
-.backlink-info ,
+.backlink-info,
 .backlink-info {
     padding: 55px;
 }
 
-.backlink-info .col-md-2,
-.backlink-info .col-md-10 {
-    float: right;
+    .backlink-info .col-md-2,
+    .backlink-info .col-md-10 {
+        float: right;
+    }
+
+.panel-special {
+    background-color: #f33333 !important;
+}
+
+.item-special {
+    border-top: 4px solid #f33333;
+}
+
+    .item-special:before {
+        content: "فروش ویژه";
+        position: absolute;
+        text-align: center;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 80px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0 0 .25rem .25rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+        background-color: #f33333;
+        color: #fff;
+    }
+
+    .item-special div.special-card-header {
+        margin-top: 25px;
+    }
+
+.sidebar-user, .sidebar-user a {
+    /*position: relative;*/
+   
+}
+
+    .sidebar-user ul {
+        display: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        /*position: inherit;*/
+        z-index: 9999999;
+        text-align: right;
+        font-size: 14px;
+        line-height: 32px;
+        font-weight: 800;
+        width: 100%;
+       
+    }
+
+        .sidebar-user ul li {
+            background-color: #fcfcfc;
+            color: #fff;
+            padding-right: 30px;
+        }
+
+            .sidebar-user ul li a {
+                color: #555;
+            }
+
+/*.user-sidebar ul li:hover > ul {
+    display: block;
+}*/
+
+.sidebar-user i {
+    float: left;
+    margin-top: 11px;
 }

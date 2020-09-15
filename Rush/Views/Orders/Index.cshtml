@@ -7,7 +7,7 @@ ViewBag.Title = "فهرست سفارشات" ;
 }
 
 <h2>@ViewBag.Title</h2>
-
+<a href="/orders/SendBackLinkSms" class="btn btn-success">ارسال پیامک تمدید بک لینک</a>
         @(Html.Kendo().Grid(Model)
 									.Name("Grid")
 									.Columns(columns =>

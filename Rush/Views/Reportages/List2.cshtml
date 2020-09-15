@@ -152,6 +152,89 @@
 							</div>
 
 
+
+
+                            <div class="panel panel-primary">
+                                <div class="panel-heading panel-special">فروش ویژه</div>
+                                <div class="panel-body">
+
+                                    <div class="row">
+                                        @foreach (var reportage in Model.SpecialReportages)
+                                        {
+                                            <div class="col-md-4">
+                                                <div class="reportage-card item-special">
+                                                    <div class="reportage-card-header special-card-header">
+                                                        <div class="reportage-name">
+                                                            <p>
+                                                                @reportage.FullName
+                                                            @if (!string.IsNullOrEmpty(reportage.Terms))
+                                                            {
+                                                                <i data-toggle="tooltip" data-placement="top" title="@reportage.Terms" class="fa fa-exclamation-circle "></i>
+                                                            }
+                                                        </p>
+                                                        <p>@reportage.Address</p>
+                                                    </div>
+
+                                                    <div class="reportage-da">
+                                                        da: @reportage.DomainAuthority
+
+
+                                                    </div>
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+
+                                                <div class="reportage-card-midle">
+                                                    <div class="reportage-button">
+                                                        <button class="btn btn-success" type="button" onclick="addToBasket('@reportage.ProductId', '1','reportage');"><i class="fa fa-shopping-basket"></i> خرید</button>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="reportage-card-footer">
+
+
+
+                                                    @if (reportage.IsInPromotion == true)
+                                                    {
+                                                        if (reportage.IsDollar)
+                                                        {
+                                                            <div><del>@string.Format("{0:n0}", reportage.Price) دلار</del>@string.Format("{0:n0}", reportage.DiscountAmount) دلار</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div><del>@string.Format("{0:n0}", reportage.Price) تومان</del>@string.Format("{0:n0}", reportage.DiscountAmount) تومان</div>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (reportage.IsDollar)
+                                                        {
+                                                            <div>@string.Format("{0:n0}", reportage.Price) دلار</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div>@string.Format("{0:n0}", reportage.Price) تومان</div>
+                                                        }
+                                                    }
+
+
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
 							@foreach (var item in Model.ReportageByGroups)
 							{
 									<div class="panel panel-primary">

@@ -15,6 +15,7 @@ namespace ViewModels
         public List<ReportageGroup> ReportageGroups { get; set; }
         public List<AskedQuestion> Questions { get; set; }
         public string BottomText { get; set; }
+        public List<Reportage> SpecialReportages { get; set; }
     }
 
     public class ReportageByGroup
