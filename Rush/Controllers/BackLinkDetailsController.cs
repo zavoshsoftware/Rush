@@ -54,8 +54,7 @@ namespace Rush.Controllers
                 db.Products.Add(product);
 
                 backLinkDetail.ProductId = product.Id;
-
-
+                backLinkDetail.BackLinkId = id;
                 backLinkDetail.IsDeleted=false;
 				backLinkDetail.CreationDate= DateTime.Now; 
                 backLinkDetail.Id = Guid.NewGuid();
