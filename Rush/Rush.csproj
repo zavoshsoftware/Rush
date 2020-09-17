@@ -735,6 +735,7 @@
     <Content Include="images\team\5.jpg" />
     <Content Include="images\team\6.jpg" />
     <Content Include="images\telegramLogo.jpg" />
+    <Content Include="images\whatsappicon.jpg" />
     <Content Include="Scripts\FrontEndLayout\bootstrap-select.min.js" />
     <Content Include="Scripts\FrontEndLayout\bootstrap.js" />
     <Content Include="Scripts\FrontEndLayout\bootstrap.min.js" />

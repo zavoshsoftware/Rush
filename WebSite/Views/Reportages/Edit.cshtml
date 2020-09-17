@@ -1,22 +1,22 @@
 ﻿@model Models.Reportage
 
 @{
-    ViewBag.Title = "ویرایش " ;
+    ViewBag.Title = "ویرایش ";
     Layout = "~/Views/Shared/BackEndLayout/_BackEndLayout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Edit", "Reportages",FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Edit", "Reportages", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">        
+
+    <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.ProductId)
-       
+
         <div class="form-group">
             @Html.LabelFor(model => model.Priority, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FullName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                                  @Html.EditorFor(model => model.FullName)
+                @Html.EditorFor(model => model.FullName)
                 @Html.ValidationMessageFor(model => model.FullName)
             </div>
         </div>
@@ -36,86 +36,94 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                                  @Html.EditorFor(model => model.Address)
+                @Html.EditorFor(model => model.Address)
                 @Html.ValidationMessageFor(model => model.Address)
             </div>
         </div>
-			
-	    <div class="form-group">
-		    @Html.LabelFor(model => model.ImageUrl, new { @class = "control-label col-md-2" })
-		    <div class="col-md-4">
-			    @Html.Kendo().Upload().Name("fileUpload").Multiple(false)
-			    @Html.ValidationMessageFor(model => model.ImageUrl)
-		    </div>
-	    </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageUrl, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.Kendo().Upload().Name("fileUpload").Multiple(false)
+                @Html.ValidationMessageFor(model => model.ImageUrl)
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.DomainAuthority, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                                  @Html.EditorFor(model => model.DomainAuthority)
+                @Html.EditorFor(model => model.DomainAuthority)
                 @Html.ValidationMessageFor(model => model.DomainAuthority)
             </div>
         </div>
 
-	    <div class="form-group">
-		    @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
-		    <div class="col-md-10">
-			    @Html.EditorFor(model => model.Price)
-			    @Html.ValidationMessageFor(model => model.Price)
-		    </div>
-	    </div>
-			
-			
-	    <div class="form-group">
-		    @Html.LabelFor(model => model.BuyAmount, new { @class = "control-label col-md-2" })
-		    <div class="col-md-10">
-			    @Html.EditorFor(model => model.BuyAmount)
-
-			    @Html.ValidationMessageFor(model => model.BuyAmount)
-		    </div>
-	    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price)
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+        </div>
 
 
-	    <div class="form-group">
-		    <div class="col-md-2">
-		    </div>
-		    <div class="col-md-10">
-			    @Html.EditorFor(model => model.IsDollar)
+        <div class="form-group">
+            @Html.LabelFor(model => model.BuyAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BuyAmount)
 
-			    @Html.LabelFor(model => model.IsDollar)
-		    </div>
-	    </div>
-	    <div class="form-group">
-		    <div class="col-md-2">
-		    </div>
-		    <div class="col-md-10">
-			    @Html.EditorFor(model => model.IsInPromotion)
+                @Html.ValidationMessageFor(model => model.BuyAmount)
+            </div>
+        </div>
 
-			    @Html.LabelFor(model => model.IsInPromotion)
-		    </div>
-	    </div>
-					
-	    <div class="form-group">
-		    @Html.LabelFor(model => model.DiscountAmount, new { @class = "control-label col-md-2" })
-		    <div class="col-md-10">
-			    @Html.EditorFor(model => model.DiscountAmount)
 
-			    @Html.ValidationMessageFor(model => model.DiscountAmount)
-		    </div>
-	    </div>
-			
-	    <div class="form-group">
-		    @Html.LabelFor(model => model.Terms, new { @class = "control-label col-md-2" })
-		    <div class="col-md-10">
-			    @Html.EditorFor(model => model.Terms)
+        <div class="form-group">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsDollar)
 
-			    @Html.ValidationMessageFor(model => model.Terms)
-		    </div>
-	    </div>
+                @Html.LabelFor(model => model.IsDollar)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsInPromotion)
 
-	    <div class="form-group">
+                @Html.LabelFor(model => model.IsInPromotion)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsSpecialOffer)
+
+                @Html.LabelFor(model => model.IsSpecialOffer)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiscountAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiscountAmount)
+
+                @Html.ValidationMessageFor(model => model.DiscountAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Terms, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Terms)
+
+                @Html.ValidationMessageFor(model => model.Terms)
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.IsActive, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                                  @Html.EditorFor(model => model.IsActive)
+                @Html.EditorFor(model => model.IsActive)
                 @Html.ValidationMessageFor(model => model.IsActive)
             </div>
         </div>
@@ -127,12 +135,12 @@
             </div>
         </div>
 
-	 @Html.HiddenFor(model => model.CreationDate)
-       
+        @Html.HiddenFor(model => model.CreationDate)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                                  @Html.EditorFor(model => model.Description)
+                @Html.EditorFor(model => model.Description)
                 @Html.ValidationMessageFor(model => model.Description)
             </div>
         </div>
@@ -140,7 +148,7 @@
         <div class="form-group" id="buttons">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="ثبت" class="btn btn-primary" />
-				@Html.ActionLink("بازگشت به فهرست", "Index", new { id = ViewBag.id })
+                @Html.ActionLink("بازگشت به فهرست", "Index", new { id = ViewBag.id })
             </div>
         </div>
     </div>

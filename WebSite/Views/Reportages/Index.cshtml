@@ -15,13 +15,15 @@ ViewBag.Title = "فهرست " ;
 				columns.Bound(model => model.Priority);
 				columns.Bound(model => model.FullName);
 				columns.Bound(model => model.ImageUrl).Template(@<text><img src="@item.ImageUrl" height="100px" /></text>);
-columns.Bound(model => model.Address);
-columns.Bound(model => model.DomainAuthority);
-columns.Bound(model => model.Price);
-columns.Bound(model => model.IsActive);
-columns.Bound(model => model.CreationDate);
-columns.Bound(item => @item.Id).Title("دستورات").Filterable(false).Groupable(false)
-						.Template(@<text>
+                                columns.Bound(model => model.Address);
+                                columns.Bound(model => model.DomainAuthority);
+                                columns.Bound(model => model.Price);
+                                columns.Bound(model => model.IsActive);
+                                columns.Bound(model => model.IsSpecialOffer);
+
+                                columns.Bound(model => model.CreationDate);
+                                columns.Bound(item => @item.Id).Title("دستورات").Filterable(false).Groupable(false)
+                                        .Template(@<text>
 									@Html.ActionLink("ویرایش", "Edit", new {id = @item.Id}, new {@class = "k-button"})
 									@Html.ActionLink("حذف", "Delete", new {id = @item.Id}, new {@class = "k-button"})
 									</text>).Width(200);  

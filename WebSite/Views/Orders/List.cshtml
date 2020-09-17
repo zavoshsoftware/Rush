@@ -19,59 +19,70 @@
     </section>
     <section class="gallery-details sg-detail" id="reportage">
         <div class="container">
-	        <div class="col-lg-9 col-md-9 col-xs-12 report">
-		        <table class="table-responsive table-striped report-table table-bordered bl">
-			        <tr>
-				        <th> ردیف</th>
-				        <th> شماره سفارش</th>
-				        <th> نوع سفارش</th>
-				        <th> تاریخ سفارش</th>
-				        <th> وضعیت سفارش</th>
-				        <th>وضعیت پرداخت</th>
-				        <th>مشاهده جزئیات</th>
-			        </tr>
-			        @{int RowNo = 0;}
-			        @foreach (var order in Model.Orders)
-			        {
-				        <tr>
-					        <td>@(RowNo += 1)</td>
-					        <td>@order.Code</td>
-					        <td>
-						        @if (order.OrderType == "backlink") {<span>بک لینک</span> }
-						        @if (order.OrderType == "reportage")
-										{<span>رپورتاژ</span> }
-						        @if (order.OrderType == "package")
-										{<span>پکیج رپورتاژ</span> }
+            <div class="col-lg-9 col-md-9 col-xs-12 report">
+                @if (Model.Orders.Count() > 0)
+                {
+                    <table class="table-responsive table-striped report-table table-bordered bl">
+                        <tr>
+                            <th> ردیف</th>
+                            <th> شماره سفارش</th>
+                            <th> نوع سفارش</th>
+                            <th> تاریخ سفارش</th>
+                            <th> وضعیت سفارش</th>
+                            <th>وضعیت پرداخت</th>
+                            <th>مشاهده جزئیات</th>
+                        </tr>
+                        @{int RowNo = 0;}
+                        @foreach (var order in Model.Orders)
+                        {
+                            <tr>
+                                <td>@(RowNo += 1)</td>
+                                <td>@order.Code</td>
+                                <td>
+                                    @if (order.OrderType == "backlink")
+                                    {<span>بک لینک</span> }
+                                    @if (order.OrderType == "reportage")
+                                    {<span>رپورتاژ</span> }
+                                    @if (order.OrderType == "package")
+                                    {<span>پکیج رپورتاژ</span> }
 
-					        </td>
-					        <td>@order.CreationDate.ToShortDateString()</td>
-					        <td>@order.OrderStatus.Title</td>
-					        <td>
-						        @if (order.IsPaid)
-						        {
-							        <span><i style="color:green" class="fa fa-check"></i> پرداخت شده</span>
-						        }
+                                </td>
+                                <td>@order.CreationDate.ToShortDateString()</td>
+                                <td>@order.OrderStatus.Title</td>
+                                <td>
+                                    @if (order.IsPaid)
+                                    {
+                                        <span><i style="color:green" class="fa fa-check"></i> پرداخت شده</span>
+                                    }
 
-						        else
-						        {
-							        <span><i style="color:red" class="fa fa-remove"></i> عدم پرداخت</span>
+                                    else
+                                    {
+                                        <span><i style="color:red" class="fa fa-remove"></i> عدم پرداخت</span>
 
-						        }
-					        </td>
-					        <td>
-						        <a class="btn btn-primary" href="/order/@order.Code">جزئیات</a>
-					        </td>
-				        </tr>
-			        }
-		        </table>
+                                    }
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" href="/order/@order.Code">جزئیات</a>
+                                    @if (!order.IsPaid)
+                                    {
+                                        <a class="btn btn-primary" href="/basket?basketType=@order.OrderType&&orderCode=@order.Code">پرداخت</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                            }
+                            else
+                            {
+                                <h2 class="text-center">فاکتور مورد نظر یافت نشد</h2>
+                            }
+            </div>
 
-	        </div>
-					
-	        <div class="col-lg-3 col-md-3 col-xs-12 report">
-		        @Html.Partial("FrontEnd/_UserSidebarPartial")
+            <div class="col-lg-3 col-md-3 col-xs-12 report">
+                @Html.Partial("FrontEnd/_UserSidebarPartial")
 
-				
-	        </div>
+
+            </div>
         </div>
     </section>
 </div>

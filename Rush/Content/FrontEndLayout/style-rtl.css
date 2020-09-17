@@ -1623,6 +1623,9 @@ button .remove {
     }
 
 .panel-special {
+    border-color: #f33333 !important;
+}
+.panel-special .panel-heading{
     background-color: #f33333 !important;
 }
 
@@ -1687,4 +1690,10 @@ button .remove {
 .sidebar-user i {
     float: left;
     margin-top: 11px;
+}
+
+.whatsapp-icon {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
 }
