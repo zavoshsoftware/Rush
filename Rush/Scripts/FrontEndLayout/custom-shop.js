@@ -195,13 +195,14 @@ function finalizeOrder() {
     //var billingEmail = $('#billing_email').val();
 
     var basketType = getUrlVars()["basketType"];
-
+    var orderCode = getUrlVars()["orderCode"];
     //if (billingFullname !== "" && billingCellnumber !== "") {
     $.ajax(
         {
             url: "/Basket/Finalize",
             data: {
-                basketType: basketType
+                basketType: basketType,
+                orderCode: orderCode
             },
             type: "GET"
         }).done(function (result) {

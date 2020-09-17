@@ -93,7 +93,15 @@
 			        @Html.LabelFor(model => model.IsInPromotion)
 		        </div>
 	        </div>
-					
+            <div class="form-group">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IsSpecialOffer)
+
+                    @Html.LabelFor(model => model.IsSpecialOffer)
+                </div>
+            </div>
 	        <div class="form-group">
 		        @Html.LabelFor(model => model.DiscountAmount, new { @class = "control-label col-md-2" })
 		        <div class="col-md-10">

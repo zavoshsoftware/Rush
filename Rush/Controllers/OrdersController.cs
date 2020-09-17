@@ -10,6 +10,8 @@ using Models;
 using ViewModels;
 using Helper;
 using System.IO;
+using System.Data.Entity.Core.Objects;
+using Helpers;
 
 namespace Rush.Controllers
 {
@@ -149,7 +151,7 @@ namespace Rush.Controllers
 
         [Authorize(Roles = "Customer")]
 
-        public ActionResult List()
+        public ActionResult List(string type)
         {
             var identity = (System.Security.Claims.ClaimsIdentity)User.Identity;
             Guid id = new Guid(identity.FindFirst(System.Security.Claims.ClaimTypes.Name).Value);
@@ -157,11 +159,19 @@ namespace Rush.Controllers
             OrderListViewModel order = new OrderListViewModel();
             order.Menu = menuHelper.ReturnMenu();
             order.FooterLink = menuHelper.GetFooterLink();
+            if(!string.IsNullOrEmpty(type))
+            {
+                order.Orders = db.Orders.Include(current => current.OrderStatus)
+               .Where(x => x.IsDeleted == false && x.IsActive && x.UserId == id && x.OrderType == type)
+               .OrderByDescending(c => c.CreationDate).ToList();
+            }
+            else
+            {
+                order.Orders = db.Orders.Include(current => current.OrderStatus)
+               .Where(x => x.IsDeleted == false && x.IsActive && x.UserId == id)
+               .OrderByDescending(c => c.CreationDate).ToList();
 
-            order.Orders = db.Orders.Include(current => current.OrderStatus)
-                .Where(x => x.IsDeleted == false && x.IsActive && x.UserId == id)
-                .OrderByDescending(c => c.CreationDate).ToList();
-
+            }
             return View(order);
         }
         [Route("order/{code}")]
@@ -396,6 +406,37 @@ namespace Rush.Controllers
             }
             db.SaveChanges();
             return String.Empty;
+        }
+
+        public ActionResult SendBackLinkSms()
+        {
+            try
+            {
+                string message = @"کاربر گرامی وب سایت راش وب، برای تمدید یک لینک به وب سایت راش وب مراجعه نمایید";
+                DateTime threeDaysAgo = DateTime.Now.Date.AddDays(+3);
+                Guid backLinkTypeId = new Guid("D2C2BF40-DAA8-41E5-A68C-859526DEC369");
+
+                List<OrderDetailInformation> orderDetailInfo = db.OrderDetailInformations.Where(current => current.Product.ProductTypeId == backLinkTypeId
+                 && current.IsActive && !current.IsDeleted
+                 && DbFunctions.TruncateTime(current.FinishDate) == threeDaysAgo.Date
+                 ).ToList();
+                foreach (var item in orderDetailInfo)
+                {
+                    Order order = db.Orders.Where(current => current.IsActive && !current.IsDeleted
+                    && current.Id == item.OrderDetail.OrderId
+                    ).FirstOrDefault();
+
+                    SendSms.SendCommonSms(order.User.CellNum, message);
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
     }
 }

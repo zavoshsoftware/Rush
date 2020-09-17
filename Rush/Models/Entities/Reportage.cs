@@ -57,5 +57,8 @@ namespace Models
         [Display(Name="شرایط کار")]
         [DataType(DataType.MultilineText)]
         public string Terms { get; set; }
+
+        [Display(Name = "فروش ویژه؟")]
+        public bool IsSpecialOffer { get; set; }
     }
 }
