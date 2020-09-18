@@ -1027,7 +1027,7 @@ namespace Rush.Controllers
                 try
                 {
                     var zarinpal = ZarinPal.ZarinPal.Get();
-                    zarinpal.EnableSandboxMode();
+                    zarinpal.DisableSandboxMode();
                     String Authority = authority;
                     long Amount = GetAmountByAuthority(Authority);
 

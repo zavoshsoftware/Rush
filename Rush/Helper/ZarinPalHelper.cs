@@ -21,8 +21,8 @@ namespace Helpers
         {
             ZarinPal.ZarinPal zarinpal = ZarinPal.ZarinPal.Get();
 
-           String CallbackURL = "http://localhost:59339/callback";
-           //String CallbackURL = "https://www.rushweb.ir/callback";
+          // String CallbackURL = "http://localhost:59339/callback";
+           String CallbackURL = "https://www.rushweb.ir/callback";
 
             long Amount = Convert.ToInt64(amount);
 
@@ -38,7 +38,7 @@ namespace Helpers
 
             ZarinPal.PaymentRequest pr = new ZarinPal.PaymentRequest(MerchantId, Amount, CallbackURL, description);
 
-            zarinpal.EnableSandboxMode();
+            zarinpal.DisableSandboxMode();
             try
             {
                 var res = zarinpal.InvokePaymentRequest(pr);
