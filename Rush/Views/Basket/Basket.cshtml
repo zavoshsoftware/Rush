@@ -26,48 +26,49 @@
 						سبد خرید
 					</div>
 					<div class="panel-body">
-						<table class="table-basket table table-bordered table-responsive">
-							<thead>
-							<tr>
-								<th scope="col" class="width35">محصول</th>
-								<th scope="col" class="width20">قیمت</th>
-								<th scope="col" class="width20">تعداد</th>
-								<th scope="col" class="width20">جمع کل</th>
-								<th scope="col" class="width5">حذف</th>
-							</tr>
-							</thead>
-
-							<tbody>
-							@foreach (var product in Model.Products)
-							{
+						<div class=" table-responsive">
+							<table class="table-basket table table-bordered">
+								<thead>
 								<tr>
-									<td data-label="محصول" class="product-in-basket width20">
-										<div class="product-info">
-											<h3 class="product-name">
-												@product.Product.Title
-											</h3>
-										</div>
-									</td>
-
-									<td data-label="قیمت" class="width20">@product.Amount</td>
-
-									<td data-label="تعداد" class="width20">
-										<input type="text" id="qty_@product.Product.Id" data-step="1" data-min="0" data-max="" value="@product.Quantity" title="Qty" class="input-text qty text" size="4">
-									</td>
-									<td data-label="جمع کل" class="width20">@product.RowAmount</td>
-									<td data-label="حذف" class="width5"><button class="remove" onclick="removeFromBasket('@product.Product.Id')"><i class="fa fa-close"></i></button></td>
+									<th scope="col" class="width35">محصول</th>
+									<th scope="col" class="width20">قیمت</th>
+									<th scope="col" class="width20">تعداد</th>
+									<th scope="col" class="width20">جمع کل</th>
+									<th scope="col" class="width5">حذف</th>
 								</tr>
-							}
-							<tr class="subtable">
-								<td colspan="3"></td>
-								<td colspan="3"><span>مجموع:</span> @Model.SubTotal</td>
-							</tr>
-							<tr class="subtable">
-								<td colspan="3"></td>
-								<td colspan="3"><span>تخفیف:</span> @Model.DiscountAmount</td>
-							</tr>
+								</thead>
 
-							@*<tr class="subtable">
+								<tbody>
+								@foreach (var product in Model.Products)
+								{
+									<tr>
+										<td data-label="محصول" class="product-in-basket width20">
+											<div class="product-info">
+												<h3 class="product-name">
+													@product.Product.Title
+												</h3>
+											</div>
+										</td>
+
+										<td data-label="قیمت" class="width20">@product.Amount</td>
+
+										<td data-label="تعداد" class="width20">
+											<input type="text" id="qty_@product.Product.Id" data-step="1" data-min="0" data-max="" value="@product.Quantity" title="Qty" class="input-text qty text" size="4">
+										</td>
+										<td data-label="جمع کل" class="width20">@product.RowAmount</td>
+										<td data-label="حذف" class="width5"><button class="remove" onclick="removeFromBasket('@product.Product.Id')"><i class="fa fa-close"></i></button></td>
+									</tr>
+								}
+								<tr class="subtable">
+									<td colspan="3"></td>
+									<td colspan="3"><span>مجموع:</span> @Model.SubTotal</td>
+								</tr>
+								<tr class="subtable">
+									<td colspan="3"></td>
+									<td colspan="3"><span>تخفیف:</span> @Model.DiscountAmount</td>
+								</tr>
+
+								@*<tr class="subtable">
 										<td colspan="3">
 
 											<div class="row">
@@ -90,23 +91,26 @@
 										<td colspan="3">تخفیف: @Model.DiscountAmount</td>
 									</tr>*@
 
-							<tr class="subtable">
-								<td colspan="3"></td>
-								<td colspan="3">مبلغ قابل پرداخت: @Model.Total</td>
-							</tr>
+								<tr class="subtable">
+									<td colspan="3"></td>
+									<td colspan="3">مبلغ قابل پرداخت: @Model.Total</td>
+								</tr>
 
-							<tr id="finalize-order" >
-								<td></td>
-								<td>
-									
-									<button type="button" onclick="finalizeOrder();" class="btn btn-success">تکمیل سفارش و پرداخت</button>
+								<tr id="finalize-order">
+									<td colspan="3"></td>
 
-								</td>
-							
-							</tr>
+								 
+									<td colspan="3">
 
-							</tbody>
-						</table>
+										<button type="button" onclick="finalizeOrder();" class="btn btn-success">تکمیل سفارش و پرداخت</button>
+
+									</td>
+
+								</tr>
+
+								</tbody>
+							</table>
+						</div>
 						<div class="alert alert-danger" id="error-box-final"></div>
 
 					</div>
@@ -183,7 +187,7 @@
 				var isAuthorize =@ViewBag.isAuthorize;
 
 				if (isAuthorize === 'true' || isAuthorize===true) {
-					$('#finalize-order').css('display', 'block');
+					$('#finalize-order').css('display', 'contents');
 					$('#login-box').css('display', 'none');
 				} else {
 					$('#finalize-order').css('display', 'none');
