@@ -59,5 +59,36 @@ namespace Helpers
 
         }
 
+        public static void SendPasswordOtp(string cellNumber, string code)
+        {
+            var token = new Token().GetToken("db67a48dbe57332ec63980c", "rushwebSmsApi");
+
+
+            var ultraFastSend = new UltraFastSend()
+            {
+                Mobile = Convert.ToInt64(cellNumber),
+                TemplateId = 33496,
+                ParameterArray = new List<UltraFastParameters>()
+                {
+                    new UltraFastParameters()
+                    {
+                        Parameter = "verifyCode" , ParameterValue = code.ToString()
+                    }
+                }.ToArray()
+
+            };
+
+            UltraFastSendRespone ultraFastSendRespone = new UltraFast().Send(token, ultraFastSend);
+
+            if (ultraFastSendRespone.IsSuccessful)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
     }
 }

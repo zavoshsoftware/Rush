@@ -1781,6 +1781,7 @@
     <Content Include="Views\BackLinkDetails\Edit.cshtml" />
     <Content Include="Views\BackLinkDetails\Index.cshtml" />
     <Content Include="Views\Orders\BacklinkDetails.cshtml" />
+    <Content Include="Views\Account\ForgetPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
