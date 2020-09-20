@@ -1064,7 +1064,7 @@ namespace Rush.Controllers
                                     List<User> admins = db.Users.Where(current => current.IsActive && !current.IsDeleted && current.Role.Name == "Administrator").ToList();
                                     foreach (User admin in admins)
                                     {
-                                        message = "یک سفارش یا کد " + order.Code + " در وب سایت راش وب ثبت شده است.";
+                                        message = "یک سفارش با کد " + order.Code + " در وب سایت راش وب ثبت شده است.";
                                         SendSms.SendCommonSms(admin.CellNum, message);
                                     }
                                     //ViewBag.Email = order.DeliverEmail;

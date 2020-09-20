@@ -412,7 +412,7 @@ namespace Rush.Controllers
         {
             try
             {
-                string message = @"کاربر گرامی وب سایت راش وب، برای تمدید یک لینک به وب سایت راش وب مراجعه نمایید";
+                string message = @"کاربر گرامی وب سایت راش وب، برای تمدید بک لینک به وب سایت راش وب مراجعه نمایید";
                 DateTime threeDaysAgo = DateTime.Now.Date.AddDays(+3);
                 Guid backLinkTypeId = new Guid("D2C2BF40-DAA8-41E5-A68C-859526DEC369");
 
