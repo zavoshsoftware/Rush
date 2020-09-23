@@ -267,8 +267,14 @@
 
 																<div class="reportage-card-midle">
 																	<div class="reportage-button">
-																		<button class="btn btn-success" type="button" onclick="addToBasket('@reportage.ProductId', '1','reportage');"><i class="fa fa-shopping-basket"></i> خرید</button>
-
+																		@if (reportage.IsDollar == false)
+																		{
+																			<button class="btn btn-success" type="button" onclick="addToBasket('@reportage.ProductId', '1', 'reportage');"><i class="fa fa-shopping-basket"></i> خرید</button>
+																		}
+																		else
+																		{
+																			<span>تماس بگیرید</span>
+																		}
 																	</div>
 
 																</div>
