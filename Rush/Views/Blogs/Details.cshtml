@@ -1,31 +1,23 @@
 ﻿@model ViewModels.BlogDetailViewModel
 <header>
-    <meta name="author" content="@Model.Writter">
+	<meta name="author" content="@Model.Writter">
+	<style>
+		.blog-body img{
+			max-width: 100%;
+		}
+	</style>
 </header>
 <div class="page-wrapper" id="sellPage">
-
-
-    @*<!-- Preloader -->
-        <div class="preloader"></div>
-        <!-- Preloader -->*@
-
-
     <div class="header-top"></div>
-    <!--Page Title-->
     <section class="page-title">
         <div class="container text-center">
-            <div class="title">
-                <h2>@Model.Blog.Title</h2>
-            </div>
+            <div class="title"><h2>@Model.Blog.Title</h2></div>
             <ul class="title-manu">
                 <li><a href="/">صفحه اصلی</a></li>
-                <li>></li>
-                <li>@Model.Blog.Title</li>
+                <li>></li><li>@Model.Blog.Title</li>
             </ul>
         </div>
     </section>
-    <!--End Page Title-->
-    <!--Single Blog-->
     <section class="blog-section style-three">
         <div class="container">
             <div class="row">
@@ -33,19 +25,14 @@
                     <div class="left-side">
                         <div class="item-holder">
                             <div class="image-box">
-                                <figure>
-                                    <img src="@Model.Blog.ImageUrl" alt="">
-                                </figure>
+                                <figure><img src="@Model.Blog.ImageUrl" alt="@Model.Blog.Title"></figure>
                                 <div class="date-box">
                                     <span>@string.Format("{0:dd MMM yyyy}", Model.Blog.CreationDate)</span>
                                 </div>
                                 @if (!string.IsNullOrEmpty(Model.Blog.PdfUrl))
                                 {
-                                <div class="pdf-box">
-                                    <span><a href="/Download/@Model.Blog.Id">دانلود pdf</a></span>
-                                </div>
+                                <div class="pdf-box"><span><a href="/Download/@Model.Blog.Id">دانلود pdf</a></span></div>
                                 }
-
                             </div>
                             <div class="text-area">
                                 <div class="content-text">
@@ -57,16 +44,13 @@
                                             Your browser does not support HTML5 video.
                                         </audio>
                                         }
-
                                         <h1>@Model.Blog.Title</h1>
                                         @if (Model.Blog.LastModifiedDate != null)
                                         {
                                             <span>تاریخ آخرین به روزرسانی: @string.Format("{0:yyyy/MM/dd}", Model.Blog.LastModifiedDate)</span>
                                         }
-
-
                                     </div>
-                                    <div class="text">
+                                    <div class="text blog-body">
                                         <p>@Html.Raw(Model.Blog.Body)</p>
                                     </div>
                                 </div>
@@ -75,17 +59,11 @@
                                         <li><a href="https://t.me/share/url?url=http://www.rushweb.ir/blog/@Model.Blog.UrlParam"><i class="fa fa-telegram" aria-hidden="true"></i></a></li>
                                         <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.rushweb.ir/blog/@Model.Blog.UrlParam"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                         <li><a href="https://twitter.com/home?status=http://www.rushweb.ir/blog/@Model.Blog.UrlParam"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        @*<li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>*@
                                     </ul>
                                     <ul class="right-side pull-right rating-star">
                                         <li>
                                             <div id="rating">
-                                                <div class="row blog-rating">
-                                                    @*<div class="col-md-5"></div>*@
-                                                    @Html.Partial("_RatingPartial")
-
-                                                </div>
+                                                <div class="row blog-rating">@Html.Partial("_RatingPartial")</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -94,13 +72,9 @@
                                         {
                                         <li><a href="/writter/@Model.WritterId" class="black"><i class="fa fa-user" aria-hidden="true"></i>@Model.Writter</a></li>
                                         }
-
                                         <li><i class="fa fa-eye" aria-hidden="true"></i>@Model.Blog.Visit</li>
                                         <li class="info"><i class="fa fa-comments-o" aria-hidden="true"></i>@Model.Comments.Count()</li>
                                     </ul>
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -111,7 +85,6 @@
                             <div class="row comment-o">
                                 <div class="col-md-2 float-right">
                                     <img src="~/images/avatar.png" />
-
                                 </div>
                                 <div class="col-md-10 float-right">
                                     <div class="comment-title">
@@ -124,10 +97,7 @@
                                 foreach (var response in comment.Responses)
                                 {
                             <div class="row reply-o">
-                                <div class="col-md-2 float-right">
-                                    <img src="~/images/avatar.png" />
-
-                                </div>
+                                <div class="col-md-2 float-right"><img src="~/images/avatar.png" /></div>
                                 <div class="col-md-10 float-right">
                                     <div class="comment-title">
                                         <span class="comment-name">@response.FullName</span>
@@ -139,10 +109,6 @@
                                 }
 
                             }
-
-
-
-
                         </div>
                         <div class="form-area">
                             <h3 class="black">ثبت نظر</h3>
@@ -175,7 +141,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12 col-xs-12 float-left">
@@ -190,16 +155,13 @@
                                 {
                                     <li><a href="/blog/list/@blog.BlogGroup.UrlParam">@blog.BlogGroup.Title   (@blog.Count)</a></li>
                                 }
-
                             </ul>
                         </div>
                         <div class="search-blog">
-
                             <div class="row">
                                 <input type="text" name="email" value="" placeholder="جستجو در راش وب" required="" id="txtSearch">
                                 <button type="submit" onclick="SearchBlog(); return false;" id="btnSearch"><i class="fa fa-search"></i></button>
                             </div>
-
                         </div>
                         <div class="blog-sidebar">
                             <div class="sec-title">
@@ -221,15 +183,11 @@
                                 </div>
                             }
                         </div>
-
                     </div>
                 </div>
-
-
             </div>
         </div>
     </section>
-    <!--End Single Blog-->
 </div>
 @section StructuredData{
     @if (ViewBag.param == "spam-score")
