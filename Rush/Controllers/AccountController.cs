@@ -20,10 +20,6 @@ namespace Controllers
 
     public class AccountController : Controller
     {
-
-
-
-
         private DatabaseContext db = new DatabaseContext();
         MenuHelper menu = new MenuHelper();
         public ActionResult Login(string ReturnUrl = "")
@@ -333,7 +329,70 @@ namespace Controllers
             return Convert.ToInt32(r);
         }
 
+        [Route("forgetpassword")]
+        public ActionResult ForgetPassword()
+        {
+            LoginViewModel loginViewModel = new LoginViewModel();
+            loginViewModel.Menu = menu.ReturnMenu();
+            loginViewModel.FooterLink = menu.GetFooterLink();
+            loginViewModel.Username = menu.ReturnUsername();
+            return View(loginViewModel);
+        }
 
+        [HttpPost]
+        public ActionResult ForgetPassword(string cellNum)
+        {
+            User user = db.Users.Where(current => current.CellNum == cellNum && current.IsActive && !current.IsDeleted).FirstOrDefault();
+            if(user != null)
+            {
+                SendSms.SendPasswordOtp(user.CellNum, user.Password);
+                return Json(user.Password, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("false", JsonRequestBehavior.AllowGet);
+            }
+          
+        }
+
+        [HttpPost]
+        public ActionResult checkforgetpassword(string cellNum, string password)
+        {
+            User oUser = db.Users.Where(current => current.CellNum == cellNum && current.Password==password && current.IsActive && !current.IsDeleted).FirstOrDefault();
+            if (oUser != null)
+            {
+                Role role = db.Roles.Find(oUser.RoleId);
+
+                var ident = new ClaimsIdentity(
+                  new[] { 
+              // adding following 2 claim just for supporting default antiforgery provider
+              new Claim(ClaimTypes.NameIdentifier, oUser.CellNum),
+              new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
+
+              new Claim(ClaimTypes.Name,oUser.Id.ToString()),
+
+              // optionally you could add roles if any
+              new Claim(ClaimTypes.Role, role.Name),
+
+                  },
+                  DefaultAuthenticationTypes.ApplicationCookie);
+
+                //HttpContext.GetOwinContext().Authentication.SignIn(
+                //   new AuthenticationProperties { IsPersistent = true }, ident);
+                //
+
+
+
+                HttpContext.GetOwinContext().Authentication.SignIn(
+                   new AuthenticationProperties { IsPersistent = true, ExpiresUtc = DateTimeOffset.Now.AddDays(1) }, ident);
+                return RedirectToLocal("", role.Name); // auth succeed 
+               
+            }
+            else
+            {
+                return Json("false", JsonRequestBehavior.AllowGet);
+            }
+        }
         //[Route("userlogin")]
         //public ActionResult UserLogin(string ReturnUrl = "")
         //{

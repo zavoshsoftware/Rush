@@ -1697,7 +1697,11 @@ button .remove {
     bottom: 10px;
     left: 10px;
 }
-
+.tooltip {
+    font-family: Iransans;
+    width: 180px;
+    font-size:12px;
+}
 /*.tooltip-arrow,
 .red-tooltip + .tooltip > .tooltip-inner {
     background-color: #f00;
