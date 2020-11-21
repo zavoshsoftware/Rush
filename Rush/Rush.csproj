@@ -185,6 +185,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\new-design\css\fontStyle.css" />
+    <Content Include="assets\new-design\css\responsive.css" />
+    <Content Include="assets\new-design\css\styles.css" />
+    <Content Include="assets\new-design\images\background1.jpg" />
+    <Content Include="assets\new-design\images\background2.jpg" />
+    <Content Include="assets\new-design\images\background3.jpg" />
+    <Content Include="assets\new-design\images\description.png" />
+    <Content Include="assets\new-design\images\footer.png" />
+    <Content Include="assets\new-design\images\icons\box.png" />
+    <Content Include="assets\new-design\images\laptop.png" />
+    <Content Include="assets\new-design\images\laptop2.png" />
+    <Content Include="assets\new-design\images\laptop3.png" />
+    <Content Include="assets\new-design\images\logo.png" />
+    <Content Include="assets\new-design\images\sample-logo1.png" />
+    <Content Include="assets\new-design\images\sample-logo2.png" />
+    <Content Include="assets\new-design\images\sample-logo3.png" />
+    <Content Include="assets\new-design\images\sample-logo4.png" />
+    <Content Include="assets\new-design\images\telegram.png" />
+    <Content Include="assets\new-design\js\my.js" />
+    <Content Include="assets\new-design\packages\bootstrap\css\bootstrap-rtl.min.css" />
+    <Content Include="assets\new-design\packages\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\new-design\packages\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\new-design\packages\fontawesome\css\all.css" />
+    <Content Include="assets\new-design\packages\fontawesome\css\font-awesome.css" />
+    <Content Include="assets\new-design\packages\fontawesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-brands-400.svg" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-regular-400.svg" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="assets\new-design\packages\jq\jquery-3.3.1.min.js" />
+    <Content Include="assets\new-design\packages\jq\popper.min.js" />
     <Content Include="assets\revolution\assets\coloredbg.png" />
     <Content Include="assets\revolution\assets\gridtile.png" />
     <Content Include="assets\revolution\assets\gridtile_3x3.png" />
@@ -649,6 +679,9 @@
     <Content Include="HtmlPage1.html" />
     <Content Include="images\5258964.jpg" />
     <Content Include="images\avatar.png" />
+    <Content Include="images\background1.jpg" />
+    <Content Include="images\background2.jpg" />
+    <Content Include="images\background3.jpg" />
     <Content Include="images\background\1.jpg" />
     <Content Include="images\background\2.jpg" />
     <Content Include="images\blog\1.jpg" />
@@ -674,6 +707,7 @@
     <Content Include="images\clients\10.png" />
     <Content Include="images\clients\4.png" />
     <Content Include="images\clients\5.png" />
+    <Content Include="images\description.png" />
     <Content Include="images\fancybox\blank.gif" />
     <Content Include="images\fancybox\fancybox_loading%402x.gif" />
     <Content Include="images\fancybox\fancybox_loading.gif" />
@@ -682,6 +716,7 @@
     <Content Include="images\fancybox\fancybox_sprite.png" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\favicon.png" />
+    <Content Include="images\footer.png" />
     <Content Include="images\gallery\1.jpg" />
     <Content Include="images\gallery\10.jpg" />
     <Content Include="images\gallery\11.jpg" />
@@ -704,6 +739,7 @@
     <Content Include="images\icons\about1.png" />
     <Content Include="images\icons\bd.png" />
     <Content Include="images\icons\bg-progressbar.jpg" />
+    <Content Include="images\icons\box.png" />
     <Content Include="images\icons\down-arrow.png" />
     <Content Include="images\icons\icon-cross.png" />
     <Content Include="images\icons\icon-dropdown.png" />
@@ -714,6 +750,9 @@
     <Content Include="images\icons\preloader.gif" />
     <Content Include="images\icons\submenu-icon.png" />
     <Content Include="images\icons\testimonial-curve.png" />
+    <Content Include="images\laptop.png" />
+    <Content Include="images\laptop2.png" />
+    <Content Include="images\laptop3.png" />
     <Content Include="images\loading-payment.gif" />
     <Content Include="images\logo.png" />
     <Content Include="images\main-slider\1.png" />
@@ -728,12 +767,17 @@
     <Content Include="images\portfolio1.jpg" />
     <Content Include="images\resource\1.png" />
     <Content Include="images\sample-logo.png" />
+    <Content Include="images\sample-logo1.png" />
+    <Content Include="images\sample-logo2.png" />
+    <Content Include="images\sample-logo3.png" />
+    <Content Include="images\sample-logo4.png" />
     <Content Include="images\team\1.jpg" />
     <Content Include="images\team\2.jpg" />
     <Content Include="images\team\3.jpg" />
     <Content Include="images\team\4.jpg" />
     <Content Include="images\team\5.jpg" />
     <Content Include="images\team\6.jpg" />
+    <Content Include="images\telegram.png" />
     <Content Include="images\telegramLogo.jpg" />
     <Content Include="images\whatsappicon.jpg" />
     <Content Include="Scripts\FrontEndLayout\bootstrap-select.min.js" />
@@ -951,6 +995,26 @@
     <Content Include="fonts\fontAwesome\fontawesome-webfont.woff" />
     <Content Include="fonts\fontAwesome\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontAwesome\FontAwesome.otf" />
+    <Content Include="assets\new-design\fonts\iranSans\IranSanse.eot" />
+    <Content Include="assets\new-design\fonts\iranSans\IranSanse.ttf" />
+    <Content Include="assets\new-design\fonts\iranSans\IranSanse.woff" />
+    <Content Include="assets\new-design\packages\fontawesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\new-design\packages\fontawesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\new-design\packages\fontawesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\new-design\packages\fontawesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\new-design\packages\fontawesome\fonts\FontAwesome.otf" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-solid-900.woff2" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\kendo\2017.3.913\kendo.all-vsdoc.js" />
     <None Include="Scripts\kendo\2017.3.913\kendo.all.min.intellisense.js" />
@@ -1782,6 +1846,10 @@
     <Content Include="Views\BackLinkDetails\Index.cshtml" />
     <Content Include="Views\Orders\BacklinkDetails.cshtml" />
     <Content Include="Views\Account\ForgetPassword.cshtml" />
+    <Content Include="Views\ServiceGroups\DetailsForWebDesign.cshtml" />
+    <Content Include="Views\ServiceGroups\DetailsForSeo.cshtml" />
+    <Content Include="Views\ServiceGroups\DetailsForContent.cshtml" />
+    <Content Include="Views\ServiceGroups\DetailsForGoogleAds.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1791,6 +1859,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\new-design\packages\plugin1\" />
+    <Folder Include="assets\new-design\packages\plugin2\" />
     <Folder Include="Uploads\blog\" />
     <Folder Include="Uploads\customer\" />
     <Folder Include="Uploads\Editor\" />

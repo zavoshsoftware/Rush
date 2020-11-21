@@ -1,0 +1,161 @@
+@media (max-width: 199.98px) {
+}
+@media (max-width: 991.98px) {
+  .header-section .menu-item.drop-item .sub-menu-item {
+     border-bottom: 0px solid white;
+  }
+  .header-section .menu-item.drop-item{
+    text-align: right;
+    padding: 0;
+  }
+  .header-section .menu-item.drop-item .menu-link{
+    display: inline;
+  }
+  .header-section .menu-item.drop-item .sub-menu {
+    position: relative;
+    height: 0;
+    opacity: 1;
+    overflow: auto;
+    top: auto;
+    width: 100%;
+  }
+  .header-section .menu-item.drop-item .sub-menu.activeCollapse {
+    height: auto;
+  }
+  .header-section .menu-item.drop-item .sub-menu-link {
+    padding-right: 30px;
+}
+  .header-section .bottom-header-box {
+    padding: 30px 30px;
+  }
+  .header-section .bottom-header-box .toggle-menu-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-section .bottom-header-box .menu-box {
+    position: fixed;
+    left: 10px;
+    top: 100px;
+    width: 80%;
+    height: 0;
+    overflow: hidden;
+    transition: all 1s ease-in-out;
+  }
+  .header-section .bottom-header-box .menu-box.active {
+    height: 100%;
+    overflow-y: auto;
+  }
+  .header-section .bottom-header-box .menu-list {
+    flex-direction: column;
+  }
+  .header-section .bottom-header-box .menu-list .menu-item {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .header-section .bottom-header-box .menu-list .menu-item:hover .menu-link{
+    background: white;
+    color: black;
+    border-bottom: 1px solid black;
+  }
+
+  .header-section .bottom-header-box .menu-list .menu-link {
+    color: white;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    width: 100%;
+    text-align: right;
+    padding: 0 20px;
+    transition: all 0.5s linear;
+    width: 100%;
+    background: black;
+    color: white;
+    border-top: 1px solid #6a6a6a;
+  }
+  .banner-section {
+    margin-top: 100px;
+  }
+}
+@media (max-width: 767.98px) {
+  .header-section .bottom-header-box .menu-box {
+    left: 0px;
+    width: 100%;
+  }
+  .banner-section .title-box {
+    height: 100px;
+  }
+  .banner-section .title-box .title {
+    font-size: 1.1rem;
+  }
+  .banner-section .ribon-box {
+    height: 50px;
+  }
+  .haeder-section .banner-box .title {
+    font-size: 3rem;
+  }
+
+  .banner-section .banner-box .description {
+    font-size: 1rem;
+  }
+
+  .main-section .site-section {
+    background-color: #ffffff;
+  }
+  .main-title {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 575.98px) {
+  p {
+    font-size: 0.8rem;
+  }
+  .header-section .phone-box  {
+    display: none;
+  }
+  .header-section .bottom-header-box .logo {
+    width: 120px;
+    right: 20px;
+  }
+  .header-section .bottom-header-box .toggle-menu-button {
+    left: 20px;
+  }
+  .header-section .top-header-box {
+    padding: 0px 20px;
+  }
+  .banner-section .title-box .title {
+    font-size: 1rem;
+  }
+  .banner-section .banner-box .title {
+    font-size: 2rem;
+  }
+  .banner-section .banner-box .description {
+    font-size: 0.9rem;
+  }
+  .banner-section .banner-box-content {
+    padding: 0px 20px;
+  }
+  .banner-section .banner-box .banner-button {
+    font-size: 1.2rem;
+    width: 200px;
+    height: 50px;
+    line-height: 45px;
+  }
+  .main-section .description-section {
+    padding: 50px 0px;
+  }
+  .main-section .site-section {
+    padding: 0px;
+  }
+  .site-section .spacial-site-box {
+    padding: 20px 10px;
+  }
+  .main-section .wordpress-site-section {
+    padding: 50px 20px;
+  }
+  .main-section .box .image {
+    width: 200px;
+  }
+}

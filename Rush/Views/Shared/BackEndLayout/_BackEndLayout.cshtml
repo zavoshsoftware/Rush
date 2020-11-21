@@ -19,10 +19,10 @@
     <link href="@Url.Content("~/Content/kendo/2017.3.913/kendo.rtl.min.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/kendo/2017.3.913/jquery.min.js")"></script>
     <script src="@Url.Content("~/Scripts/kendo/2017.3.913/jszip.min.js")"></script>
-    @*<script src="~/Scripts/kendo/2017.3.913/kendo.all.min.js"></script>*@
-	<script src="~/Scripts/KendoPersianDate/JalaliDate.js"></script>
+    <script src="~/Scripts/kendo/2017.3.913/kendo.all.min.js"></script>
+	@*<script src="~/Scripts/KendoPersianDate/JalaliDate.js"></script>
     <script src="~/Scripts/KendoPersianDate/kendo.web.js"></script>
-    <script src="~/Scripts/KendoPersianDate/fa-IR.js"></script>
+    <script src="~/Scripts/KendoPersianDate/fa-IR.js"></script>*@
     <script src="@Url.Content("~/Scripts/kendo/2017.3.913/kendo.aspnetmvc.min.js")"></script>
     <link href="~/Content/_BackEndLayout/AdminStyle.css" rel="stylesheet" />
 </head>
@@ -104,7 +104,33 @@
 				                                </li>
 			                                </ul>
 		                                </li>
-
+		                                <li id="userLi" class="menuitem">
+			                                <a href="#">
+				                                <i class="fa fa-sitemap icon"><b class="bg-primary"></b></i><span class="pull-right"><i class="fa fa-angle-down text"></i><i class="fa fa-angle-up text-active"></i></span><span>مدیریت سفارشات</span>
+			                                </a>
+			                                <ul class="nav lt">
+				                                <li>
+					                                <a href="/orders">
+						                                <i class="fa fa-angle-left"></i><span>همه سفارشات</span>
+					                                </a>
+				                                </li>
+				                                <li>
+					                                <a href="/orders?typeTitle=reportage">
+						                                <i class="fa fa-angle-left"></i><span>سفارشات رپورتاژ</span>
+					                                </a>
+				                                </li>
+				                                <li>
+					                                <a href="/orders?typeTitle=backlink">
+						                                <i class="fa fa-angle-left"></i><span>سفارشات بک لینک</span>
+					                                </a>
+				                                </li>
+				                                <li>
+					                                <a href="/orders?typeTitle=package">
+						                                <i class="fa fa-angle-left"></i><span>سفارشات پکیج رپورتاژ</span>
+					                                </a>
+				                                </li>
+			                                </ul>
+		                                </li>
 
 		                                <li id="serGLi" class="menuitem"><a href="/ServiceGroups"><i class="fa fa-bars icon"><b class="bg-success"></b></i><span>مدیریت گروه خدمات</span></a></li>
 		                                <li id="blogLi" class="menuitem"><a href="/BlogGroups"><i class="fa fa-book icon"><b class="bg-warning"></b></i><span>مدیریت گروه بلاگ</span></a></li>
@@ -121,7 +147,6 @@
 		                                <li id="emailLi" class="menuitem"><a href="/Emailaddresses"><i class="fa fa-envelope icon"><b class="bg-warning"></b></i><span>مدیریت ایمیل ها</span></a></li>
 		                                <li id="quesLi" class="menuitem"><a href="/AskedQuestions"><i class="fa fa-envelope icon"><b class="bg-warning"></b></i><span>مدیریت سوالات متداول</span></a></li>
 		                                <li id="quesLi" class="menuitem"><a href="/StepDiscounts"><i class="fa fa-envelope icon"><b class="bg-warning"></b></i><span>مدیریت تخفیف پلاکانی</span></a></li>
-		                                <li id="orderLi" class="menuitem"><a href="/orders"><i class="fa fa-envelope icon"><b class="bg-warning"></b></i><span>مدیریت سفارشات</span></a></li>
 
 
 	                                </ul>

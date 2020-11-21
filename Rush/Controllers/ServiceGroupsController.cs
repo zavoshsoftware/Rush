@@ -29,59 +29,59 @@ namespace Rush.Controllers
         }
 
         // GET: ServiceGroups/Details/5
-        [AllowAnonymous]
-        [Route("serviceGroup/{param}")]
-        public ActionResult Details(string param)
-        {
-            //List<ServiceGroup> list = db.ServiceGroups.Where(current => current.IsDeleted == false).ToList();
-            //foreach(var item in list)
-            //{
-            //    item.AverageRate = 5;
-            //}
-            //db.SaveChanges();
-            if (param == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            if (param == "سئو")
-                return RedirectPermanent("https://www.rushweb.ir/serviceGroup/seo");
-            ServiceGroup serviceGroup = db.ServiceGroups.Where(current => current.UrlParam == param).FirstOrDefault();
-            if (serviceGroup == null)
-            {
-                return HttpNotFound();
-            }
+        //[AllowAnonymous]
+        //[Route("serviceGroup/{param}")]
+        //public ActionResult Details(string param)
+        //{
+        //    //List<ServiceGroup> list = db.ServiceGroups.Where(current => current.IsDeleted == false).ToList();
+        //    //foreach(var item in list)
+        //    //{
+        //    //    item.AverageRate = 5;
+        //    //}
+        //    //db.SaveChanges();
+        //    if (param == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    if (param == "سئو")
+        //        return RedirectPermanent("https://www.rushweb.ir/serviceGroup/seo");
+        //    ServiceGroup serviceGroup = db.ServiceGroups.Where(current => current.UrlParam == param).FirstOrDefault();
+        //    if (serviceGroup == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
 
-            ServiceGroupDetialViewModel serviceGroupDetailViewModel = new ServiceGroupDetialViewModel();
-            serviceGroupDetailViewModel.Menu = menuHelper.ReturnMenu();
-            serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
-            serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
-            serviceGroupDetailViewModel.ServiceGroup = serviceGroup;
-            serviceGroupDetailViewModel.Rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
-            serviceGroupDetailViewModel.Questions = db.AskedQuestions.Where(current => current.IsDeleted == false && current.Param == serviceGroup.UrlParam && current.IsActive == true).OrderBy(current => current.Order).ToList();
-            ViewBag.Title = serviceGroup.PageTitle;
-            ViewBag.Description = serviceGroup.PageDescription;
-            ViewBag.ServiceTypeId = new SelectList(db.ServiceTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
-            ViewBag.SiteTypeId = new SelectList(db.SiteTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
-            ViewBag.id = serviceGroup.Id;
-            ViewBag.param = param;
-            ViewBag.Canonical = "https://www.rushweb.ir/serviceGroup/" + param;
-            ViewBag.rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
-            int rateCount = db.Rates.Where(current => current.EntityId == serviceGroup.Id).Count();
-            if (rateCount > 0)
-                ViewBag.RatingCount = rateCount;
-            else
-                ViewBag.RatingCount = 1;
-            ViewBag.image = "https://www.rushweb.ir" + serviceGroup.ImageUrl;
-            ViewBag.creationDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
+        //    ServiceGroupDetialViewModel serviceGroupDetailViewModel = new ServiceGroupDetialViewModel();
+        //    serviceGroupDetailViewModel.Menu = menuHelper.ReturnMenu();
+        //    serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
+        //    serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
+        //    serviceGroupDetailViewModel.ServiceGroup = serviceGroup;
+        //    serviceGroupDetailViewModel.Rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
+        //    serviceGroupDetailViewModel.Questions = db.AskedQuestions.Where(current => current.IsDeleted == false && current.Param == serviceGroup.UrlParam && current.IsActive == true).OrderBy(current => current.Order).ToList();
+        //    ViewBag.Title = serviceGroup.PageTitle;
+        //    ViewBag.Description = serviceGroup.PageDescription;
+        //    ViewBag.ServiceTypeId = new SelectList(db.ServiceTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
+        //    ViewBag.SiteTypeId = new SelectList(db.SiteTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
+        //    ViewBag.id = serviceGroup.Id;
+        //    ViewBag.param = param;
+        //    ViewBag.Canonical = "https://www.rushweb.ir/serviceGroup/" + param;
+        //    ViewBag.rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
+        //    int rateCount = db.Rates.Where(current => current.EntityId == serviceGroup.Id).Count();
+        //    if (rateCount > 0)
+        //        ViewBag.RatingCount = rateCount;
+        //    else
+        //        ViewBag.RatingCount = 1;
+        //    ViewBag.image = "https://www.rushweb.ir" + serviceGroup.ImageUrl;
+        //    ViewBag.creationDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
 
-            if (!string.IsNullOrEmpty(serviceGroup.LastModifiedDate.ToString()))
-                ViewBag.ModifiedDate = serviceGroup.LastModifiedDate.Value.ToString(CultureInfo.InvariantCulture);
-            else
-                ViewBag.ModifiedDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
+        //    if (!string.IsNullOrEmpty(serviceGroup.LastModifiedDate.ToString()))
+        //        ViewBag.ModifiedDate = serviceGroup.LastModifiedDate.Value.ToString(CultureInfo.InvariantCulture);
+        //    else
+        //        ViewBag.ModifiedDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
            
 
-            return View(serviceGroupDetailViewModel);
-        }
+        //    return View(serviceGroupDetailViewModel);
+        //}
 
         // GET: ServiceGroups/Create
         public ActionResult Create()
@@ -484,6 +484,180 @@ namespace Rush.Controllers
 
             }
             return rate;
+        }
+
+
+
+        [AllowAnonymous]
+        [Route("servicegroup/web-design")]
+        public ActionResult DetailsForWebDesign(string param)
+        {
+            param = "web-design";
+            ServiceGroup serviceGroup = db.ServiceGroups.FirstOrDefault(current => current.UrlParam == param);
+            if (serviceGroup == null)
+            {
+                return HttpNotFound();
+            }
+
+            ServiceGroupDetialViewModel serviceGroupDetailViewModel = new ServiceGroupDetialViewModel();
+            serviceGroupDetailViewModel.Menu = menuHelper.ReturnMenu();
+            serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
+            serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
+            serviceGroupDetailViewModel.ServiceGroup = serviceGroup;
+            serviceGroupDetailViewModel.Rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
+            serviceGroupDetailViewModel.Questions = db.AskedQuestions.Where(current => current.IsDeleted == false && current.Param == serviceGroup.UrlParam && current.IsActive == true).OrderBy(current => current.Order).ToList();
+            ViewBag.Title = serviceGroup.PageTitle;
+            ViewBag.Description = serviceGroup.PageDescription;
+            ViewBag.ServiceTypeId = new SelectList(db.ServiceTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
+            ViewBag.SiteTypeId = new SelectList(db.SiteTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
+            ViewBag.id = serviceGroup.Id;
+            ViewBag.param = param;
+            ViewBag.Canonical = "https://www.rushweb.ir/servicegroup/" + param;
+            ViewBag.rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
+            int rateCount = db.Rates.Where(current => current.EntityId == serviceGroup.Id).Count();
+            if (rateCount > 0)
+                ViewBag.RatingCount = rateCount;
+            else
+                ViewBag.RatingCount = 1;
+            ViewBag.image = "https://www.rushweb.ir" + serviceGroup.ImageUrl;
+            ViewBag.creationDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
+
+            if (!string.IsNullOrEmpty(serviceGroup.LastModifiedDate.ToString()))
+                ViewBag.ModifiedDate = serviceGroup.LastModifiedDate.Value.ToString(CultureInfo.InvariantCulture);
+            else
+                ViewBag.ModifiedDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
+
+
+            return View(serviceGroupDetailViewModel);
+        }
+
+        [AllowAnonymous]
+        [Route("servicegroup/seo")]
+        public ActionResult DetailsForSeo(string param)
+        {
+            param = "seo";
+            ServiceGroup serviceGroup = db.ServiceGroups.FirstOrDefault(current => current.UrlParam == param);
+            if (serviceGroup == null)
+            {
+                return HttpNotFound();
+            }
+
+            ServiceGroupDetialViewModel serviceGroupDetailViewModel = new ServiceGroupDetialViewModel();
+            serviceGroupDetailViewModel.Menu = menuHelper.ReturnMenu();
+            serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
+            serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
+            serviceGroupDetailViewModel.ServiceGroup = serviceGroup;
+            serviceGroupDetailViewModel.Rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
+            serviceGroupDetailViewModel.Questions = db.AskedQuestions.Where(current => current.IsDeleted == false && current.Param == serviceGroup.UrlParam && current.IsActive == true).OrderBy(current => current.Order).ToList();
+            ViewBag.Title = serviceGroup.PageTitle;
+            ViewBag.Description = serviceGroup.PageDescription;
+            ViewBag.ServiceTypeId = new SelectList(db.ServiceTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
+            ViewBag.SiteTypeId = new SelectList(db.SiteTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
+            ViewBag.id = serviceGroup.Id;
+            ViewBag.param = param;
+            ViewBag.Canonical = "https://www.rushweb.ir/servicegroup/" + param;
+            ViewBag.rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
+            int rateCount = db.Rates.Where(current => current.EntityId == serviceGroup.Id).Count();
+            if (rateCount > 0)
+                ViewBag.RatingCount = rateCount;
+            else
+                ViewBag.RatingCount = 1;
+            ViewBag.image = "https://www.rushweb.ir" + serviceGroup.ImageUrl;
+            ViewBag.creationDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
+
+            if (!string.IsNullOrEmpty(serviceGroup.LastModifiedDate.ToString()))
+                ViewBag.ModifiedDate = serviceGroup.LastModifiedDate.Value.ToString(CultureInfo.InvariantCulture);
+            else
+                ViewBag.ModifiedDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
+
+
+            return View(serviceGroupDetailViewModel);
+        }
+
+        [AllowAnonymous]
+        [Route("servicegroup/content-marketing")]
+        public ActionResult DetailsForContent(string param)
+        {
+            param = "content-marketing";
+            ServiceGroup serviceGroup = db.ServiceGroups.FirstOrDefault(current => current.UrlParam == param);
+            if (serviceGroup == null)
+            {
+                return HttpNotFound();
+            }
+
+            ServiceGroupDetialViewModel serviceGroupDetailViewModel = new ServiceGroupDetialViewModel();
+            serviceGroupDetailViewModel.Menu = menuHelper.ReturnMenu();
+            serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
+            serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
+            serviceGroupDetailViewModel.ServiceGroup = serviceGroup;
+            serviceGroupDetailViewModel.Rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
+            serviceGroupDetailViewModel.Questions = db.AskedQuestions.Where(current => current.IsDeleted == false && current.Param == serviceGroup.UrlParam && current.IsActive == true).OrderBy(current => current.Order).ToList();
+            ViewBag.Title = serviceGroup.PageTitle;
+            ViewBag.Description = serviceGroup.PageDescription;
+            ViewBag.ServiceTypeId = new SelectList(db.ServiceTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
+            ViewBag.SiteTypeId = new SelectList(db.SiteTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
+            ViewBag.id = serviceGroup.Id;
+            ViewBag.param = param;
+            ViewBag.Canonical = "https://www.rushweb.ir/servicegroup/" + param;
+            ViewBag.rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
+            int rateCount = db.Rates.Where(current => current.EntityId == serviceGroup.Id).Count();
+            if (rateCount > 0)
+                ViewBag.RatingCount = rateCount;
+            else
+                ViewBag.RatingCount = 1;
+            ViewBag.image = "https://www.rushweb.ir" + serviceGroup.ImageUrl;
+            ViewBag.creationDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
+
+            if (!string.IsNullOrEmpty(serviceGroup.LastModifiedDate.ToString()))
+                ViewBag.ModifiedDate = serviceGroup.LastModifiedDate.Value.ToString(CultureInfo.InvariantCulture);
+            else
+                ViewBag.ModifiedDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
+
+
+            return View(serviceGroupDetailViewModel);
+        }
+
+        [AllowAnonymous]
+        [Route("servicegroup/google-adwords")]
+        public ActionResult DetailsForGoogleAds(string param)
+        {
+            param = "google-adwords";
+            ServiceGroup serviceGroup = db.ServiceGroups.FirstOrDefault(current => current.UrlParam == param);
+            if (serviceGroup == null)
+            {
+                return HttpNotFound();
+            }
+
+            ServiceGroupDetialViewModel serviceGroupDetailViewModel = new ServiceGroupDetialViewModel();
+            serviceGroupDetailViewModel.Menu = menuHelper.ReturnMenu();
+            serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
+            serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
+            serviceGroupDetailViewModel.ServiceGroup = serviceGroup;
+            serviceGroupDetailViewModel.Rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
+            serviceGroupDetailViewModel.Questions = db.AskedQuestions.Where(current => current.IsDeleted == false && current.Param == serviceGroup.UrlParam && current.IsActive == true).OrderBy(current => current.Order).ToList();
+            ViewBag.Title = serviceGroup.PageTitle;
+            ViewBag.Description = serviceGroup.PageDescription;
+            ViewBag.ServiceTypeId = new SelectList(db.ServiceTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
+            ViewBag.SiteTypeId = new SelectList(db.SiteTypes.Where(current => current.IsDeleted == false && current.IsActive == true).ToList(), "Id", "Title");
+            ViewBag.id = serviceGroup.Id;
+            ViewBag.param = param;
+            ViewBag.Canonical = "https://www.rushweb.ir/servicegroup/" + param;
+            ViewBag.rate = serviceGroup.AverageRate.Value.ToString().Replace('/', '.');
+            int rateCount = db.Rates.Where(current => current.EntityId == serviceGroup.Id).Count();
+            if (rateCount > 0)
+                ViewBag.RatingCount = rateCount;
+            else
+                ViewBag.RatingCount = 1;
+            ViewBag.image = "https://www.rushweb.ir" + serviceGroup.ImageUrl;
+            ViewBag.creationDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
+
+            if (!string.IsNullOrEmpty(serviceGroup.LastModifiedDate.ToString()))
+                ViewBag.ModifiedDate = serviceGroup.LastModifiedDate.Value.ToString(CultureInfo.InvariantCulture);
+            else
+                ViewBag.ModifiedDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
+
+
+            return View(serviceGroupDetailViewModel);
         }
     }
 }

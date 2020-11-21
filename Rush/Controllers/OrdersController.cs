@@ -21,7 +21,7 @@ namespace Rush.Controllers
         MenuHelper menuHelper = new MenuHelper();
 
         // GET: Orders
-        public ActionResult Index(Guid? id)
+        public ActionResult Index(Guid? id,string typeTitle)
         {
             List<Order> orders = new List<Order>();
 
@@ -35,7 +35,11 @@ namespace Rush.Controllers
                     .Include(o => o.OrderStatus).Include(o => o.User)
                     .OrderByDescending(o => o.CreationDate).ToList();
 
-            return View(orders.ToList());
+
+            if (typeTitle != null)
+                orders = orders.Where(c => c.OrderType == typeTitle).ToList();
+
+            return View(orders);
         }
 
 

@@ -1706,3 +1706,304 @@ button .remove {
 .red-tooltip + .tooltip > .tooltip-inner {
     background-color: #f00;
 }*/
+
+
+/*newdesign*/
+.banner-section {
+    background-image: url(/images/background2.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+.banner-section .title-box {
+    background-image: url(/images/background1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.banner-section .title-box .title {
+    color: white;
+}
+.banner-section .title-box .braedcrumb .braedcrumb-item {
+    color: #8b8c97;
+}
+
+
+.banner-section .banner-box {
+    height: 500px;
+    background: #000000b5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner-section .banner-box-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.banner-section .banner-box .title {
+    color: #fcb766;
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 1.1em;
+    letter-spacing: -1.4px;
+    margin-bottom: 40px;
+}
+.banner-section .banner-box .description {
+    text-align: justify;
+    margin-bottom: 20px;
+    color: white;
+}
+.banner-section .banner-box .banner-button {
+    font-size: 1.2rem;
+    background-color: #125741;
+    border-style: solid;
+    border-color: #125741;
+    border-radius: 50px;
+    width: 250px;
+    height: 60px;
+    line-height: 60px;
+    align-self: flex-end;
+    color: white;
+}
+
+
+.main-section {
+    background: #e3e4e8;
+}
+    /*------description-section-----*/
+    .main-section .description-section {
+        background-color: #e3e4e8;
+        padding: 100px 0px;
+    }
+
+.description-section .description-box {
+    background-color: white;
+}
+
+.description-section .description-content {
+    padding: 50px 0px;
+}
+
+    .description-section .description-content .image {
+        width: 100%;
+        display: inline-block;
+    }
+/*------why-section-----*/
+.main-section .why-section {
+    background-image: url(/images/background3.jpg);
+    background-color: white;
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.why-section .why-box {
+    padding: 50px 0px;
+}
+
+    .why-section .why-box .title {
+        color: #125741;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+.main-section .cost-section {
+    background-color: #333645;
+    color: white;
+    padding: 50px 0px;
+}
+/*------cost-section-----*/
+.cost-section .cost-box .text-box .title {
+    color: #fcb766;
+    font-size: 1.5rem;
+}
+
+.cost-section .cost-box .telegram-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .cost-section .cost-box .telegram-box .image {
+        width: 100px !important;
+    }
+
+    .cost-section .cost-box .telegram-box .more-text {
+        color: #fcb766;
+        font-size: 0.9rem;
+    }
+/*------site-section-----*/
+.main-section .site-section {
+    background-color: #e3e4e8;
+    padding: 50px;
+}
+
+.site-section .spacial-site-box {
+    background-color: white;
+    padding: 50px;
+}
+
+    .site-section .spacial-site-box .icon-container i {
+        color: #125741;
+        font-size: 3rem;
+        margin: auto;
+    }
+
+.main-section .wordpress-site-section {
+    background-color: #333645;
+    color: white;
+    padding: 50px 0px;
+}
+
+.wordpress-site-section .sub-title {
+    font-size: 1.2rem;
+    color: #fcb766;
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+.main-section .sample-section {
+    background-color: white;
+    margin-top: -20px;
+    padding: 50px 0px;
+}
+/*------sample-section-----*/
+.sample-section .box {
+    box-shadow: 0 0 25px 0 rgba(0,0,0,.15);
+    padding: 35px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    height: 400px;
+    transition: all 0.5s linear;
+}
+
+    .sample-section .box:hover {
+        box-shadow: 0 0 55px 0 rgba(0,0,0,.31);
+    }
+
+    .sample-section .box .image-container {
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .sample-section .box .image-container .image {
+            width: 250px;
+            margin: 50px 0px;
+        }
+
+    .sample-section .box .box-title {
+        color: #008000;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+/*****************************footer-section***************************/
+.footer-section {
+    background-color: #f5f5f5;
+    padding-top: 50px;
+}
+
+    .footer-section .footer-top {
+        background-color: #292b37;
+        color: #d7d7d7;
+        padding: 20px 0px;
+    }
+
+.footer-top a {
+    color: #d7d7d7;
+}
+
+.footer-top .footer-title {
+    color: #d7d7d7;
+    font-size: 1rem;
+}
+
+.footer-top .footer-title-line {
+    width: 40px;
+    height: 2px;
+    background: white;
+    display: block;
+    margin: 15px 0px;
+}
+
+.footer-top .footer-column {
+    margin-bottom: 30px;
+}
+
+.footer-top .license-column .image1 {
+    background-color: white
+}
+
+.footer-top .fast-access-column .footer-menu .menu-link {
+    font-size: 0.9rem;
+}
+
+.footer-top .address-column .address-menu .menu-item {
+    margin-bottom: 10px;
+}
+
+.footer-top .address-column .address-menu .menu-link {
+    font-size: 0.9rem;
+}
+
+.footer-top .address-column i {
+    margin-left: 5px;
+}
+
+.footer-top .address-column .address-menu .menu-item .phone {
+    display: inline-flex;
+}
+
+.footer-section .footer-bottom {
+    background-color: #F5F5F5;
+}
+
+.footer-section .footer-bottom-box {
+    background-color: #F5F5F5;
+    text-align: right;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.fixed-item-section .scroll-top-bottun {
+    background: #292b37;
+    color: white;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
+    .fixed-item-section .scroll-top-bottun:hover {
+        background: #5667d1;
+    }
+
+
+    .pt90{
+        padding-top: 90px; 
+
+    }
+
+.main-title{
+    color: #fcb766;
+    font-size:3rem;
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
