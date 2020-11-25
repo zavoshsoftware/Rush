@@ -14,6 +14,7 @@ namespace Models
         [Display(Name = "عنوان")]
         public string Title { get; set; }
         [Display(Name = "خلاصه")]
+        [DataType(DataType.MultilineText)]
         public string Summery { get; set; }
         [Display(Name = "تصویر")]
         public string ImageUrl { get; set; }

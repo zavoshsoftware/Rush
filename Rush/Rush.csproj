@@ -1201,6 +1201,7 @@
     <Compile Include="Controllers\OrderDetailInformationsController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\PortfoliosController.cs" />
     <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\ReportageGroupsController.cs" />
     <Compile Include="Controllers\ReportagesController.cs" />
@@ -1479,6 +1480,10 @@
     <Compile Include="Migrations\202009141022461_V64.Designer.cs">
       <DependentUpon>202009141022461_V64.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011251923069_V65.cs" />
+    <Compile Include="Migrations\202011251923069_V65.Designer.cs">
+      <DependentUpon>202011251923069_V65.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
@@ -1490,6 +1495,7 @@
     <Compile Include="Models\Entities\BlogComment.cs" />
     <Compile Include="Models\Entities\BlogGroup.cs" />
     <Compile Include="Models\Entities\Blog.cs" />
+    <Compile Include="Models\Entities\Portfolio.cs" />
     <Compile Include="Models\Entities\ContactForm.cs" />
     <Compile Include="Models\Entities\Customer.cs" />
     <Compile Include="Models\Entities\DiscountCode.cs" />
@@ -1532,6 +1538,7 @@
     <Compile Include="ViewModels\OrderDetailInfoBacklinkViewModel.cs" />
     <Compile Include="ViewModels\OrderDetailInfoViewModel.cs" />
     <Compile Include="ViewModels\RegisterUserViewModel.cs" />
+    <Compile Include="ViewModels\ServiceGroupDetialWebDesingViewModel.cs" />
     <Compile Include="ViewModels\SidebarBasketViewModel.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
@@ -1850,6 +1857,11 @@
     <Content Include="Views\ServiceGroups\DetailsForSeo.cshtml" />
     <Content Include="Views\ServiceGroups\DetailsForContent.cshtml" />
     <Content Include="Views\ServiceGroups\DetailsForGoogleAds.cshtml" />
+    <Content Include="Views\Portfolios\Create.cshtml" />
+    <Content Include="Views\Portfolios\Delete.cshtml" />
+    <Content Include="Views\Portfolios\Details.cshtml" />
+    <Content Include="Views\Portfolios\Edit.cshtml" />
+    <Content Include="Views\Portfolios\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2061,6 +2073,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009141022461_V64.resx">
       <DependentUpon>202009141022461_V64.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011251923069_V65.resx">
+      <DependentUpon>202011251923069_V65.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

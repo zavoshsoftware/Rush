@@ -499,7 +499,7 @@ namespace Rush.Controllers
                 return HttpNotFound();
             }
 
-            ServiceGroupDetialViewModel serviceGroupDetailViewModel = new ServiceGroupDetialViewModel();
+            ServiceGroupDetialWebDesingViewModel serviceGroupDetailViewModel = new ServiceGroupDetialWebDesingViewModel();
             serviceGroupDetailViewModel.Menu = menuHelper.ReturnMenu();
             serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
             serviceGroupDetailViewModel.FooterLink = menuHelper.GetFooterLink();
@@ -528,7 +528,24 @@ namespace Rush.Controllers
                 ViewBag.ModifiedDate = serviceGroup.CreationDate.ToString(CultureInfo.InvariantCulture);
 
 
+            serviceGroupDetailViewModel.TxtHeader = GetTextById("278205d5-abdf-456e-a8e9-15bdcee0d406");
+            serviceGroupDetailViewModel.TxtSection2 = GetTextById("d627271c-15f4-44a5-bb2d-6b40c1297a5a");
+            serviceGroupDetailViewModel.TxtSpecialWebDesign = GetTextById("c527f258-5b70-47d1-a567-89ec89d8cd51");
+            serviceGroupDetailViewModel.TxtEshopSite = GetTextById("ce78e48b-8faf-416d-9a30-3b0ae33e1c43");
+            serviceGroupDetailViewModel.TxtEnterpriseSite = GetTextById("fa7dc9af-d655-4671-ba8b-33dc8461ac60");
+            serviceGroupDetailViewModel.TxtWordpreeSite = GetTextById("aa403d56-fec7-4543-a12a-207b72b40c39");
+            serviceGroupDetailViewModel.TxtSitePrice = GetTextById("fdd1472e-b7bd-45e4-95f7-79faf6a58a1c");
+            serviceGroupDetailViewModel.TxtWhyNeedSite = GetTextById("d53e5941-97d5-4972-b838-3d018f343650");
+            serviceGroupDetailViewModel.Portfolios = db.Portfolios.Where(
+                c => c.IsDeleted == false && c.IsActive).ToList();
+
             return View(serviceGroupDetailViewModel);
+        }
+
+        public Text GetTextById(string id)
+        {
+            Guid idGuid = new Guid(id);
+            return db.Texts.Find(idGuid);
         }
 
         [AllowAnonymous]

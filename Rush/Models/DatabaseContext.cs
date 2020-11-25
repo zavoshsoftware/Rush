@@ -52,6 +52,7 @@ namespace Models
         public DbSet<OrderDetailStatus> OrderDetailStatuses { get; set; }
         public DbSet<OrderDetailInformation> OrderDetailInformations { get; set; }
         public DbSet<BackLinkDetail> BackLinkDetails { get; set; }
+        public DbSet<Portfolio> Portfolios { get; set; }
 
     }
 }

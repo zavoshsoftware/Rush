@@ -836,7 +836,9 @@ h1, h2, h3, h4, h5, h6 {
     width: 90% !important;
 }*/
 @media (max-width: 767px) {
-    .content {
+    .main-section .site-section {
+        padding: 0 !important;
+    } .content {
         width: 100% !important;
     }
 
@@ -1904,7 +1906,8 @@ button .remove {
     .sample-section .box .box-title {
         color: #008000;
         font-weight: bold;
-        font-size: 1.1rem;
+        font-size: 1.9rem;
+        text-align: center
     }
 /*****************************footer-section***************************/
 .footer-section {
@@ -2006,4 +2009,8 @@ button .remove {
 
 .text-center {
     text-align: center !important;
+}
+
+.webdesing-page p {
+    text-align: justify;
 }
