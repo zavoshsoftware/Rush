@@ -1015,6 +1015,7 @@
     <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-solid-900.ttf" />
     <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="assets\new-design\packages\fontawesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="images\background\2.webp" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\kendo\2017.3.913\kendo.all-vsdoc.js" />
     <None Include="Scripts\kendo\2017.3.913\kendo.all.min.intellisense.js" />

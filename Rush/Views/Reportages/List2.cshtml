@@ -4,7 +4,7 @@
 }
 <div class="page-wrapper" id="sellPage">
 	<div class="header-top"></div>
-	<section class="page-title" style="background: url(/images/background/2.jpg);">
+	<section class="page-title" style="background: url(/images/background/2.webp);">
 		<div class="container text-center">
 			<div class="title">
 				<h2 class="black">@Model.Text.Title</h2>
@@ -26,19 +26,14 @@
 					<div class="text text-justify">
 						<p>@Html.Raw(Model.Text.Body)</p>
 					</div>
-
 				</div>
 			</div>
 
 			<div class="wrapper wrapperThreeColumns">
-
 				<div class="leftSidebar" id="reportageLeftBasket">
 					<div class="theiaStickySidebar">
-
 						<div class="panel panel-default">
-
 							<div class="panel-heading">سبد خرید</div>
-
 							<div class="panel-body">
 								<p class="empty-basket">سبد خرید شما خالی است</p>
 								<div id="fillBasket">
@@ -56,18 +51,13 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
-
 				<div class="content box">
 					<div class="theiaStickySidebar">
-
 						<div id="repo-list">
 							<div class="panel panel-primary panel-filter">
-								<div class="panel-heading">
-									فیلتر
-								</div>
+								<div class="panel-heading">فیلتر</div>
 								<div class="panel-body">
 									<div class="row">
 										<div class="col-md-4 col-sm-12">نام یا آدرس سایت</div>
@@ -75,13 +65,11 @@
 											<input class="form-control" id="txtSite" placeholder="نام یا آدرس سایت" />
 										</div>
 									</div>
-
 									<div class="row">
 										<div class="col-md-4 col-sm-12">گروه</div>
 										<div class="col-md-8 col-sm-12">
 											<select id="ddlGroup" class="form-control">
 												<option value="0">انتخاب گروه</option>
-
 												@foreach (var group in Model.ReportageGroups)
 												{
 														<option value="@group.Id">@group.Title</option>
@@ -112,7 +100,6 @@
 											</select>
 										</div>
 									</div>
-
 
 									<div class="row">
 										<div class="col-md-4">قیمت</div>
@@ -149,14 +136,9 @@
 									</div>
 								</div>
 							</div>
-
-
-
-
                             <div class="panel panel-primary panel-special">
                                 <div class="panel-heading ">فروش ویژه</div>
                                 <div class="panel-body">
-
                                     <div class="row">
                                         @foreach (var reportage in Model.SpecialReportages)
                                         {
@@ -173,27 +155,17 @@
                                                         </p>
                                                         <p>@reportage.Address</p>
                                                     </div>
-
                                                     <div class="reportage-da">
                                                         da: @reportage.DomainAuthority
-
-
                                                     </div>
-
                                                     <div class="clearfix"></div>
                                                 </div>
-
                                                 <div class="reportage-card-midle">
                                                     <div class="reportage-button">
                                                         <button class="btn btn-success" type="button" onclick="addToBasket('@reportage.ProductId', '1','reportage');"><i class="fa fa-shopping-basket"></i> خرید</button>
-
                                                     </div>
-
                                                 </div>
                                                 <div class="reportage-card-footer">
-
-
-
                                                     @if (reportage.IsInPromotion == true)
                                                     {
                                                         if (reportage.IsDollar)
@@ -216,24 +188,13 @@
                                                             <div>@string.Format("{0:n0}", reportage.Price) تومان</div>
                                                         }
                                                     }
-
-
-
-
                                                 </div>
-
                                             </div>
                                         </div>
                                         }
-
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
 							@foreach (var item in Model.ReportageByGroups)
 							{
 									<div class="panel panel-primary">
@@ -255,16 +216,9 @@
 																		</p>
 																		<p>@reportage.Address</p>
 																	</div>
-
-																	<div class="reportage-da">
-																		da: @reportage.DomainAuthority
-																		
-																
-																	</div>
-
+																	<div class="reportage-da">da: @reportage.DomainAuthority</div>
 																	<div class="clearfix"></div>
 																</div>
-
 																<div class="reportage-card-midle">
 																	<div class="reportage-button">
 																		@if (reportage.IsDollar == false)
@@ -276,12 +230,8 @@
 																			<span>تماس بگیرید</span>
 																		}
 																	</div>
-
 																</div>
 																<div class="reportage-card-footer">
-
-
-
 																	@if (reportage.IsInPromotion == true)
 																	{
 																		if (reportage.IsDollar)
@@ -304,40 +254,18 @@
 																					<div>@string.Format("{0:n0}", reportage.Price) تومان</div>
 }
 																	}
-
-
-
-
 																</div>
-
 															</div>
 														</div>
 }
-
 											</div>
 										</div>
 									</div>
 							}
-
 						</div>
-
-						@*<div class="alert-container">
-									<div class="alert-input">
-											<a href="/basket">
-													محصول با موفقیت به سبد خرید شما افزوده شد. برای تکمیل سفارش بر روی سبد خرید کلیک کنید
-											</a>
-									</div>
-							</div>*@
-
-						<div class="text text-justify">
-							<p>@Html.Raw(Model.BottomText)</p>
-						</div>
-
+						<div class="text text-justify"><p>@Html.Raw(Model.BottomText)</p></div>
 					</div>
 				</div>
-
-
-
 			</div>
 		</div>
 		<div class="container">
@@ -421,7 +349,6 @@
 	</script>
 	<script type="application/ld+json">
 		{
-
 		"@@context": "http://schema.org",
 		"@@type": "NewsArticle",
 		"mainEntityOfPage":
@@ -429,7 +356,6 @@
 		"@@type":"WebPage",
 		"@@id":"@ViewBag.Canonical"
 		},
-
 		"headline":"@ViewBag.Title",
 		"image":["@ViewBag.image"],
 		"datePublished":"@ViewBag.creationDate",
@@ -449,29 +375,11 @@
 		"url":"https://www.rushweb.ir/images/logo.png"
 		}
 		}
-		@*,
-			"description":"@ViewBag.Description",
-			"aggregateRating":
-			{
-			"@@type":"AggregateRating",
-			"ratingValue":"@ViewBag.rate",
-			"bestRating":"5",
-			"ratingCount":"@ViewBag.RatingCount",
-			"worstRating":"1"
-			}*@
-
 		}
 	</script>
-
-
 }
 
 @section scripts{
-
-
-
-
-
 	<script>
 		function filterReportage() {
 			var groupId = $('#ddlGroup').val();
@@ -480,7 +388,6 @@
 			var startAmount = $('#ddlStartAmount').val();
 			var finishtAmount = $('#ddlFinishtAmount').val();
 			var site = $('#txtSite').val();
-
 			location.href = "/reportage?groupId=" +
 				groupId +
 				"&amountRange=" +
@@ -493,22 +400,17 @@
 				finishtDa +
 				"&site=" +
 				site;
-
-
 		}
 
 
 		$(document).ready(function () {
-
 			$('[data-toggle="tooltip"]').tooltip();   
-
 			$("#fillBasket").css('display', 'none');
 		FillBasket("reportage");
 			var groupId = getUrlVars()["groupId"];
 			var amountRange = getUrlVars()["amountRange"];
 			var daRange = getUrlVars()["daRange"];
 			var site = getUrlVars()["site"];
-
 			if (groupId === undefined)
 				groupId = 0;
 
@@ -520,7 +422,6 @@
 
 			var amount = amountRange.split("-");
 			var da = daRange.split("-");
-
 
 			$('#ddlGroup').val(groupId);
 			$('#ddlStartDa').val(da[0]);
@@ -542,30 +443,9 @@
 				});
 
 		});
-
-        //$(function () {
-        //    var alert = $(".alert-container");
-
-        //    alert.hide();
-
-        //    $("button").click(function (e) {
-        //        e.preventDefault();
-        //        alert.slideDown();
-        //        window.setTimeout(function () {
-        //            alert.slideUp();
-        //        }, 2500);
-        //    });
-        //});
-
-
 	</script>
-
-
-
 	<script type="text/javascript" src="/scripts/FrontEndLayout/ResizeSensor.js"></script>
 	<script type="text/javascript" src="/scripts/FrontEndLayout/theia-sticky-sidebar.js"></script>
 	<script type="text/javascript" src="/scripts/FrontEndLayout/test.js"></script>
-
 	<script type="text/javascript" src="/scripts/FrontEndLayout/custom-shop.js"></script>
-
 }

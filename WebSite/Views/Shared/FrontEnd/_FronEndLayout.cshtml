@@ -5,31 +5,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136244756-1"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'UA-136244756-1');
-</script>
 <meta charset="utf-8">
 <title>@ViewBag.Title</title>
 <meta name="description" content="@ViewBag.Description">
 <link rel="canonical" href="@ViewBag.Canonical" />
-<link href="/Content/FrontEndLayout/bootstrap.css" rel="stylesheet">
-<link href="/Content/FrontEndLayout/responsive.css" rel="stylesheet">
-<link href="/Content/FrontEndLayout/style.css" rel="stylesheet">
-	<link href="/Content/FrontEndLayout/style-rtl.css" rel="stylesheet" />
- 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="enamad" content="943291" />
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
-<link rel="icon" href="/images/favicon.png" type="image/x-icon">
+	<link rel="icon" href="/images/favicon.png" type="image/x-icon">
+	<link rel="preload" as="font" href="https://www.rushweb.ir/fonts/iransans/IRANSansWebFaNum.ttf" type="font/ttf" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://www.rushweb.ir/fonts/IranSans/IRANSansWebFaNum.woff2" type="font/woff2" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://www.rushweb.ir/fonts/IranSans/IRANSansWebFaNum.woff" type="font/woff" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://www.rushweb.ir/fonts/iransans/IRANSansWebFaNum.eot" type="font/eot" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://www.rushweb.ir/fonts/fontawesome/fontawesome-webfont.ttf" type="font/ttf" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://www.rushweb.ir/fonts/fontawesome/fontawesome-webfont.woff2" type="font/woff2" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://www.rushweb.ir/fonts/fontawesome/fontawesome-webfont.woff" type="font/woff" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://www.rushweb.ir/fonts/fontawesome/fontawesome-webfont.eot" type="font/eot" as="font" crossorigin="anonymous">
+	<link rel="preload" as="font" href="https://www.rushweb.ir/fonts/fontawesome/fontawesome.otf" type="font/otf" as="font" crossorigin="anonymous">
 @RenderSection("StructuredData", required: false)
 @RenderSection("headSection", required: false)
-
-	
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-136244756-1');
+	</script>
 </head>
 <body>
 <div class="page-wrapper">
@@ -38,12 +39,16 @@ gtag('config', 'UA-136244756-1');
 @RenderBody()
 @Html.Partial("FrontEnd/_FooterPartial")
 	<div class="whatsapp-icon">
-		<a href="https://api.whatsapp.com/send?phone=989102940709&text=سلام و وقت بخیر">
+		<a href="https://api.whatsapp.com/send?phone=989102940709&text=سلام و وقت بخیر" target="_blank" rel="nofollow noreferrer">
 			<img src="~/images/whatsappicon.jpg" />
 		</a>
 	</div>
 </div>
 <div class="scroll-to-top scroll-to-target" data-target=".header-top"><span class="icon fa fa-angle-up"></span></div>
+<link href="/Content/FrontEndLayout/bootstrap.css" rel="stylesheet">
+<link href="/Content/FrontEndLayout/responsive.css" rel="stylesheet">
+<link href="/Content/FrontEndLayout/style.css" rel="stylesheet">
+<link href="/Content/FrontEndLayout/style-rtl.css" rel="stylesheet" />
 <script src="/Scripts/FrontEndLayout/jquery.js"></script>
 <script src="/Scripts/FrontEndLayout/bootstrap.min.js"></script>
 <script src="/Scripts/FrontEndLayout/jquery.fancybox.pack.js"></script>
