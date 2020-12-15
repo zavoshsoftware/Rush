@@ -320,6 +320,7 @@
     <Content Include="Content\FrontEndLayout\owl.css" />
     <Content Include="Content\FrontEndLayout\responsive.css" />
     <Content Include="Content\FrontEndLayout\style-rtl.css" />
+    <Content Include="Content\FrontEndLayout\style-service.css" />
     <Content Include="Content\FrontEndLayout\style.css" />
     <Content Include="Content\kendo\2017.3.913\Black\editor.png" />
     <Content Include="Content\kendo\2017.3.913\Black\imagebrowser.png" />
@@ -750,6 +751,15 @@
     <Content Include="images\icons\preloader.gif" />
     <Content Include="images\icons\submenu-icon.png" />
     <Content Include="images\icons\testimonial-curve.png" />
+    <Content Include="images\offpage-seo.png" />
+    <Content Include="images\onpage-seo.png" />
+    <Content Include="images\p1.png" />
+    <Content Include="images\p2.png" />
+    <Content Include="images\p3.png" />
+    <Content Include="images\p4.png" />
+    <Content Include="images\sample-seo.jpg" />
+    <Content Include="images\seo-bg-2.jpg" />
+    <Content Include="images\seo-bg1.jpg" />
     <Content Include="images\laptop.png" />
     <Content Include="images\laptop2.png" />
     <Content Include="images\laptop3.png" />
@@ -771,12 +781,19 @@
     <Content Include="images\sample-logo2.png" />
     <Content Include="images\sample-logo3.png" />
     <Content Include="images\sample-logo4.png" />
+    <Content Include="images\seo-blog1.jpg" />
+    <Content Include="images\seo-off.jpg" />
+    <Content Include="images\seo-onpage.jpg" />
+    <Content Include="images\seo-pic.jpg" />
+    <Content Include="images\seo-pic2.jpg" />
     <Content Include="images\team\1.jpg" />
     <Content Include="images\team\2.jpg" />
     <Content Include="images\team\3.jpg" />
     <Content Include="images\team\4.jpg" />
     <Content Include="images\team\5.jpg" />
     <Content Include="images\team\6.jpg" />
+    <Content Include="images\technical-seo.png" />
+    <Content Include="images\telegram-con.png" />
     <Content Include="images\telegram.png" />
     <Content Include="images\telegramLogo.jpg" />
     <Content Include="images\whatsappicon.jpg" />
@@ -1485,6 +1502,10 @@
     <Compile Include="Migrations\202011251923069_V65.Designer.cs">
       <DependentUpon>202011251923069_V65.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012151355591_V66.cs" />
+    <Compile Include="Migrations\202012151355591_V66.Designer.cs">
+      <DependentUpon>202012151355591_V66.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\DatabaseContextInitializer.cs" />
@@ -1863,6 +1884,7 @@
     <Content Include="Views\Portfolios\Details.cshtml" />
     <Content Include="Views\Portfolios\Edit.cshtml" />
     <Content Include="Views\Portfolios\Index.cshtml" />
+    <Content Include="Views\ServiceGroups\DetailsForSeo2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2077,6 +2099,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011251923069_V65.resx">
       <DependentUpon>202011251923069_V65.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012151355591_V66.resx">
+      <DependentUpon>202012151355591_V66.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

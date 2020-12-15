@@ -40,6 +40,7 @@ namespace Rush.Controllers
         // GET: Portfolios/Create
         public ActionResult Create()
         {
+            ViewBag.ServiceGroupId = new SelectList(db.ServiceGroups.Where(current => current.IsDeleted == false && current.IsActive).ToList(), "Id", "Title");
             return View();
         }
 
@@ -75,6 +76,7 @@ namespace Rush.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ServiceGroupId = new SelectList(db.ServiceGroups.Where(current => current.IsDeleted == false && current.IsActive).ToList(), "Id", "Title",portfolio.ServiceGroupId);
 
             return View(portfolio);
         }
@@ -91,6 +93,7 @@ namespace Rush.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ServiceGroupId = new SelectList(db.ServiceGroups.Where(current => current.IsDeleted == false && current.IsActive).ToList(), "Id", "Title",portfolio.ServiceGroupId);
             return View(portfolio);
         }
 
@@ -124,6 +127,7 @@ namespace Rush.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ServiceGroupId = new SelectList(db.ServiceGroups.Where(current => current.IsDeleted == false && current.IsActive).ToList(), "Id", "Title",portfolio.ServiceGroupId);
             return View(portfolio);
         }
 

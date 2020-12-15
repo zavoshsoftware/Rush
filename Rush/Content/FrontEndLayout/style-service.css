@@ -1,0 +1,315 @@
+﻿body {
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("/images/seo-pic.jpg");
+    /* Set a specific height */
+    height: 500px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+    .parallax .background-overlay {
+        background-color: #121213DB;
+        opacity: .9;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: relative;
+    }
+
+    .parallax h1 {
+        padding-top: 100px;
+        font-size: 7rem;
+        text-align: center;
+        color: #FCB766;
+        font-weight: 600;
+        position: relative
+    }
+
+    .parallax p {
+        color: #fff;
+        text-align: center;
+        font-size: 2rem;
+        padding: 0 30px 20px 30px;
+    }
+
+    .parallax .btn-service {
+        color: #fff;
+        background-color: #125741;
+        border-radius: 40px;
+        position: relative;
+        padding: 9px 40px;
+        font-size: 1.8rem;
+    }
+
+        .parallax .btn-service:hover {
+            border: 3px solid #fff;
+            background-color: transparent;
+        }
+
+.section {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+.what-is-service {
+    text-align: center;
+    padding: 100px 50px;
+}
+
+    .what-is-service i {
+        color: #125741;
+    }
+
+    .what-is-service h2 {
+        color: #F8AA3B;
+        margin-bottom: 30px;
+        font-size: 6rem;
+    }
+
+
+    .what-is-service p {
+    
+        font-size: 1.7rem;
+    }
+
+.what-is-service-pic img {
+    height: 400px;
+}
+
+.bg-background1 {
+    background-image: url('/images/seo-bg1.jpg');
+    padding: 180px 0;
+}
+
+.rush-bordered {
+    border: 4px dotted #f8aa3b;
+    border-radius: 25px;
+}
+
+    .rush-bordered p {
+        color: #fff;
+        font-size: 2rem;
+        text-align: justify;
+        direction: rtl;
+    }
+
+    .rush-bordered .background-overlay {
+        background-color: #000;
+        opacity: .8;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: relative;
+        padding: 10px;
+        border-radius: 25px;
+    }
+
+.rush-packages {
+    text-align: center;
+}
+
+    .rush-packages p {
+        font-size: 1.7rem;
+     
+        color: #000000
+    }
+
+        .rush-packages p.first-par {
+            color: #125741;
+        }
+
+.package-item {
+    background-color: #333645;
+    padding: 30px 15px;
+    text-align: center;
+    min-height: 690px;
+    margin-bottom: 20px;
+}
+
+    .package-item img {
+        background-color: #333645;
+    }
+
+    .package-item h3 {
+        color: #f8aa3b;
+        border: 2px dotted #125741;
+        border-radius: 25px;
+        margin-bottom: 15px;
+        padding: 10px 0;
+        font-size: 3rem;
+    }
+
+    .package-item p {
+        font-size: 1.9rem;
+        color: #fff;
+    }
+
+
+
+.bg-background2 {
+    background-image: url('/images/seo-bg-2.jpg');
+    padding: 180px 0;
+    text-align: center;
+}
+
+    .bg-background2 h2 {
+        font-size: 5.5rem;
+        color: #f8aa3b;
+        margin-bottom: 35px;
+    }
+
+    .bg-background2 p {
+        color: #fff;
+        font-size: 1.8rem;
+    }
+
+
+.bg-color-1 {
+    background-color: #333645;
+}
+
+.bg-color-2 {
+    background-color: #ececec;
+}
+
+.related-blog {
+    background-color: #fff;
+    text-align: justify;
+    direction: rtl;
+    margin-bottom: 20px;
+    padding: 30px;
+}
+
+    .related-blog h3 {
+        color: #f8aa3b;
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .related-blog p {
+        color: #000;
+        font-size: 1.6rem;
+    }
+
+    .related-blog ul {
+        direction: rtl;
+        text-align: right
+    }
+
+    .related-blog li {
+        color: #000;
+        list-style: circle;
+        font-size: 1.5rem;
+    }
+
+    .related-blog .blog-img {
+        width: 100%;
+        padding: 30px;
+    }
+
+    .related-blog .btn-blog {
+        background-color: #f8aa3b;
+        color: #fff;
+        border-radius: 9px;
+        padding: 10px 20px;
+    }
+
+    .related-blog .left-blog {
+        padding: 0 30px;
+        margin: 10px 0;
+    }
+
+    .related-blog .right-blog {
+        padding: 0 30px;
+        margin: 10px 0;
+    }
+
+.second-color {
+    color: #f8aa3b;
+}
+
+.price-seo {
+    padding: 30px;
+    text-align: justify;
+    direction: rtl;
+}
+
+    .price-seo h2 {
+        color: #f8aa3b;
+        font-size:3rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .price-seo p {
+        font-size: 1.7rem;
+    }
+
+    .price-seo .telegram {
+        padding-top: 100px;
+    }
+
+        .price-seo .telegram p {
+            margin-top: 10px;
+        }
+
+.portfolio-seo {
+    text-align: center;
+
+}
+
+    .portfolio-seo h2 {
+        color: #f8aa3b;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .portfolio-seo figure {
+        text-align: center;
+    }
+    .portfolio-seo figure img {
+        margin: 0 auto;    }
+    .mb40 {
+        margin-bottom: 40px;
+    }
+.portfolio-seo .portfolio-item {
+    text-align: center;
+    border-radius:5px;
+    box-shadow: 0 0 25px 0 rgba(0,0,0,.15);
+    padding: 35px;
+    margin: 20px 0;
+    min-height: 360px;
+    transition: all 0.5s linear;
+}
+    .portfolio-seo .portfolio-item:hover {
+        box-shadow: 0 0 55px 0 rgba(0,0,0,.35);
+    }
+        .portfolio-seo .portfolio-item h3 {
+            color: #125741;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .portfolio-seo .portfolio-item p {
+            margin: 30px 0;
+            font-size: 1.6rem;
+        }
+
+        .portfolio-seo .portfolio-item img {
+            margin: 0 auto;
+        }
+
+        .text-center img{ margin: 0 auto;}
+.package-item img {
+    margin: 0 auto;
+}

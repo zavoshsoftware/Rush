@@ -11,7 +11,7 @@ namespace Models
         {
             Services = new List<Service>();
            ServiceForms = new List<ServiceForm>();
-            //Questions = new List<AskedQuestion> ();
+           Portfolios = new List<Portfolio> ();
         }
         [Display(Name = "اولویت")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید.")]
@@ -64,6 +64,7 @@ namespace Models
         public virtual ICollection<Service> Services { get; set; }
 
         public virtual ICollection<ServiceForm> ServiceForms { get; set; }
+        public virtual ICollection<Portfolio> Portfolios { get; set; }
         //public virtual ICollection<AskedQuestion> Questions { get; set; }
     }
 }

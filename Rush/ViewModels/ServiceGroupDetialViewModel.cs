@@ -11,5 +11,6 @@ namespace ViewModels
         public ServiceGroup ServiceGroup { get; set; }
         public ServiceForm ServiceForm { get; set; }
         public List<AskedQuestion> Questions { get; set; }
+        public List<Portfolio> Portfolios { get; set; }
     }
 }

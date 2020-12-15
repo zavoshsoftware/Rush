@@ -15,5 +15,9 @@ namespace Models
         [Display(Name="متن کوتاه")]
         [DataType(DataType.MultilineText)]
         public string Summery { get; set; }
+
+        [Display(Name="خدمت")]
+        public Guid? ServiceGroupId { get; set; }
+        public virtual ServiceGroup ServiceGroup { get; set; }
     }
 }

@@ -4,6 +4,7 @@
         url(/fonts/IranSans/IRANSansWebFaNum.woff2) format('woff2'),
         url(/fonts/IranSans/IRANSansWebFaNum.woff) format('woff'),
         url(/fonts/IranSans/IRANSansWebFaNum.ttf) format('truetype');
+    font-display: swap
 }
 
 body {

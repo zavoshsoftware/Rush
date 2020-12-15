@@ -13,6 +13,7 @@ ViewBag.Title = "فهرست نمونه کارها" ;
               .Columns(columns =>
                   {
                               columns.Bound(model => model.Title);
+                              columns.Bound(model => model.ServiceGroup.Title);
 		columns.Bound(model => model.ImageUrl).Template(@<text><img src="@item.ImageUrl" height="100px" /></text>);
         columns.Bound(model => model.Summery);
         columns.Bound(model => model.IsActive);
